@@ -1,0 +1,13 @@
+# DNS works for this Service, but it has NO endpoints because the selector matches no pods
+# (pods are labelled app=web-clusterip, the selector says app=web-cluster-ip).
+apiVersion: v1
+kind: Service
+metadata:
+  name: broken-web
+  namespace: s11-services
+spec:
+  selector:
+    app: web-cluster-ip
+  ports:
+    - port: 8080
+      targetPort: 80

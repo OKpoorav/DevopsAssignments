@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: web-stateful
+  labels:
+    app: web-headless
+spec:
+  serviceName: web-service-headless
+  replicas: 3
+  selector:
+    matchLabels:
+      app: web-headless
+  template:
+    metadata:
+      labels:
+        app: web-headless
+    spec:
+      containers:
+        - name: nginx-stateful
+          image: nginx:1.25-alpine
+          # print the pod name so we can see which replica answered
+          command: ["sh", "-c", "echo \"Hello from pod $$(hostname) ($$POD_IP)\" > /usr/share/nginx/html/index.html && exec nginx -g \"daemon off;\""]
+          env:
+            - name: POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+          ports:
+            - name: web
+              containerPort: 80
+          resources:
+            requests:
+              cpu: "50m"
+              memory: "64Mi"
+            limits:
+              cpu: "100m"
+              memory: "128Mi"

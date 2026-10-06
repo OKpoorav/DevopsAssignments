@@ -1,0 +1,19 @@
+# ExternalName Service: a DNS alias (CNAME) to a name OUTSIDE the cluster.
+# No selector, no ClusterIP, no endpoints, no kube-proxy rules - CoreDNS just returns a CNAME.
+# (The course YAML pointed at nencyravaliya.me, which no longer resolves, so example.com is used.)
+apiVersion: v1
+kind: Service
+metadata:
+  name: external-database-service
+spec:
+  type: ExternalName
+  externalName: example.com
+---
+# ExternalName can also alias an in-cluster Service by its FQDN (works across namespaces too).
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-alias
+spec:
+  type: ExternalName
+  externalName: web-service-clusterip.s11-services.svc.cluster.local

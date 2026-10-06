@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-service-loadbalancer
+  labels:
+    app: web-loadbalancer
+spec:
+  # LoadBalancer = NodePort + ClusterIP + an external load balancer from the cloud provider.
+  # On minikube the "cloud" LB is provided by `minikube tunnel`, which fills in EXTERNAL-IP.
+  type: LoadBalancer
+  selector:
+    app: web-loadbalancer
+  ports:
+    - name: http
+      # The course YAML uses port 80. On macOS, minikube tunnel needs sudo to bind privileged
+      # ports (<1024), so an unprivileged external port is used instead. Pods still listen on 80.
+      port: 18280
+      targetPort: 80
+      protocol: TCP

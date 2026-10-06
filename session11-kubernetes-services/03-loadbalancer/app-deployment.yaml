@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-app-loadbalancer
+  labels:
+    app: web-loadbalancer
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: web-loadbalancer
+  template:
+    metadata:
+      labels:
+        app: web-loadbalancer
+    spec:
+      containers:
+        - name: web-server
+          image: nginx:1.25-alpine
+          # print the pod name so we can see which replica answered
+          command: ["sh", "-c", "echo \"Hello from pod $$(hostname) ($$POD_IP)\" > /usr/share/nginx/html/index.html && exec nginx -g \"daemon off;\""]
+          env:
+            - name: POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: "50m"
+              memory: "64Mi"
+            limits:
+              cpu: "100m"
+              memory: "128Mi"
