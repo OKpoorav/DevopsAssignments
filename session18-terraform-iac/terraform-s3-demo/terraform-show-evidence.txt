@@ -1,0 +1,153 @@
+# aws_s3_bucket.demo:
+resource "aws_s3_bucket" "demo" {
+    acceleration_status         = null
+    arn                         = "arn:aws:s3:::poorav-hw-s18-21c57343"
+    bucket                      = "poorav-hw-s18-21c57343"
+    bucket_domain_name          = "poorav-hw-s18-21c57343.s3.amazonaws.com"
+    bucket_namespace            = "global"
+    bucket_prefix               = null
+    bucket_region               = "us-east-1"
+    bucket_regional_domain_name = "poorav-hw-s18-21c57343.s3.us-east-1.amazonaws.com"
+    force_destroy               = true
+    hosted_zone_id              = "Z3AQBSTGFYJSTF"
+    id                          = "poorav-hw-s18-21c57343"
+    object_lock_enabled         = false
+    policy                      = null
+    region                      = "us-east-1"
+    request_payer               = "BucketOwner"
+    tags                        = {
+        "Environment" = "dev"
+        "Name"        = "poorav-hw-s18-21c57343"
+    }
+    tags_all                    = {
+        "Environment" = "dev"
+        "ManagedBy"   = "Terraform"
+        "Name"        = "poorav-hw-s18-21c57343"
+        "Owner"       = "poorav-homework"
+        "Project"     = "Session18"
+    }
+
+    grant {
+        id          = "c200c94f95c6ef1c669e05e3485ce906a20db3b5a273323584a4882519207bad"
+        permissions = [
+            "FULL_CONTROL",
+        ]
+        type        = "CanonicalUser"
+        uri         = null
+    }
+
+    server_side_encryption_configuration {
+        rule {
+            bucket_key_enabled = false
+
+            apply_server_side_encryption_by_default {
+                kms_master_key_id = null
+                sse_algorithm     = "AES256"
+            }
+        }
+    }
+
+    versioning {
+        enabled    = false
+        mfa_delete = false
+    }
+}
+
+# aws_s3_bucket_public_access_block.demo:
+resource "aws_s3_bucket_public_access_block" "demo" {
+    block_public_acls       = true
+    block_public_policy     = true
+    bucket                  = "poorav-hw-s18-21c57343"
+    id                      = "poorav-hw-s18-21c57343"
+    ignore_public_acls      = true
+    region                  = "us-east-1"
+    restrict_public_buckets = true
+}
+
+# aws_s3_bucket_server_side_encryption_configuration.demo:
+resource "aws_s3_bucket_server_side_encryption_configuration" "demo" {
+    bucket                = "poorav-hw-s18-21c57343"
+    expected_bucket_owner = null
+    id                    = "poorav-hw-s18-21c57343"
+    region                = "us-east-1"
+
+    rule {
+        blocked_encryption_types = [
+            "SSE-C",
+        ]
+        bucket_key_enabled       = false
+
+        apply_server_side_encryption_by_default {
+            kms_master_key_id = null
+            sse_algorithm     = "AES256"
+        }
+    }
+}
+
+# aws_s3_bucket_versioning.demo:
+resource "aws_s3_bucket_versioning" "demo" {
+    bucket                = "poorav-hw-s18-21c57343"
+    expected_bucket_owner = null
+    id                    = "poorav-hw-s18-21c57343"
+    region                = "us-east-1"
+
+    versioning_configuration {
+        mfa_delete = "Disabled"
+        status     = "Enabled"
+    }
+}
+
+# aws_s3_object.hello:
+resource "aws_s3_object" "hello" {
+    arn                           = "arn:aws:s3:::poorav-hw-s18-21c57343/hello.txt"
+    bucket                        = "poorav-hw-s18-21c57343"
+    bucket_key_enabled            = false
+    cache_control                 = null
+    checksum_crc32                = null
+    checksum_crc32c               = null
+    checksum_crc64nvme            = null
+    checksum_sha1                 = null
+    checksum_sha256               = null
+    content                       = <<-EOT
+        Hello from Terraform - Poorav Kumar Gupta (24bcs10080)
+    EOT
+    content_disposition           = null
+    content_encoding              = null
+    content_language              = null
+    content_type                  = "text/plain"
+    etag                          = "0f9575056fde49d290e70e74398bac15"
+    force_destroy                 = false
+    id                            = "poorav-hw-s18-21c57343/hello.txt"
+    key                           = "hello.txt"
+    object_lock_legal_hold_status = null
+    object_lock_mode              = null
+    object_lock_retain_until_date = null
+    region                        = "us-east-1"
+    server_side_encryption        = "AES256"
+    storage_class                 = "STANDARD"
+    tags_all                      = {
+        "ManagedBy" = "Terraform"
+        "Owner"     = "poorav-homework"
+        "Project"   = "Session18"
+    }
+    version_id                    = "Hbizi4P0CYA.kQE1jTR4IYTxvW.I3M0A"
+    website_redirect              = null
+}
+
+# random_id.suffix:
+resource "random_id" "suffix" {
+    b64_std     = "IcVzQw=="
+    b64_url     = "IcVzQw"
+    byte_length = 4
+    dec         = "566588227"
+    hex         = "21c57343"
+    id          = "IcVzQw"
+}
+
+
+Outputs:
+
+bucket_arn = "arn:aws:s3:::poorav-hw-s18-21c57343"
+bucket_name = "poorav-hw-s18-21c57343"
+bucket_region = "us-east-1"
+versioning_status = "Enabled"
