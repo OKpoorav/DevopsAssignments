@@ -1,0 +1,28 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: s20-app-alerts
+  namespace: s20-app
+spec:
+  groups:
+  - name: s20-app.rules
+    rules:
+    - alert: PodinfoTargetDown
+      expr: up{job="podinfo", namespace="s20-app"} == 0
+      for: 30s
+      labels: {severity: critical}
+      annotations:
+        summary: "podinfo target {{ $labels.instance }} is down"
+    - alert: PodinfoHighCPU
+      # fires when the stress pod / podinfo uses > 50% of its 300m CPU limit
+      expr: sum by (pod) (rate(container_cpu_usage_seconds_total{namespace="s20-app", container!=""}[1m])) > 0.15
+      for: 30s
+      labels: {severity: warning}
+      annotations:
+        summary: "High CPU on {{ $labels.pod }}: {{ $value | humanize }} cores"
+    - alert: PodNotReady
+      expr: kube_pod_status_ready{namespace="s20-app", condition="false"} == 1
+      for: 30s
+      labels: {severity: warning}
+      annotations:
+        summary: "Pod {{ $labels.pod }} is not ready"

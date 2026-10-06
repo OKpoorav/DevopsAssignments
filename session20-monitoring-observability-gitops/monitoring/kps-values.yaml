@@ -1,0 +1,39 @@
+# Lightweight kube-prometheus-stack values for a small minikube cluster
+alertmanager:
+  enabled: true
+  alertmanagerSpec:
+    resources: {requests: {cpu: 10m, memory: 32Mi}}
+grafana:
+  enabled: true
+  adminPassword: admin123
+  grafana.ini:
+    auth.anonymous:
+      enabled: true
+      org_role: Admin
+    auth:
+      disable_login_form: false
+  resources: {requests: {cpu: 50m, memory: 128Mi}}
+  sidecar:
+    dashboards: {enabled: true, searchNamespace: ALL}
+kube-state-metrics:
+  resources: {requests: {cpu: 10m, memory: 32Mi}}
+prometheus-node-exporter:
+  resources: {requests: {cpu: 10m, memory: 16Mi}}
+prometheusOperator:
+  resources: {requests: {cpu: 20m, memory: 64Mi}}
+prometheus:
+  prometheusSpec:
+    retention: 6h
+    scrapeInterval: 15s
+    evaluationInterval: 15s
+    resources: {requests: {cpu: 100m, memory: 300Mi}}
+    serviceMonitorSelectorNilUsesHelmValues: false
+    podMonitorSelectorNilUsesHelmValues: false
+    ruleSelectorNilUsesHelmValues: false
+    serviceMonitorNamespaceSelector: {}
+    ruleNamespaceSelector: {}
+# minikube control-plane components are not reachable for scraping; disable noisy ones
+kubeEtcd: {enabled: false}
+kubeControllerManager: {enabled: false}
+kubeScheduler: {enabled: false}
+kubeProxy: {enabled: false}

@@ -1,0 +1,18 @@
+# Minimal Argo CD for a small minikube cluster
+dex: {enabled: false}
+notifications: {enabled: false}
+applicationSet: {replicas: 1}
+configs:
+  params:
+    server.insecure: true
+    # NOTE: intended to shorten Git polling to 30s, but this key belongs in argocd-cm (configs.cm),
+    # so it had no effect - the demo ran with the default ~3 min polling interval.
+    timeout.reconciliation: 30s
+  cm:
+    users.anonymous.enabled: "true" # read-only anonymous UI access so headless screenshots work
+  rbac:
+    policy.default: role:readonly
+controller: {resources: {requests: {cpu: 100m, memory: 256Mi}}}
+repoServer: {resources: {requests: {cpu: 50m, memory: 128Mi}}}
+server: {resources: {requests: {cpu: 50m, memory: 64Mi}}}
+redis: {resources: {requests: {cpu: 10m, memory: 32Mi}}}

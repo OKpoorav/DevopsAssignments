@@ -1,0 +1,19 @@
+commit 77717b652de0307d36e04ab4bceb1a9d1d99bfc9
+Author: Poorav Kumar Gupta <poorav@example.com>
+Date:   Thu Oct 8 00:18:16 2026 +0530
+
+    Scale guestbook web to 3 replicas
+
+ apps/guestbook/deployment.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 3e6b26b6460b9b7adcb2f354a848be7f8f8882b9
+Author: Poorav Kumar Gupta <poorav@example.com>
+Date:   Thu Oct 8 00:10:39 2026 +0530
+
+    Add guestbook app manifests (replicas: 2)
+
+ apps/guestbook/deployment.yaml | 21 +++++++++++++++++++++
+ apps/guestbook/namespace.yaml  |  3 +++
+ apps/guestbook/service.yaml    |  6 ++++++
+ 3 files changed, 30 insertions(+)

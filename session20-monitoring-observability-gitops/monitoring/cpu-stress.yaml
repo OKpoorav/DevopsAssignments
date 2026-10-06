@@ -1,0 +1,15 @@
+# Generates CPU load in s20-app so the PodinfoHighCPU alert fires
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cpu-stress
+  namespace: s20-app
+  labels: {app: cpu-stress}
+spec:
+  containers:
+  - name: stress
+    image: busybox:1.36
+    command: ["sh", "-c", "while true; do :; done"]
+    resources:
+      requests: {cpu: 50m, memory: 16Mi}
+      limits: {cpu: 300m, memory: 32Mi}

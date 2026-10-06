@@ -1,0 +1,32 @@
+# Custom Grafana dashboard loaded by the grafana sidecar (label grafana_dashboard=1)
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: s20-app-dashboard
+  namespace: s20-monitoring
+  labels: {grafana_dashboard: "1"}
+data:
+  s20-app.json: |
+    {
+      "uid": "s20-app",
+      "title": "S20 - Podinfo App Health",
+      "time": {"from": "now-30m", "to": "now"},
+      "refresh": "10s",
+      "schemaVersion": 39,
+      "panels": [
+        {"id": 1, "type": "stat", "title": "Targets UP", "gridPos": {"x": 0, "y": 0, "w": 6, "h": 5},
+         "targets": [{"expr": "sum(up{job=\"podinfo\"})", "refId": "A"}]},
+        {"id": 2, "type": "stat", "title": "Ready pods (s20-app)", "gridPos": {"x": 6, "y": 0, "w": 6, "h": 5},
+         "targets": [{"expr": "sum(kube_pod_status_ready{namespace=\"s20-app\",condition=\"true\"})", "refId": "A"}]},
+        {"id": 3, "type": "stat", "title": "Firing alerts", "gridPos": {"x": 12, "y": 0, "w": 6, "h": 5},
+         "targets": [{"expr": "count(ALERTS{alertstate=\"firing\",namespace=\"s20-app\"}) or vector(0)", "refId": "A"}]},
+        {"id": 4, "type": "stat", "title": "Restarts", "gridPos": {"x": 18, "y": 0, "w": 6, "h": 5},
+         "targets": [{"expr": "sum(kube_pod_container_status_restarts_total{namespace=\"s20-app\"})", "refId": "A"}]},
+        {"id": 5, "type": "timeseries", "title": "CPU usage (cores) by pod", "gridPos": {"x": 0, "y": 5, "w": 12, "h": 8},
+         "targets": [{"expr": "sum by (pod) (rate(container_cpu_usage_seconds_total{namespace=\"s20-app\",container!=\"\"}[1m]))", "legendFormat": "{{pod}}", "refId": "A"}]},
+        {"id": 6, "type": "timeseries", "title": "Memory working set (bytes) by pod", "fieldConfig": {"defaults": {"unit": "bytes"}}, "gridPos": {"x": 12, "y": 5, "w": 12, "h": 8},
+         "targets": [{"expr": "sum by (pod) (container_memory_working_set_bytes{namespace=\"s20-app\",container!=\"\"})", "legendFormat": "{{pod}}", "refId": "A"}]},
+        {"id": 7, "type": "timeseries", "title": "HTTP requests/s by status", "gridPos": {"x": 0, "y": 13, "w": 24, "h": 8},
+         "targets": [{"expr": "sum by (status) (rate(http_requests_total{namespace=\"s20-app\"}[1m]))", "legendFormat": "{{status}}", "refId": "A"}]}
+      ]
+    }

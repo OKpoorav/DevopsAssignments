@@ -1,0 +1,44 @@
+# In-cluster Git server (git daemon, git:// protocol) acting as the GitOps "source of truth" remote.
+apiVersion: v1
+kind: Namespace
+metadata: {name: s20-gitops}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata: {name: git-repos, namespace: s20-gitops}
+spec:
+  accessModes: [ReadWriteOnce]
+  resources: {requests: {storage: 100Mi}}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: git-server, namespace: s20-gitops, labels: {app: git-server}}
+spec:
+  replicas: 1
+  selector: {matchLabels: {app: git-server}}
+  template:
+    metadata: {labels: {app: git-server}}
+    spec:
+      containers:
+      - name: git-daemon
+        image: alpine:3.20
+        command: ["sh", "-c"]
+        args:
+        - |
+          apk add --no-cache git git-daemon >/dev/null
+          [ -d /srv/git/gitops-demo.git ] || git init --bare -b main /srv/git/gitops-demo.git
+          git config --global --add safe.directory '*'
+          exec git daemon --verbose --export-all --enable=receive-pack --reuseaddr --base-path=/srv/git /srv/git
+        ports: [{name: git, containerPort: 9418}]
+        resources: {requests: {cpu: 10m, memory: 16Mi}}
+        volumeMounts: [{name: repos, mountPath: /srv/git}]
+      volumes:
+      - name: repos
+        persistentVolumeClaim: {claimName: git-repos}
+---
+apiVersion: v1
+kind: Service
+metadata: {name: git-server, namespace: s20-gitops}
+spec:
+  selector: {app: git-server}
+  ports: [{name: git, port: 9418, targetPort: git}]
