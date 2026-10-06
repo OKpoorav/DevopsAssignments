@@ -1,0 +1,124 @@
+# Continuous Integration: every push / PR is linted, tested, built and packaged.
+name: CI Pipeline
+
+on:
+  push:
+    branches: [main]
+    paths-ignore: ["**.md", "screenshots/**"]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  IMAGE_NAME: s16-calculator
+  PYTHON_VERSION: "3.12"
+
+jobs:
+  lint:
+    name: Lint (flake8)
+    runs-on: ubuntu-latest            # GitHub-hosted runner (act: catthehacker/ubuntu container)
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: Run flake8
+        run: |
+          pip install flake8==7.3.0
+          flake8 .
+
+  test:
+    name: Unit tests (Python ${{ matrix.python-version }})
+    needs: lint
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-dev.txt
+      - name: Run pytest with coverage
+        run: |
+          mkdir -p reports
+          pytest -v --junitxml=reports/junit.xml --cov=app --cov-report=term --cov-report=xml:reports/coverage.xml
+      - name: Upload test report artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-report-py${{ matrix.python-version }}
+          path: reports/
+
+  build:
+    name: Build application package
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build
+        run: ./build.sh
+      - name: Show build info
+        run: cat build/build-info.txt
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: calculator-build
+          path: build/calculator-build.tar.gz
+          retention-days: 7
+
+  docker:
+    name: Docker build & smoke test
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download build artifact (from previous job)
+        uses: actions/download-artifact@v4
+        with:
+          name: calculator-build
+          path: downloaded/
+      - name: Verify downloaded artifact
+        run: ls -la downloaded/ && tar -tzf downloaded/calculator-build.tar.gz | head
+      - name: Build Docker image
+        run: docker build --build-arg APP_VERSION=${GITHUB_SHA::7} -t $IMAGE_NAME:ci-${GITHUB_SHA::7} .
+      - name: Smoke test container
+        run: |
+          docker rm -f s16-ci-smoke 2>/dev/null || true
+          docker run -d --name s16-ci-smoke $IMAGE_NAME:ci-${GITHUB_SHA::7}
+          sleep 5
+          docker exec s16-ci-smoke python -c "import urllib.request;print(urllib.request.urlopen('http://localhost:5000/api/add?a=10&b=5').read().decode())"
+          docker rm -f s16-ci-smoke
+      - name: Save image as artifact
+        run: docker save $IMAGE_NAME:ci-${GITHUB_SHA::7} | gzip > image.tar.gz && ls -lh image.tar.gz
+      - name: Upload Docker image artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: docker-image
+          path: image.tar.gz
+          retention-days: 1
+
+  security-check:
+    name: Basic security check (uses a secret)
+    needs: lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check for committed sensitive files
+        run: |
+          if find . -type f \( -name ".env" -o -name "*.pem" -o -name "*.key" -o -name ".secrets" \) -not -path "./.git/*" | grep .; then
+            echo "Sensitive file found!"; exit 1
+          fi
+          echo "No sensitive files committed."
+      - name: Use a secret safely
+        env:
+          API_TOKEN: ${{ secrets.API_TOKEN }}
+        run: |
+          if [ -z "$API_TOKEN" ]; then echo "API_TOKEN secret is missing"; exit 1; fi
+          echo "API_TOKEN is set (length ${#API_TOKEN}); value printed by mistake is masked: $API_TOKEN"

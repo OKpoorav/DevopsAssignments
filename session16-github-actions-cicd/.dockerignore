@@ -1,0 +1,11 @@
+.git
+.github
+tests
+build
+screenshots
+scripts
+k8s
+*.md
+.secrets*
+__pycache__
+.venv

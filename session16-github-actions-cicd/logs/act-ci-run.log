@@ -1,0 +1,705 @@
+time="2026-10-08T00:08:43+05:30" level=info msg="Using docker host 'unix:///var/run/docker.sock', and daemon socket 'unix:///var/run/docker.sock'"
+time="2026-10-08T00:08:43+05:30" level=info msg="Start server on http://100.128.166.41:34567"
+[CI Pipeline/Lint (flake8)] ⭐ Run Set up job
+[CI Pipeline/Lint (flake8)] 🚀  Start image=catthehacker/ubuntu:act-latest
+[CI Pipeline/Lint (flake8)]   🐳  docker pull image=catthehacker/ubuntu:act-latest platform=linux/arm64 username= forcePull=false
+[CI Pipeline/Lint (flake8)]   🐳  docker create image=catthehacker/ubuntu:act-latest platform=linux/arm64 entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[CI Pipeline/Lint (flake8)]   🐳  docker run image=catthehacker/ubuntu:act-latest platform=linux/arm64 entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[CI Pipeline/Lint (flake8)]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[CI Pipeline/Lint (flake8)]   ✅  Success - Set up job
+[CI Pipeline/Lint (flake8)]   ☁  git clone 'https://github.com/actions/setup-python' # ref=v5
+[CI Pipeline/Lint (flake8)] ⭐ Run Main Checkout source code
+[CI Pipeline/Lint (flake8)]   🐳  docker cp src=/Users/poorav/Devops/session16-github-actions-cicd/. dst=/Users/poorav/Devops/session16-github-actions-cicd
+[CI Pipeline/Lint (flake8)]   ✅  Success - Main Checkout source code [257.888125ms]
+[CI Pipeline/Lint (flake8)] ⭐ Run Main Setup Python
+[CI Pipeline/Lint (flake8)]   🐳  docker cp src=/Users/poorav/.cache/act/actions-setup-python@v5/ dst=/var/run/act/actions/actions-setup-python@v5/
+[CI Pipeline/Lint (flake8)]   🐳  docker exec cmd=[/opt/acttoolcache/node/24.19.0/arm64/bin/node /var/run/act/actions/actions-setup-python@v5/dist/setup/index.js] user= workdir=
+[CI Pipeline/Lint (flake8)]   ❓  ::group::Installed versions
+[CI Pipeline/Lint (flake8)]   | Version 3.12 was not found in the local cache
+[CI Pipeline/Lint (flake8)]   | (node:31) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[CI Pipeline/Lint (flake8)]   | (Use `node --trace-deprecation ...` to show where the warning was created)
+[CI Pipeline/Lint (flake8)]   | Version 3.12 is available for downloading
+[CI Pipeline/Lint (flake8)]   | Download from "https://github.com/actions/python-versions/releases/download/3.12.15-36805895057/python-3.12.15-linux-24.04-arm64.tar.gz"
+[CI Pipeline/Lint (flake8)]   | Extract downloaded archive
+[CI Pipeline/Lint (flake8)]   | [command]/usr/bin/tar xz --warning=no-unknown-keyword --overwrite -C /tmp/b8a8ce96-7969-4245-8462-1c54f2a36b36 -f /tmp/515a03f0-1ec8-4812-91f0-a607a75964d3
+[CI Pipeline/Lint (flake8)]   | Execute installation script
+[CI Pipeline/Lint (flake8)]   | Check if Python hostedtoolcache folder exist...
+[CI Pipeline/Lint (flake8)]   | Creating Python hostedtoolcache folder...
+[CI Pipeline/Lint (flake8)]   | Create Python 3.12.15 folder
+[CI Pipeline/Lint (flake8)]   | Copy Python binaries to hostedtoolcache folder
+[CI Pipeline/Lint (flake8)]   | Create additional symlinks (Required for the UsePythonVersion Azure Pipelines task and the setup-python GitHub Action)
+[CI Pipeline/Lint (flake8)]   | Upgrading pip...
+[CI Pipeline/Lint (flake8)]   | Collecting pip
+[CI Pipeline/Lint (flake8)]   | Downloading pip-26.2.1-py3-none-any.whl.metadata (4.6 kB)
+[CI Pipeline/Lint (flake8)]   | Downloading pip-26.2.1-py3-none-any.whl (1.8 MB)
+[CI Pipeline/Lint (flake8)]   | ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 1.2 MB/s eta 0:00:00
+[CI Pipeline/Lint (flake8)]   | Installing collected packages: pip
+[CI Pipeline/Lint (flake8)]   | Attempting uninstall: pip
+[CI Pipeline/Lint (flake8)]   | Found existing installation: pip 25.0.1
+[CI Pipeline/Lint (flake8)]   | Uninstalling pip-25.0.1:
+[CI Pipeline/Lint (flake8)]   | Successfully uninstalled pip-25.0.1
+[CI Pipeline/Lint (flake8)]   | Successfully installed pip-26.2.1
+[CI Pipeline/Lint (flake8)]   | Create complete file
+[CI Pipeline/Lint (flake8)]   | Successfully set up CPython (3.12.15)
+[CI Pipeline/Lint (flake8)]   ❓  ::endgroup::
+[CI Pipeline/Lint (flake8)]   ❓ add-matcher /run/act/actions/actions-setup-python@v5/.github/python.json
+[CI Pipeline/Lint (flake8)]   ✅  Success - Main Setup Python [1m2.953752s]
+[CI Pipeline/Lint (flake8)]   ⚙  ::set-env:: PKG_CONFIG_PATH=/opt/hostedtoolcache/Python/3.12.15/arm64/lib/pkgconfig
+[CI Pipeline/Lint (flake8)]   ⚙  ::set-env:: Python_ROOT_DIR=/opt/hostedtoolcache/Python/3.12.15/arm64
+[CI Pipeline/Lint (flake8)]   ⚙  ::set-env:: Python2_ROOT_DIR=/opt/hostedtoolcache/Python/3.12.15/arm64
+[CI Pipeline/Lint (flake8)]   ⚙  ::set-env:: Python3_ROOT_DIR=/opt/hostedtoolcache/Python/3.12.15/arm64
+[CI Pipeline/Lint (flake8)]   ⚙  ::set-env:: LD_LIBRARY_PATH=/opt/hostedtoolcache/Python/3.12.15/arm64/lib
+[CI Pipeline/Lint (flake8)]   ⚙  ::set-env:: pythonLocation=/opt/hostedtoolcache/Python/3.12.15/arm64
+[CI Pipeline/Lint (flake8)]   ⚙  ::set-output:: python-version=3.12.15
+[CI Pipeline/Lint (flake8)]   ⚙  ::set-output:: python-path=/opt/hostedtoolcache/Python/3.12.15/arm64/bin/python
+[CI Pipeline/Lint (flake8)]   ⚙  ::add-path:: /opt/hostedtoolcache/Python/3.12.15/arm64
+[CI Pipeline/Lint (flake8)]   ⚙  ::add-path:: /opt/hostedtoolcache/Python/3.12.15/arm64/bin
+[CI Pipeline/Lint (flake8)] ⭐ Run Main Run flake8
+[CI Pipeline/Lint (flake8)]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=
+[CI Pipeline/Lint (flake8)]   | Collecting flake8==7.3.0
+[CI Pipeline/Lint (flake8)]   |   Downloading flake8-7.3.0-py2.py3-none-any.whl.metadata (3.8 kB)
+[CI Pipeline/Lint (flake8)]   | Collecting mccabe<0.8.0,>=0.7.0 (from flake8==7.3.0)
+[CI Pipeline/Lint (flake8)]   |   Downloading mccabe-0.7.0-py2.py3-none-any.whl.metadata (5.0 kB)
+[CI Pipeline/Lint (flake8)]   | Collecting pycodestyle<2.15.0,>=2.14.0 (from flake8==7.3.0)
+[CI Pipeline/Lint (flake8)]   |   Downloading pycodestyle-2.14.0-py2.py3-none-any.whl.metadata (4.5 kB)
+[CI Pipeline/Lint (flake8)]   | Collecting pyflakes<3.5.0,>=3.4.0 (from flake8==7.3.0)
+[CI Pipeline/Lint (flake8)]   |   Downloading pyflakes-3.4.0-py2.py3-none-any.whl.metadata (3.5 kB)
+[CI Pipeline/Lint (flake8)]   | Downloading flake8-7.3.0-py2.py3-none-any.whl (57 kB)
+[CI Pipeline/Lint (flake8)]   | Downloading mccabe-0.7.0-py2.py3-none-any.whl (7.3 kB)
+[CI Pipeline/Lint (flake8)]   | Downloading pycodestyle-2.14.0-py2.py3-none-any.whl (31 kB)
+[CI Pipeline/Lint (flake8)]   | Downloading pyflakes-3.4.0-py2.py3-none-any.whl (63 kB)
+[CI Pipeline/Lint (flake8)]   | Installing collected packages: pyflakes, pycodestyle, mccabe, flake8
+[CI Pipeline/Lint (flake8)]   | 
+[CI Pipeline/Lint (flake8)]   | Successfully installed flake8-7.3.0 mccabe-0.7.0 pycodestyle-2.14.0 pyflakes-3.4.0
+[CI Pipeline/Lint (flake8)]   | WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+[CI Pipeline/Lint (flake8)]   ✅  Success - Main Run flake8 [10.424918042s]
+[CI Pipeline/Lint (flake8)] ⭐ Run Post Setup Python
+[CI Pipeline/Lint (flake8)]   🐳  docker exec cmd=[/opt/acttoolcache/node/24.19.0/arm64/bin/node /var/run/act/actions/actions-setup-python@v5/dist/cache-save/index.js] user= workdir=
+[CI Pipeline/Lint (flake8)]   | (node:120) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[CI Pipeline/Lint (flake8)]   | (Use `node --trace-deprecation ...` to show where the warning was created)
+[CI Pipeline/Lint (flake8)]   ✅  Success - Post Setup Python [1.46195375s]
+[CI Pipeline/Lint (flake8)] ⭐ Run Complete job
+[CI Pipeline/Lint (flake8)] Cleaning up container for job Lint (flake8)
+[CI Pipeline/Lint (flake8)]   ✅  Success - Complete job
+[CI Pipeline/Lint (flake8)] 🏁  Job succeeded
+[CI Pipeline/Basic security check (uses a secret)] ⭐ Run Set up job
+[CI Pipeline/Basic security check (uses a secret)] 🚀  Start image=catthehacker/ubuntu:act-latest
+[CI Pipeline/Unit tests (Python 3.12)-2          ] ⭐ Run Set up job
+[CI Pipeline/Unit tests (Python 3.11)-1          ] ⭐ Run Set up job
+[CI Pipeline/Unit tests (Python 3.11)-1          ] 🚀  Start image=catthehacker/ubuntu:act-latest
+[CI Pipeline/Unit tests (Python 3.12)-2          ] 🚀  Start image=catthehacker/ubuntu:act-latest
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   🐳  docker pull image=catthehacker/ubuntu:act-latest platform=linux/arm64 username= forcePull=false
+[CI Pipeline/Basic security check (uses a secret)]   🐳  docker pull image=catthehacker/ubuntu:act-latest platform=linux/arm64 username= forcePull=false
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   🐳  docker pull image=catthehacker/ubuntu:act-latest platform=linux/arm64 username= forcePull=false
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   🐳  docker create image=catthehacker/ubuntu:act-latest platform=linux/arm64 entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[CI Pipeline/Basic security check (uses a secret)]   🐳  docker create image=catthehacker/ubuntu:act-latest platform=linux/arm64 entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   🐳  docker create image=catthehacker/ubuntu:act-latest platform=linux/arm64 entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[CI Pipeline/Basic security check (uses a secret)]   🐳  docker run image=catthehacker/ubuntu:act-latest platform=linux/arm64 entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   🐳  docker run image=catthehacker/ubuntu:act-latest platform=linux/arm64 entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   🐳  docker run image=catthehacker/ubuntu:act-latest platform=linux/arm64 entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[CI Pipeline/Basic security check (uses a secret)]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   ✅  Success - Set up job
+[CI Pipeline/Basic security check (uses a secret)]   ✅  Success - Set up job
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   ✅  Success - Set up job
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   ☁  git clone 'https://github.com/actions/setup-python' # ref=v5
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   ☁  git clone 'https://github.com/actions/setup-python' # ref=v5
+[CI Pipeline/Basic security check (uses a secret)] ⭐ Run Main actions/checkout@v4
+[CI Pipeline/Basic security check (uses a secret)]   🐳  docker cp src=/Users/poorav/Devops/session16-github-actions-cicd/. dst=/Users/poorav/Devops/session16-github-actions-cicd
+[CI Pipeline/Basic security check (uses a secret)]   ✅  Success - Main actions/checkout@v4 [226.895209ms]
+[CI Pipeline/Basic security check (uses a secret)] ⭐ Run Main Check for committed sensitive files
+[CI Pipeline/Basic security check (uses a secret)]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/1] user= workdir=
+[CI Pipeline/Basic security check (uses a secret)]   | No sensitive files committed.
+[CI Pipeline/Basic security check (uses a secret)]   ✅  Success - Main Check for committed sensitive files [414.511ms]
+[CI Pipeline/Basic security check (uses a secret)] ⭐ Run Main Use a secret safely
+[CI Pipeline/Basic security check (uses a secret)]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=
+[CI Pipeline/Basic security check (uses a secret)]   | API_TOKEN is set (length 32); value printed by mistake is masked: ***
+[CI Pipeline/Basic security check (uses a secret)]   ✅  Success - Main Use a secret safely [512.048583ms]
+[CI Pipeline/Basic security check (uses a secret)] ⭐ Run Complete job
+[CI Pipeline/Basic security check (uses a secret)] Cleaning up container for job Basic security check (uses a secret)
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   ☁  git clone 'https://github.com/actions/upload-artifact' # ref=v4
+[CI Pipeline/Basic security check (uses a secret)]   ✅  Success - Complete job
+[CI Pipeline/Basic security check (uses a secret)] 🏁  Job succeeded
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   ☁  git clone 'https://github.com/actions/upload-artifact' # ref=v4
+[CI Pipeline/Unit tests (Python 3.11)-1          ] 🧪  Matrix: map[python-version:3.11]
+[CI Pipeline/Unit tests (Python 3.11)-1          ] ⭐ Run Main actions/checkout@v4
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   🐳  docker cp src=/Users/poorav/Devops/session16-github-actions-cicd/. dst=/Users/poorav/Devops/session16-github-actions-cicd
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   ✅  Success - Main actions/checkout@v4 [71.037708ms]
+[CI Pipeline/Unit tests (Python 3.11)-1          ] ⭐ Run Main actions/setup-python@v5
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   🐳  docker cp src=/Users/poorav/.cache/act/actions-setup-python@v5/ dst=/var/run/act/actions/actions-setup-python@v5/
+[CI Pipeline/Unit tests (Python 3.12)-2          ] 🧪  Matrix: map[python-version:3.12]
+[CI Pipeline/Unit tests (Python 3.12)-2          ] ⭐ Run Main actions/checkout@v4
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   🐳  docker cp src=/Users/poorav/Devops/session16-github-actions-cicd/. dst=/Users/poorav/Devops/session16-github-actions-cicd
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   ✅  Success - Main actions/checkout@v4 [88.596667ms]
+[CI Pipeline/Unit tests (Python 3.12)-2          ] ⭐ Run Main actions/setup-python@v5
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   🐳  docker cp src=/Users/poorav/.cache/act/actions-setup-python@v5/ dst=/var/run/act/actions/actions-setup-python@v5/
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   🐳  docker exec cmd=[/opt/acttoolcache/node/24.19.0/arm64/bin/node /var/run/act/actions/actions-setup-python@v5/dist/setup/index.js] user= workdir=
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   ❓  ::group::Installed versions
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Version 3.11 was not found in the local cache
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | (node:31) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | (Use `node --trace-deprecation ...` to show where the warning was created)
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   🐳  docker exec cmd=[/opt/acttoolcache/node/24.19.0/arm64/bin/node /var/run/act/actions/actions-setup-python@v5/dist/setup/index.js] user= workdir=
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   ❓  ::group::Installed versions
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | (node:29) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | (Use `node --trace-deprecation ...` to show where the warning was created)
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | Successfully set up CPython (3.12.15)
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   ❓  ::endgroup::
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   ❓ add-matcher /run/act/actions/actions-setup-python@v5/.github/python.json
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   ✅  Success - Main actions/setup-python@v5 [2.399520416s]
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   ⚙  ::set-env:: pythonLocation=/opt/hostedtoolcache/Python/3.12.15/arm64
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   ⚙  ::set-env:: PKG_CONFIG_PATH=/opt/hostedtoolcache/Python/3.12.15/arm64/lib/pkgconfig
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   ⚙  ::set-env:: Python_ROOT_DIR=/opt/hostedtoolcache/Python/3.12.15/arm64
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   ⚙  ::set-env:: Python2_ROOT_DIR=/opt/hostedtoolcache/Python/3.12.15/arm64
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   ⚙  ::set-env:: Python3_ROOT_DIR=/opt/hostedtoolcache/Python/3.12.15/arm64
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   ⚙  ::set-env:: LD_LIBRARY_PATH=/opt/hostedtoolcache/Python/3.12.15/arm64/lib
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   ⚙  ::set-output:: python-version=3.12.15
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   ⚙  ::set-output:: python-path=/opt/hostedtoolcache/Python/3.12.15/arm64/bin/python
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   ⚙  ::add-path:: /opt/hostedtoolcache/Python/3.12.15/arm64
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   ⚙  ::add-path:: /opt/hostedtoolcache/Python/3.12.15/arm64/bin
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Version 3.11 is available for downloading
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Download from "https://github.com/actions/python-versions/releases/download/3.11.17-36876195594/python-3.11.17-linux-24.04-arm64.tar.gz"
+[CI Pipeline/Unit tests (Python 3.12)-2          ] ⭐ Run Main Install dependencies
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | Requirement already satisfied: pip in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (26.2.1)
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | Collecting flask==3.1.2 (from -r /Users/poorav/Devops/session16-github-actions-cicd/requirements.txt (line 1))
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   |   Downloading flask-3.1.2-py3-none-any.whl.metadata (3.2 kB)
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | Collecting gunicorn==23.0.0 (from -r /Users/poorav/Devops/session16-github-actions-cicd/requirements.txt (line 2))
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   |   Downloading gunicorn-23.0.0-py3-none-any.whl.metadata (4.4 kB)
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | Collecting pytest==8.4.2 (from -r requirements-dev.txt (line 2))
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   |   Downloading pytest-8.4.2-py3-none-any.whl.metadata (7.7 kB)
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | Collecting pytest-cov==7.0.0 (from -r requirements-dev.txt (line 3))
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   |   Downloading pytest_cov-7.0.0-py3-none-any.whl.metadata (31 kB)
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | Requirement already satisfied: flake8==7.3.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from -r requirements-dev.txt (line 4)) (7.3.0)
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | Collecting blinker>=1.9.0 (from flask==3.1.2->-r /Users/poorav/Devops/session16-github-actions-cicd/requirements.txt (line 1))
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   |   Downloading blinker-1.9.0-py3-none-any.whl.metadata (1.6 kB)
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | Collecting click>=8.1.3 (from flask==3.1.2->-r /Users/poorav/Devops/session16-github-actions-cicd/requirements.txt (line 1))
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   |   Downloading click-8.5.0-py3-none-any.whl.metadata (2.6 kB)
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | Collecting itsdangerous>=2.2.0 (from flask==3.1.2->-r /Users/poorav/Devops/session16-github-actions-cicd/requirements.txt (line 1))
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   |   Downloading itsdangerous-2.2.0-py3-none-any.whl.metadata (1.9 kB)
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | Collecting jinja2>=3.1.2 (from flask==3.1.2->-r /Users/poorav/Devops/session16-github-actions-cicd/requirements.txt (line 1))
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   |   Downloading jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | Collecting markupsafe>=2.1.1 (from flask==3.1.2->-r /Users/poorav/Devops/session16-github-actions-cicd/requirements.txt (line 1))
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   |   Downloading markupsafe-3.0.4-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl.metadata (2.7 kB)
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | Collecting werkzeug>=3.1.0 (from flask==3.1.2->-r /Users/poorav/Devops/session16-github-actions-cicd/requirements.txt (line 1))
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   |   Downloading werkzeug-3.1.9-py3-none-any.whl.metadata (4.1 kB)
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | Collecting packaging (from gunicorn==23.0.0->-r /Users/poorav/Devops/session16-github-actions-cicd/requirements.txt (line 2))
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   |   Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | Collecting iniconfig>=1 (from pytest==8.4.2->-r requirements-dev.txt (line 2))
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   |   Downloading iniconfig-2.3.1-py3-none-any.whl.metadata (2.8 kB)
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | Collecting pluggy<2,>=1.5 (from pytest==8.4.2->-r requirements-dev.txt (line 2))
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   |   Downloading pluggy-1.6.0-py3-none-any.whl.metadata (4.8 kB)
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Extract downloaded archive
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | [command]/usr/bin/tar xz --warning=no-unknown-keyword --overwrite -C /tmp/8fa72129-3c31-4977-9f6e-915018391b39 -f /tmp/88db9f38-ca64-4439-97b9-a09599bf15ad
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | Collecting pygments>=2.7.2 (from pytest==8.4.2->-r requirements-dev.txt (line 2))
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   |   Downloading pygments-2.21.0-py3-none-any.whl.metadata (2.5 kB)
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | Collecting coverage>=7.10.6 (from coverage[toml]>=7.10.6->pytest-cov==7.0.0->-r requirements-dev.txt (line 3))
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   |   Downloading coverage-7.16.2-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl.metadata (8.2 kB)
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | Requirement already satisfied: mccabe<0.8.0,>=0.7.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from flake8==7.3.0->-r requirements-dev.txt (line 4)) (0.7.0)
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | Requirement already satisfied: pycodestyle<2.15.0,>=2.14.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from flake8==7.3.0->-r requirements-dev.txt (line 4)) (2.14.0)
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | Requirement already satisfied: pyflakes<3.5.0,>=3.4.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from flake8==7.3.0->-r requirements-dev.txt (line 4)) (3.4.0)
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | Downloading flask-3.1.2-py3-none-any.whl (103 kB)
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | Downloading gunicorn-23.0.0-py3-none-any.whl (85 kB)
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | Downloading pytest-8.4.2-py3-none-any.whl (365 kB)
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | Downloading pytest_cov-7.0.0-py3-none-any.whl (22 kB)
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | Downloading pluggy-1.6.0-py3-none-any.whl (20 kB)
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | Downloading blinker-1.9.0-py3-none-any.whl (8.5 kB)
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | Downloading click-8.5.0-py3-none-any.whl (125 kB)
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | Downloading coverage-7.16.2-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (259 kB)
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | Downloading iniconfig-2.3.1-py3-none-any.whl (7.6 kB)
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | Downloading itsdangerous-2.2.0-py3-none-any.whl (16 kB)
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | Downloading markupsafe-3.0.4-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (24 kB)
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | Downloading packaging-26.3-py3-none-any.whl (129 kB)
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | Downloading pygments-2.21.0-py3-none-any.whl (1.3 MB)
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   |    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 2.9 MB/s  0:00:00
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | Downloading werkzeug-3.1.9-py3-none-any.whl (228 kB)
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | Installing collected packages: pygments, pluggy, packaging, markupsafe, itsdangerous, iniconfig, coverage, click, blinker, werkzeug, pytest, jinja2, gunicorn, pytest-cov, flask
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Execute installation script
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Check if Python hostedtoolcache folder exist...
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Create Python 3.11.17 folder
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Copy Python binaries to hostedtoolcache folder
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | 
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | Successfully installed blinker-1.9.0 click-8.5.0 coverage-7.16.2 flask-3.1.2 gunicorn-23.0.0 iniconfig-2.3.1 itsdangerous-2.2.0 jinja2-3.1.6 markupsafe-3.0.4 packaging-26.3 pluggy-1.6.0 pygments-2.21.0 pytest-8.4.2 pytest-cov-7.0.0 werkzeug-3.1.9
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Create additional symlinks (Required for the UsePythonVersion Azure Pipelines task and the setup-python GitHub Action)
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Upgrading pip...
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   ✅  Success - Main Install dependencies [28.377138959s]
+[CI Pipeline/Unit tests (Python 3.12)-2          ] ⭐ Run Main Run pytest with coverage
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/3] user= workdir=
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | ============================= test session starts ==============================
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | platform linux -- Python 3.12.15, pytest-8.4.2, pluggy-1.6.0 -- /opt/hostedtoolcache/Python/3.12.15/arm64/bin/python
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | cachedir: .pytest_cache
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | rootdir: /Users/poorav/Devops/session16-github-actions-cicd
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | configfile: pytest.ini
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | testpaths: tests
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | plugins: cov-7.0.0
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | collecting ... collected 10 items
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | 
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | tests/test_api.py::test_index PASSED                                     [ 10%]
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | tests/test_api.py::test_health PASSED                                    [ 20%]
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | tests/test_api.py::test_add_endpoint PASSED                              [ 30%]
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | tests/test_api.py::test_divide_by_zero_endpoint PASSED                   [ 40%]
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | tests/test_api.py::test_unknown_operation PASSED                         [ 50%]
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | tests/test_calculator.py::test_add PASSED                                [ 60%]
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | tests/test_calculator.py::test_subtract PASSED                           [ 70%]
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | tests/test_calculator.py::test_multiply PASSED                           [ 80%]
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | tests/test_calculator.py::test_divide PASSED                             [ 90%]
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | tests/test_calculator.py::test_divide_by_zero PASSED                     [100%]
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | 
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | ---- generated xml file: /Users/poorav/Devops/session16-github-actions-cicd/reports/junit.xml ----
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | ================================ tests coverage ================================
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | _______________ coverage: platform linux, python 3.12.15-final-0 _______________
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | 
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | Name                Stmts   Miss  Cover
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | ---------------------------------------
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | app/__init__.py         0      0   100%
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | app/calculator.py      11      0   100%
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | app/main.py            23      1    96%
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | ---------------------------------------
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | TOTAL                  34      1    97%
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | Coverage XML written to file reports/coverage.xml
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | ============================== 10 passed in 0.72s ==============================
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   ✅  Success - Main Run pytest with coverage [2.029664125s]
+[CI Pipeline/Unit tests (Python 3.12)-2          ] ⭐ Run Main Upload test report artifact
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   🐳  docker cp src=/Users/poorav/.cache/act/actions-upload-artifact@v4/ dst=/var/run/act/actions/actions-upload-artifact@v4/
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Collecting pip
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Downloading pip-26.2.1-py3-none-any.whl.metadata (4.6 kB)
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   🐳  docker exec cmd=[/opt/acttoolcache/node/24.19.0/arm64/bin/node /var/run/act/actions/actions-upload-artifact@v4/dist/upload/index.js] user= workdir=
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Downloading pip-26.2.1-py3-none-any.whl (1.8 MB)
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 1.5 MB/s eta 0:00:00
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | 
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Installing collected packages: pip
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   |   Attempting uninstall: pip
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Found existing installation: pip 24.0
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | (node:92) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | (Use `node --trace-deprecation ...` to show where the warning was created)
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | With the provided path, there will be 2 files uploaded
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | Artifact name is valid!
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | Root directory input is valid!
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Uninstalling pip-24.0:
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Successfully uninstalled pip-24.0
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | Beginning upload of artifact content to blob storage
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | (node:92) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | Uploaded bytes 1062
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | Finished uploading artifact content to blob storage!
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | SHA256 digest of uploaded artifact zip is 080d7337b6ce9cdaeff081518aa14cb634c5f868ad11b37f38d0394f30e12e8a
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | Finalizing artifact upload
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | Artifact test-report-py3.12.zip successfully finalized. Artifact ID 3323523448
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | Artifact test-report-py3.12 has been successfully uploaded! Final size is 1062 bytes. Artifact ID is 3323523448
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | Artifact download URL: https://github.com/nektos/act/actions/runs/1/artifacts/3323523448
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   ✅  Success - Main Upload test report artifact [4.31557075s]
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   ⚙  ::set-output:: artifact-id=3323523448
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   ⚙  ::set-output:: artifact-digest=080d7337b6ce9cdaeff081518aa14cb634c5f868ad11b37f38d0394f30e12e8a
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   ⚙  ::set-output:: artifact-url=https://github.com/nektos/act/actions/runs/1/artifacts/3323523448
+[CI Pipeline/Unit tests (Python 3.12)-2          ] ⭐ Run Post actions/setup-python@v5
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   🐳  docker exec cmd=[/opt/acttoolcache/node/24.19.0/arm64/bin/node /var/run/act/actions/actions-setup-python@v5/dist/cache-save/index.js] user= workdir=
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | (node:109) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   | (Use `node --trace-deprecation ...` to show where the warning was created)
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   ✅  Success - Post actions/setup-python@v5 [762.48175ms]
+[CI Pipeline/Unit tests (Python 3.12)-2          ] ⭐ Run Complete job
+[CI Pipeline/Unit tests (Python 3.12)-2          ] Cleaning up container for job Unit tests (Python 3.12)
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Successfully installed pip-26.2.1
+[CI Pipeline/Unit tests (Python 3.12)-2          ]   ✅  Success - Complete job
+[CI Pipeline/Unit tests (Python 3.12)-2          ] 🏁  Job succeeded
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Create complete file
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Successfully set up CPython (3.11.17)
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   ❓  ::endgroup::
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   ❓ add-matcher /run/act/actions/actions-setup-python@v5/.github/python.json
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   ✅  Success - Main actions/setup-python@v5 [43.565358875s]
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   ⚙  ::set-env:: pythonLocation=/opt/hostedtoolcache/Python/3.11.17/arm64
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   ⚙  ::set-env:: PKG_CONFIG_PATH=/opt/hostedtoolcache/Python/3.11.17/arm64/lib/pkgconfig
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   ⚙  ::set-env:: Python_ROOT_DIR=/opt/hostedtoolcache/Python/3.11.17/arm64
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   ⚙  ::set-env:: Python2_ROOT_DIR=/opt/hostedtoolcache/Python/3.11.17/arm64
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   ⚙  ::set-env:: Python3_ROOT_DIR=/opt/hostedtoolcache/Python/3.11.17/arm64
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   ⚙  ::set-env:: LD_LIBRARY_PATH=/opt/hostedtoolcache/Python/3.11.17/arm64/lib
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   ⚙  ::set-output:: python-version=3.11.17
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   ⚙  ::set-output:: python-path=/opt/hostedtoolcache/Python/3.11.17/arm64/bin/python
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   ⚙  ::add-path:: /opt/hostedtoolcache/Python/3.11.17/arm64
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   ⚙  ::add-path:: /opt/hostedtoolcache/Python/3.11.17/arm64/bin
+[CI Pipeline/Unit tests (Python 3.11)-1          ] ⭐ Run Main Install dependencies
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Requirement already satisfied: pip in /opt/hostedtoolcache/Python/3.11.17/arm64/lib/python3.11/site-packages (26.2.1)
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Collecting flask==3.1.2 (from -r /Users/poorav/Devops/session16-github-actions-cicd/requirements.txt (line 1))
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   |   Downloading flask-3.1.2-py3-none-any.whl.metadata (3.2 kB)
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Collecting gunicorn==23.0.0 (from -r /Users/poorav/Devops/session16-github-actions-cicd/requirements.txt (line 2))
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   |   Downloading gunicorn-23.0.0-py3-none-any.whl.metadata (4.4 kB)
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Collecting pytest==8.4.2 (from -r requirements-dev.txt (line 2))
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   |   Downloading pytest-8.4.2-py3-none-any.whl.metadata (7.7 kB)
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Collecting pytest-cov==7.0.0 (from -r requirements-dev.txt (line 3))
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   |   Downloading pytest_cov-7.0.0-py3-none-any.whl.metadata (31 kB)
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Collecting flake8==7.3.0 (from -r requirements-dev.txt (line 4))
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   |   Downloading flake8-7.3.0-py2.py3-none-any.whl.metadata (3.8 kB)
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Collecting blinker>=1.9.0 (from flask==3.1.2->-r /Users/poorav/Devops/session16-github-actions-cicd/requirements.txt (line 1))
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   |   Downloading blinker-1.9.0-py3-none-any.whl.metadata (1.6 kB)
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Collecting click>=8.1.3 (from flask==3.1.2->-r /Users/poorav/Devops/session16-github-actions-cicd/requirements.txt (line 1))
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   |   Downloading click-8.5.0-py3-none-any.whl.metadata (2.6 kB)
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Collecting itsdangerous>=2.2.0 (from flask==3.1.2->-r /Users/poorav/Devops/session16-github-actions-cicd/requirements.txt (line 1))
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   |   Downloading itsdangerous-2.2.0-py3-none-any.whl.metadata (1.9 kB)
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Collecting jinja2>=3.1.2 (from flask==3.1.2->-r /Users/poorav/Devops/session16-github-actions-cicd/requirements.txt (line 1))
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   |   Downloading jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Collecting markupsafe>=2.1.1 (from flask==3.1.2->-r /Users/poorav/Devops/session16-github-actions-cicd/requirements.txt (line 1))
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   |   Downloading markupsafe-3.0.4-cp311-cp311-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl.metadata (2.7 kB)
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Collecting werkzeug>=3.1.0 (from flask==3.1.2->-r /Users/poorav/Devops/session16-github-actions-cicd/requirements.txt (line 1))
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   |   Downloading werkzeug-3.1.9-py3-none-any.whl.metadata (4.1 kB)
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Collecting packaging (from gunicorn==23.0.0->-r /Users/poorav/Devops/session16-github-actions-cicd/requirements.txt (line 2))
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   |   Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Collecting iniconfig>=1 (from pytest==8.4.2->-r requirements-dev.txt (line 2))
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   |   Downloading iniconfig-2.3.1-py3-none-any.whl.metadata (2.8 kB)
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Collecting pluggy<2,>=1.5 (from pytest==8.4.2->-r requirements-dev.txt (line 2))
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   |   Downloading pluggy-1.6.0-py3-none-any.whl.metadata (4.8 kB)
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Collecting pygments>=2.7.2 (from pytest==8.4.2->-r requirements-dev.txt (line 2))
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   |   Downloading pygments-2.21.0-py3-none-any.whl.metadata (2.5 kB)
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Collecting coverage>=7.10.6 (from coverage[toml]>=7.10.6->pytest-cov==7.0.0->-r requirements-dev.txt (line 3))
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   |   Downloading coverage-7.16.2-cp311-cp311-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl.metadata (8.2 kB)
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Collecting mccabe<0.8.0,>=0.7.0 (from flake8==7.3.0->-r requirements-dev.txt (line 4))
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   |   Downloading mccabe-0.7.0-py2.py3-none-any.whl.metadata (5.0 kB)
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Collecting pycodestyle<2.15.0,>=2.14.0 (from flake8==7.3.0->-r requirements-dev.txt (line 4))
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   |   Downloading pycodestyle-2.14.0-py2.py3-none-any.whl.metadata (4.5 kB)
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Collecting pyflakes<3.5.0,>=3.4.0 (from flake8==7.3.0->-r requirements-dev.txt (line 4))
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   |   Downloading pyflakes-3.4.0-py2.py3-none-any.whl.metadata (3.5 kB)
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Downloading flask-3.1.2-py3-none-any.whl (103 kB)
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Downloading gunicorn-23.0.0-py3-none-any.whl (85 kB)
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Downloading pytest-8.4.2-py3-none-any.whl (365 kB)
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Downloading pytest_cov-7.0.0-py3-none-any.whl (22 kB)
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Downloading flake8-7.3.0-py2.py3-none-any.whl (57 kB)
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Downloading mccabe-0.7.0-py2.py3-none-any.whl (7.3 kB)
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Downloading pluggy-1.6.0-py3-none-any.whl (20 kB)
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Downloading pycodestyle-2.14.0-py2.py3-none-any.whl (31 kB)
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Downloading pyflakes-3.4.0-py2.py3-none-any.whl (63 kB)
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Downloading blinker-1.9.0-py3-none-any.whl (8.5 kB)
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Downloading click-8.5.0-py3-none-any.whl (125 kB)
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Downloading coverage-7.16.2-cp311-cp311-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (258 kB)
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Downloading iniconfig-2.3.1-py3-none-any.whl (7.6 kB)
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Downloading itsdangerous-2.2.0-py3-none-any.whl (16 kB)
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Downloading markupsafe-3.0.4-cp311-cp311-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (24 kB)
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Downloading packaging-26.3-py3-none-any.whl (129 kB)
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Downloading pygments-2.21.0-py3-none-any.whl (1.3 MB)
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   |    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 2.9 MB/s  0:00:00
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Downloading werkzeug-3.1.9-py3-none-any.whl (228 kB)
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Installing collected packages: pygments, pyflakes, pycodestyle, pluggy, packaging, mccabe, markupsafe, itsdangerous, iniconfig, coverage, click, blinker, werkzeug, pytest, jinja2, gunicorn, flake8, pytest-cov, flask
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | 
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Successfully installed blinker-1.9.0 click-8.5.0 coverage-7.16.2 flake8-7.3.0 flask-3.1.2 gunicorn-23.0.0 iniconfig-2.3.1 itsdangerous-2.2.0 jinja2-3.1.6 markupsafe-3.0.4 mccabe-0.7.0 packaging-26.3 pluggy-1.6.0 pycodestyle-2.14.0 pyflakes-3.4.0 pygments-2.21.0 pytest-8.4.2 pytest-cov-7.0.0 werkzeug-3.1.9
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   ✅  Success - Main Install dependencies [11.321367541s]
+[CI Pipeline/Unit tests (Python 3.11)-1          ] ⭐ Run Main Run pytest with coverage
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/3] user= workdir=
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | ============================= test session starts ==============================
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | platform linux -- Python 3.11.17, pytest-8.4.2, pluggy-1.6.0 -- /opt/hostedtoolcache/Python/3.11.17/arm64/bin/python
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | cachedir: .pytest_cache
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | rootdir: /Users/poorav/Devops/session16-github-actions-cicd
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | configfile: pytest.ini
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | testpaths: tests
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | plugins: cov-7.0.0
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | collecting ... collected 10 items
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | 
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | tests/test_api.py::test_index PASSED                                     [ 10%]
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | tests/test_api.py::test_health PASSED                                    [ 20%]
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | tests/test_api.py::test_add_endpoint PASSED                              [ 30%]
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | tests/test_api.py::test_divide_by_zero_endpoint PASSED                   [ 40%]
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | tests/test_api.py::test_unknown_operation PASSED                         [ 50%]
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | tests/test_calculator.py::test_add PASSED                                [ 60%]
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | tests/test_calculator.py::test_subtract PASSED                           [ 70%]
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | tests/test_calculator.py::test_multiply PASSED                           [ 80%]
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | tests/test_calculator.py::test_divide PASSED                             [ 90%]
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | tests/test_calculator.py::test_divide_by_zero PASSED                     [100%]
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | 
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | ---- generated xml file: /Users/poorav/Devops/session16-github-actions-cicd/reports/junit.xml ----
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | ================================ tests coverage ================================
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | _______________ coverage: platform linux, python 3.11.17-final-0 _______________
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | 
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Name                Stmts   Miss  Cover
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | ---------------------------------------
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | app/__init__.py         0      0   100%
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | app/calculator.py      11      0   100%
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | app/main.py            23      1    96%
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | ---------------------------------------
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | TOTAL                  34      1    97%
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Coverage XML written to file reports/coverage.xml
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | ============================== 10 passed in 0.37s ==============================
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   ✅  Success - Main Run pytest with coverage [1.526229334s]
+[CI Pipeline/Unit tests (Python 3.11)-1          ] ⭐ Run Main Upload test report artifact
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   🐳  docker cp src=/Users/poorav/.cache/act/actions-upload-artifact@v4/ dst=/var/run/act/actions/actions-upload-artifact@v4/
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   🐳  docker exec cmd=[/opt/acttoolcache/node/24.19.0/arm64/bin/node /var/run/act/actions/actions-upload-artifact@v4/dist/upload/index.js] user= workdir=
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | (node:135) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | (Use `node --trace-deprecation ...` to show where the warning was created)
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | With the provided path, there will be 2 files uploaded
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Artifact name is valid!
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Root directory input is valid!
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Beginning upload of artifact content to blob storage
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | (node:135) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Uploaded bytes 1074
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Finished uploading artifact content to blob storage!
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | SHA256 digest of uploaded artifact zip is 5beefccb6af9850809da247a6e72d461cbd083aec525705b7efa68928a821db2
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Finalizing artifact upload
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Artifact test-report-py3.11.zip successfully finalized. Artifact ID 3373856305
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Artifact test-report-py3.11 has been successfully uploaded! Final size is 1074 bytes. Artifact ID is 3373856305
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | Artifact download URL: https://github.com/nektos/act/actions/runs/1/artifacts/3373856305
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   ✅  Success - Main Upload test report artifact [2.519913959s]
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   ⚙  ::set-output:: artifact-id=3373856305
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   ⚙  ::set-output:: artifact-digest=5beefccb6af9850809da247a6e72d461cbd083aec525705b7efa68928a821db2
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   ⚙  ::set-output:: artifact-url=https://github.com/nektos/act/actions/runs/1/artifacts/3373856305
+[CI Pipeline/Unit tests (Python 3.11)-1          ] ⭐ Run Post actions/setup-python@v5
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   🐳  docker exec cmd=[/opt/acttoolcache/node/24.19.0/arm64/bin/node /var/run/act/actions/actions-setup-python@v5/dist/cache-save/index.js] user= workdir=
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | (node:152) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   | (Use `node --trace-deprecation ...` to show where the warning was created)
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   ✅  Success - Post actions/setup-python@v5 [278.749459ms]
+[CI Pipeline/Unit tests (Python 3.11)-1          ] ⭐ Run Complete job
+[CI Pipeline/Unit tests (Python 3.11)-1          ] Cleaning up container for job Unit tests (Python 3.11)
+[CI Pipeline/Unit tests (Python 3.11)-1          ]   ✅  Success - Complete job
+[CI Pipeline/Unit tests (Python 3.11)-1          ] 🏁  Job succeeded
+[CI Pipeline/Build application package           ] ⭐ Run Set up job
+[CI Pipeline/Build application package           ] 🚀  Start image=catthehacker/ubuntu:act-latest
+[CI Pipeline/Build application package           ]   🐳  docker pull image=catthehacker/ubuntu:act-latest platform=linux/arm64 username= forcePull=false
+[CI Pipeline/Build application package           ]   🐳  docker create image=catthehacker/ubuntu:act-latest platform=linux/arm64 entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[CI Pipeline/Build application package           ]   🐳  docker run image=catthehacker/ubuntu:act-latest platform=linux/arm64 entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[CI Pipeline/Build application package           ]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[CI Pipeline/Build application package           ]   ✅  Success - Set up job
+[CI Pipeline/Build application package           ]   ☁  git clone 'https://github.com/actions/upload-artifact' # ref=v4
+[CI Pipeline/Build application package           ] ⭐ Run Main actions/checkout@v4
+[CI Pipeline/Build application package           ]   🐳  docker cp src=/Users/poorav/Devops/session16-github-actions-cicd/. dst=/Users/poorav/Devops/session16-github-actions-cicd
+[CI Pipeline/Build application package           ]   ✅  Success - Main actions/checkout@v4 [126.004042ms]
+[CI Pipeline/Build application package           ] ⭐ Run Main Build
+[CI Pipeline/Build application package           ]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/1] user= workdir=
+[CI Pipeline/Build application package           ]   | === Starting application build ===
+[CI Pipeline/Build application package           ]   | total 24
+[CI Pipeline/Build application package           ]   | drwxr-xr-x 3 root root 4096 Oct  7 18:42 .
+[CI Pipeline/Build application package           ]   | drwxr-xr-x 8 root root 4096 Oct  7 18:42 ..
+[CI Pipeline/Build application package           ]   | drwxr-xr-x 2 root root 4096 Oct  7 18:42 app
+[CI Pipeline/Build application package           ]   | -rw-r--r-- 1 root root  165 Oct  7 18:42 build-info.txt
+[CI Pipeline/Build application package           ]   | -rw-r--r-- 1 root root 1252 Oct  7 18:42 calculator-build.tar.gz
+[CI Pipeline/Build application package           ]   | -rw-r--r-- 1 root root   30 Oct  7 18:42 requirements.txt
+[CI Pipeline/Build application package           ]   | === Build completed successfully ===
+[CI Pipeline/Build application package           ]   ✅  Success - Main Build [663.137625ms]
+[CI Pipeline/Build application package           ] ⭐ Run Main Show build info
+[CI Pipeline/Build application package           ]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=
+[CI Pipeline/Build application package           ]   | Application: Session 16 Calculator API
+[CI Pipeline/Build application package           ]   | Build Status: SUCCESS
+[CI Pipeline/Build application package           ]   | Commit: b436071ac99c04d55677b81e8280d317ed1ead39
+[CI Pipeline/Build application package           ]   | Run number: 1
+[CI Pipeline/Build application package           ]   | Build Date: Wed Oct  7 18:42:52 UTC 2026
+[CI Pipeline/Build application package           ]   ✅  Success - Main Show build info [380.528583ms]
+[CI Pipeline/Build application package           ] ⭐ Run Main Upload build artifact
+[CI Pipeline/Build application package           ]   🐳  docker cp src=/Users/poorav/.cache/act/actions-upload-artifact@v4/ dst=/var/run/act/actions/actions-upload-artifact@v4/
+[CI Pipeline/Build application package           ]   🐳  docker exec cmd=[/opt/acttoolcache/node/24.19.0/arm64/bin/node /var/run/act/actions/actions-upload-artifact@v4/dist/upload/index.js] user= workdir=
+[CI Pipeline/Build application package           ]   | (node:54) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[CI Pipeline/Build application package           ]   | (Use `node --trace-deprecation ...` to show where the warning was created)
+[CI Pipeline/Build application package           ]   | With the provided path, there will be 1 file uploaded
+[CI Pipeline/Build application package           ]   | Artifact name is valid!
+[CI Pipeline/Build application package           ]   | Root directory input is valid!
+[CI Pipeline/Build application package           ]   | Beginning upload of artifact content to blob storage
+[CI Pipeline/Build application package           ]   | (node:54) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+[CI Pipeline/Build application package           ]   | Uploaded bytes 1417
+[CI Pipeline/Build application package           ]   | Finished uploading artifact content to blob storage!
+[CI Pipeline/Build application package           ]   | SHA256 digest of uploaded artifact zip is cd4e51e4af1d0cbc2886a1b89773f0427cfc46c187f2cc5676870fabedd211b7
+[CI Pipeline/Build application package           ]   | Finalizing artifact upload
+[CI Pipeline/Build application package           ]   | Artifact calculator-build.zip successfully finalized. Artifact ID 1242866976
+[CI Pipeline/Build application package           ]   | Artifact calculator-build has been successfully uploaded! Final size is 1417 bytes. Artifact ID is 1242866976
+[CI Pipeline/Build application package           ]   | Artifact download URL: https://github.com/nektos/act/actions/runs/1/artifacts/1242866976
+[CI Pipeline/Build application package           ]   ✅  Success - Main Upload build artifact [8.751430459s]
+[CI Pipeline/Build application package           ]   ⚙  ::set-output:: artifact-id=1242866976
+[CI Pipeline/Build application package           ]   ⚙  ::set-output:: artifact-digest=cd4e51e4af1d0cbc2886a1b89773f0427cfc46c187f2cc5676870fabedd211b7
+[CI Pipeline/Build application package           ]   ⚙  ::set-output:: artifact-url=https://github.com/nektos/act/actions/runs/1/artifacts/1242866976
+[CI Pipeline/Build application package           ] ⭐ Run Complete job
+[CI Pipeline/Build application package           ] Cleaning up container for job Build application package
+[CI Pipeline/Build application package           ]   ✅  Success - Complete job
+[CI Pipeline/Build application package           ] 🏁  Job succeeded
+[CI Pipeline/Docker build & smoke test           ] ⭐ Run Set up job
+[CI Pipeline/Docker build & smoke test           ] 🚀  Start image=catthehacker/ubuntu:act-latest
+[CI Pipeline/Docker build & smoke test           ]   🐳  docker pull image=catthehacker/ubuntu:act-latest platform=linux/arm64 username= forcePull=false
+[CI Pipeline/Docker build & smoke test           ]   🐳  docker create image=catthehacker/ubuntu:act-latest platform=linux/arm64 entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[CI Pipeline/Docker build & smoke test           ]   🐳  docker run image=catthehacker/ubuntu:act-latest platform=linux/arm64 entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[CI Pipeline/Docker build & smoke test           ]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[CI Pipeline/Docker build & smoke test           ]   ✅  Success - Set up job
+[CI Pipeline/Docker build & smoke test           ]   ☁  git clone 'https://github.com/actions/download-artifact' # ref=v4
+[CI Pipeline/Docker build & smoke test           ]   ☁  git clone 'https://github.com/actions/upload-artifact' # ref=v4
+[CI Pipeline/Docker build & smoke test           ] ⭐ Run Main actions/checkout@v4
+[CI Pipeline/Docker build & smoke test           ]   🐳  docker cp src=/Users/poorav/Devops/session16-github-actions-cicd/. dst=/Users/poorav/Devops/session16-github-actions-cicd
+[CI Pipeline/Docker build & smoke test           ]   ✅  Success - Main actions/checkout@v4 [307.654792ms]
+[CI Pipeline/Docker build & smoke test           ] ⭐ Run Main Download build artifact (from previous job)
+[CI Pipeline/Docker build & smoke test           ]   🐳  docker cp src=/Users/poorav/.cache/act/actions-download-artifact@v4/ dst=/var/run/act/actions/actions-download-artifact@v4/
+[CI Pipeline/Docker build & smoke test           ]   🐳  docker exec cmd=[/opt/acttoolcache/node/24.19.0/arm64/bin/node /var/run/act/actions/actions-download-artifact@v4/dist/index.js] user= workdir=
+[CI Pipeline/Docker build & smoke test           ]   | Downloading single artifact
+[CI Pipeline/Docker build & smoke test           ]   | (node:30) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[CI Pipeline/Docker build & smoke test           ]   | (Use `node --trace-deprecation ...` to show where the warning was created)
+[CI Pipeline/Docker build & smoke test           ]   | Preparing to download the following artifacts:
+[CI Pipeline/Docker build & smoke test           ]   | - calculator-build (ID: 1242866976, Size: 96, Expected Digest: undefined)
+[CI Pipeline/Docker build & smoke test           ]   | Redirecting to blob download url: http://100.128.166.41:34567/twirp/github.actions.results.api.v1.ArtifactService/DownloadArtifact
+[CI Pipeline/Docker build & smoke test           ]   | Starting download of artifact to: /Users/poorav/Devops/session16-github-actions-cicd/downloaded
+[CI Pipeline/Docker build & smoke test           ]   | (node:30) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+[CI Pipeline/Docker build & smoke test           ]   | SHA256 digest of downloaded artifact is cd4e51e4af1d0cbc2886a1b89773f0427cfc46c187f2cc5676870fabedd211b7
+[CI Pipeline/Docker build & smoke test           ]   | Artifact download completed successfully.
+[CI Pipeline/Docker build & smoke test           ]   | Total of 1 artifact(s) downloaded
+[CI Pipeline/Docker build & smoke test           ]   | Download artifact has finished successfully
+[CI Pipeline/Docker build & smoke test           ]   ✅  Success - Main Download build artifact (from previous job) [4.411444875s]
+[CI Pipeline/Docker build & smoke test           ]   ⚙  ::set-output:: download-path=/Users/poorav/Devops/session16-github-actions-cicd/downloaded
+[CI Pipeline/Docker build & smoke test           ] ⭐ Run Main Verify downloaded artifact
+[CI Pipeline/Docker build & smoke test           ]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=
+[CI Pipeline/Docker build & smoke test           ]   | total 12
+[CI Pipeline/Docker build & smoke test           ]   | drwxr-xr-x 2 root root 4096 Oct  7 18:43 .
+[CI Pipeline/Docker build & smoke test           ]   | drwxr-xr-x 8 root root 4096 Oct  7 18:43 ..
+[CI Pipeline/Docker build & smoke test           ]   | -rw-r--r-- 1 root root 1252 Oct  7 18:43 calculator-build.tar.gz
+[CI Pipeline/Docker build & smoke test           ]   | ./
+[CI Pipeline/Docker build & smoke test           ]   | ./requirements.txt
+[CI Pipeline/Docker build & smoke test           ]   | ./app/
+[CI Pipeline/Docker build & smoke test           ]   | ./app/__init__.py
+[CI Pipeline/Docker build & smoke test           ]   | ./app/main.py
+[CI Pipeline/Docker build & smoke test           ]   | ./app/calculator.py
+[CI Pipeline/Docker build & smoke test           ]   | ./build-info.txt
+[CI Pipeline/Docker build & smoke test           ]   ✅  Success - Main Verify downloaded artifact [298.540584ms]
+[CI Pipeline/Docker build & smoke test           ] ⭐ Run Main Build Docker image
+[CI Pipeline/Docker build & smoke test           ]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/3] user= workdir=
+[CI Pipeline/Docker build & smoke test           ]   | #0 building with "default" instance using docker driver
+[CI Pipeline/Docker build & smoke test           ]   | 
+[CI Pipeline/Docker build & smoke test           ]   | #1 [internal] load build definition from Dockerfile
+[CI Pipeline/Docker build & smoke test           ]   | #1 transferring dockerfile: 518B 0.0s done
+[CI Pipeline/Docker build & smoke test           ]   | #1 DONE 0.1s
+[CI Pipeline/Docker build & smoke test           ]   | 
+[CI Pipeline/Docker build & smoke test           ]   | #2 [internal] load metadata for docker.io/library/python:3.12-slim
+[CI Pipeline/Docker build & smoke test           ]   | #2 DONE 4.6s
+[CI Pipeline/Docker build & smoke test           ]   | 
+[CI Pipeline/Docker build & smoke test           ]   | #3 [internal] load .dockerignore
+[CI Pipeline/Docker build & smoke test           ]   | #3 transferring context:
+[CI Pipeline/Docker build & smoke test           ]   | #3 transferring context: 122B 0.1s done
+[CI Pipeline/Docker build & smoke test           ]   | #3 DONE 0.2s
+[CI Pipeline/Docker build & smoke test           ]   | 
+[CI Pipeline/Docker build & smoke test           ]   | #4 [internal] load build context
+[CI Pipeline/Docker build & smoke test           ]   | #4 DONE 0.0s
+[CI Pipeline/Docker build & smoke test           ]   | 
+[CI Pipeline/Docker build & smoke test           ]   | #5 [1/6] FROM docker.io/library/python:3.12-slim@sha256:05cda9777409a9c3ffddd94a4c476b79f0769a0b4857f0c7ed9226b6800b0d6f
+[CI Pipeline/Docker build & smoke test           ]   | #5 resolve docker.io/library/python:3.12-slim@sha256:05cda9777409a9c3ffddd94a4c476b79f0769a0b4857f0c7ed9226b6800b0d6f done
+[CI Pipeline/Docker build & smoke test           ]   | #5 ...
+[CI Pipeline/Docker build & smoke test           ]   | 
+[CI Pipeline/Docker build & smoke test           ]   | #4 [internal] load build context
+[CI Pipeline/Docker build & smoke test           ]   | #4 transferring context: 1.86kB done
+[CI Pipeline/Docker build & smoke test           ]   | #4 DONE 0.1s
+[CI Pipeline/Docker build & smoke test           ]   | 
+[CI Pipeline/Docker build & smoke test           ]   | #5 [1/6] FROM docker.io/library/python:3.12-slim@sha256:05cda9777409a9c3ffddd94a4c476b79f0769a0b4857f0c7ed9226b6800b0d6f
+[CI Pipeline/Docker build & smoke test           ]   | #5 sha256:16bf2b5c59a08523519d3c8589deca849285dee1d62a3653e124c3dba340f15e 1.75kB / 1.75kB done
+[CI Pipeline/Docker build & smoke test           ]   | #5 sha256:ce9a404c2c0138e747a43e6ea022d2f7e670ed868df35d627a663ba7fb940ea9 5.68kB / 5.68kB done
+[CI Pipeline/Docker build & smoke test           ]   | #5 sha256:387b25ff7b944c188f58f0e8633fb93428b7418b9af0549618f96ce8fd56da5f 0B / 1.28MB 0.1s
+[CI Pipeline/Docker build & smoke test           ]   | #5 sha256:4dbdca1a513d31094476a7f745c8278b0ca94c30b9bc66ec65b9faebff263a16 0B / 12.06MB 0.1s
+[CI Pipeline/Docker build & smoke test           ]   | #5 sha256:6e2fcafe72a4c4e812d11805d3f8f7b8fddd43ac39a29aadbe0a93b079d60e18 0B / 249B 0.1s
+[CI Pipeline/Docker build & smoke test           ]   | #5 sha256:05cda9777409a9c3ffddd94a4c476b79f0769a0b4857f0c7ed9226b6800b0d6f 10.37kB / 10.37kB done
+[CI Pipeline/Docker build & smoke test           ]   | #5 sha256:6e2fcafe72a4c4e812d11805d3f8f7b8fddd43ac39a29aadbe0a93b079d60e18 249B / 249B 0.8s done
+[CI Pipeline/Docker build & smoke test           ]   | #5 sha256:387b25ff7b944c188f58f0e8633fb93428b7418b9af0549618f96ce8fd56da5f 1.05MB / 1.28MB 1.4s
+[CI Pipeline/Docker build & smoke test           ]   | #5 extracting sha256:387b25ff7b944c188f58f0e8633fb93428b7418b9af0549618f96ce8fd56da5f
+[CI Pipeline/Docker build & smoke test           ]   | #5 sha256:387b25ff7b944c188f58f0e8633fb93428b7418b9af0549618f96ce8fd56da5f 1.28MB / 1.28MB 1.4s done
+[CI Pipeline/Docker build & smoke test           ]   | #5 sha256:4dbdca1a513d31094476a7f745c8278b0ca94c30b9bc66ec65b9faebff263a16 1.05MB / 12.06MB 1.7s
+[CI Pipeline/Docker build & smoke test           ]   | #5 extracting sha256:387b25ff7b944c188f58f0e8633fb93428b7418b9af0549618f96ce8fd56da5f 0.4s done
+[CI Pipeline/Docker build & smoke test           ]   | #5 sha256:4dbdca1a513d31094476a7f745c8278b0ca94c30b9bc66ec65b9faebff263a16 2.10MB / 12.06MB 2.2s
+[CI Pipeline/Docker build & smoke test           ]   | #5 sha256:4dbdca1a513d31094476a7f745c8278b0ca94c30b9bc66ec65b9faebff263a16 3.15MB / 12.06MB 2.4s
+[CI Pipeline/Docker build & smoke test           ]   | #5 sha256:4dbdca1a513d31094476a7f745c8278b0ca94c30b9bc66ec65b9faebff263a16 4.19MB / 12.06MB 2.7s
+[CI Pipeline/Docker build & smoke test           ]   | #5 sha256:4dbdca1a513d31094476a7f745c8278b0ca94c30b9bc66ec65b9faebff263a16 5.24MB / 12.06MB 3.2s
+[CI Pipeline/Docker build & smoke test           ]   | #5 sha256:4dbdca1a513d31094476a7f745c8278b0ca94c30b9bc66ec65b9faebff263a16 6.29MB / 12.06MB 4.7s
+[CI Pipeline/Docker build & smoke test           ]   | #5 sha256:4dbdca1a513d31094476a7f745c8278b0ca94c30b9bc66ec65b9faebff263a16 7.34MB / 12.06MB 5.4s
+[CI Pipeline/Docker build & smoke test           ]   | #5 sha256:4dbdca1a513d31094476a7f745c8278b0ca94c30b9bc66ec65b9faebff263a16 8.39MB / 12.06MB 5.7s
+[CI Pipeline/Docker build & smoke test           ]   | #5 sha256:4dbdca1a513d31094476a7f745c8278b0ca94c30b9bc66ec65b9faebff263a16 9.44MB / 12.06MB 5.9s
+[CI Pipeline/Docker build & smoke test           ]   | #5 sha256:4dbdca1a513d31094476a7f745c8278b0ca94c30b9bc66ec65b9faebff263a16 10.49MB / 12.06MB 6.3s
+[CI Pipeline/Docker build & smoke test           ]   | #5 sha256:4dbdca1a513d31094476a7f745c8278b0ca94c30b9bc66ec65b9faebff263a16 11.53MB / 12.06MB 6.6s
+[CI Pipeline/Docker build & smoke test           ]   | #5 sha256:4dbdca1a513d31094476a7f745c8278b0ca94c30b9bc66ec65b9faebff263a16 12.06MB / 12.06MB 6.7s done
+[CI Pipeline/Docker build & smoke test           ]   | #5 extracting sha256:4dbdca1a513d31094476a7f745c8278b0ca94c30b9bc66ec65b9faebff263a16 0.1s
+[CI Pipeline/Docker build & smoke test           ]   | #5 extracting sha256:4dbdca1a513d31094476a7f745c8278b0ca94c30b9bc66ec65b9faebff263a16 4.0s done
+[CI Pipeline/Docker build & smoke test           ]   | #5 extracting sha256:6e2fcafe72a4c4e812d11805d3f8f7b8fddd43ac39a29aadbe0a93b079d60e18
+[CI Pipeline/Docker build & smoke test           ]   | #5 extracting sha256:6e2fcafe72a4c4e812d11805d3f8f7b8fddd43ac39a29aadbe0a93b079d60e18 done
+[CI Pipeline/Docker build & smoke test           ]   | #5 DONE 11.1s
+[CI Pipeline/Docker build & smoke test           ]   | 
+[CI Pipeline/Docker build & smoke test           ]   | #6 [2/6] WORKDIR /app
+[CI Pipeline/Docker build & smoke test           ]   | #6 DONE 0.6s
+[CI Pipeline/Docker build & smoke test           ]   | 
+[CI Pipeline/Docker build & smoke test           ]   | #7 [3/6] COPY requirements.txt .
+[CI Pipeline/Docker build & smoke test           ]   | #7 DONE 0.3s
+[CI Pipeline/Docker build & smoke test           ]   | 
+[CI Pipeline/Docker build & smoke test           ]   | #8 [4/6] RUN pip install --no-cache-dir -r requirements.txt
+[CI Pipeline/Docker build & smoke test           ]   | #8 6.898 Collecting flask==3.1.2 (from -r requirements.txt (line 1))
+[CI Pipeline/Docker build & smoke test           ]   | #8 7.178   Downloading flask-3.1.2-py3-none-any.whl.metadata (3.2 kB)
+[CI Pipeline/Docker build & smoke test           ]   | #8 7.275 Collecting gunicorn==23.0.0 (from -r requirements.txt (line 2))
+[CI Pipeline/Docker build & smoke test           ]   | #8 7.295   Downloading gunicorn-23.0.0-py3-none-any.whl.metadata (4.4 kB)
+[CI Pipeline/Docker build & smoke test           ]   | #8 7.466 Collecting blinker>=1.9.0 (from flask==3.1.2->-r requirements.txt (line 1))
+[CI Pipeline/Docker build & smoke test           ]   | #8 7.494   Downloading blinker-1.9.0-py3-none-any.whl.metadata (1.6 kB)
+[CI Pipeline/Docker build & smoke test           ]   | #8 7.581 Collecting click>=8.1.3 (from flask==3.1.2->-r requirements.txt (line 1))
+[CI Pipeline/Docker build & smoke test           ]   | #8 7.605   Downloading click-8.5.0-py3-none-any.whl.metadata (2.6 kB)
+[CI Pipeline/Docker build & smoke test           ]   | #8 7.681 Collecting itsdangerous>=2.2.0 (from flask==3.1.2->-r requirements.txt (line 1))
+[CI Pipeline/Docker build & smoke test           ]   | #8 7.786   Downloading itsdangerous-2.2.0-py3-none-any.whl.metadata (1.9 kB)
+[CI Pipeline/Docker build & smoke test           ]   | #8 7.876 Collecting jinja2>=3.1.2 (from flask==3.1.2->-r requirements.txt (line 1))
+[CI Pipeline/Docker build & smoke test           ]   | #8 7.899   Downloading jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+[CI Pipeline/Docker build & smoke test           ]   | #8 8.249 Collecting markupsafe>=2.1.1 (from flask==3.1.2->-r requirements.txt (line 1))
+[CI Pipeline/Docker build & smoke test           ]   | #8 8.283   Downloading markupsafe-3.0.4-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl.metadata (2.7 kB)
+[CI Pipeline/Docker build & smoke test           ]   | #8 8.438 Collecting werkzeug>=3.1.0 (from flask==3.1.2->-r requirements.txt (line 1))
+[CI Pipeline/Docker build & smoke test           ]   | #8 8.481   Downloading werkzeug-3.1.9-py3-none-any.whl.metadata (4.1 kB)
+[CI Pipeline/Docker build & smoke test           ]   | #8 8.572 Collecting packaging (from gunicorn==23.0.0->-r requirements.txt (line 2))
+[CI Pipeline/Docker build & smoke test           ]   | #8 8.602   Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+[CI Pipeline/Docker build & smoke test           ]   | #8 8.690 Downloading flask-3.1.2-py3-none-any.whl (103 kB)
+[CI Pipeline/Docker build & smoke test           ]   | #8 8.790 Downloading gunicorn-23.0.0-py3-none-any.whl (85 kB)
+[CI Pipeline/Docker build & smoke test           ]   | #8 8.838 Downloading blinker-1.9.0-py3-none-any.whl (8.5 kB)
+[CI Pipeline/Docker build & smoke test           ]   | #8 8.888 Downloading click-8.5.0-py3-none-any.whl (125 kB)
+[CI Pipeline/Docker build & smoke test           ]   | #8 8.931 Downloading itsdangerous-2.2.0-py3-none-any.whl (16 kB)
+[CI Pipeline/Docker build & smoke test           ]   | #8 8.993 Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
+[CI Pipeline/Docker build & smoke test           ]   | #8 9.076 Downloading markupsafe-3.0.4-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (24 kB)
+[CI Pipeline/Docker build & smoke test           ]   | #8 9.153 Downloading werkzeug-3.1.9-py3-none-any.whl (228 kB)
+[CI Pipeline/Docker build & smoke test           ]   | #8 9.271 Downloading packaging-26.3-py3-none-any.whl (129 kB)
+[CI Pipeline/Docker build & smoke test           ]   | #8 9.402 Installing collected packages: packaging, markupsafe, itsdangerous, click, blinker, werkzeug, jinja2, gunicorn, flask
+[CI Pipeline/Docker build & smoke test           ]   | #8 12.21 Successfully installed blinker-1.9.0 click-8.5.0 flask-3.1.2 gunicorn-23.0.0 itsdangerous-2.2.0 jinja2-3.1.6 markupsafe-3.0.4 packaging-26.3 werkzeug-3.1.9
+[CI Pipeline/Docker build & smoke test           ]   | #8 12.22 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+[CI Pipeline/Docker build & smoke test           ]   | #8 12.65 
+[CI Pipeline/Docker build & smoke test           ]   | #8 12.65 [notice] A new release of pip is available: 25.0.1 -> 26.2.1
+[CI Pipeline/Docker build & smoke test           ]   | #8 12.65 [notice] To update, run: pip install --upgrade pip
+[CI Pipeline/Docker build & smoke test           ]   | #8 DONE 13.6s
+[CI Pipeline/Docker build & smoke test           ]   | 
+[CI Pipeline/Docker build & smoke test           ]   | #9 [5/6] COPY app ./app
+[CI Pipeline/Docker build & smoke test           ]   | #9 DONE 0.2s
+[CI Pipeline/Docker build & smoke test           ]   | 
+[CI Pipeline/Docker build & smoke test           ]   | #10 [6/6] RUN useradd --uid 10001 --no-create-home appuser
+[CI Pipeline/Docker build & smoke test           ]   | #10 DONE 1.6s
+[CI Pipeline/Docker build & smoke test           ]   | 
+[CI Pipeline/Docker build & smoke test           ]   | #11 exporting to image
+[CI Pipeline/Docker build & smoke test           ]   | #11 exporting layers
+[CI Pipeline/Docker build & smoke test           ]   | #11 exporting layers 0.4s done
+[CI Pipeline/Docker build & smoke test           ]   | #11 writing image sha256:60d8620c7d38c6b10d35cb5449d5c7f426d0635260ef48306e82ebe2ba8a627c 0.0s done
+[CI Pipeline/Docker build & smoke test           ]   | #11 naming to docker.io/library/s16-calculator:ci-b436071 0.0s done
+[CI Pipeline/Docker build & smoke test           ]   | #11 DONE 0.5s
+[CI Pipeline/Docker build & smoke test           ]   ✅  Success - Main Build Docker image [35.522551125s]
+[CI Pipeline/Docker build & smoke test           ] ⭐ Run Main Smoke test container
+[CI Pipeline/Docker build & smoke test           ]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/4] user= workdir=
+[CI Pipeline/Docker build & smoke test           ]   | d20202db1cff709f80b770f4016cef985ba01c481307581c22b229693bbbfb3c
+[CI Pipeline/Docker build & smoke test           ]   | {"a":10.0,"b":5.0,"operation":"add","result":15.0}
+[CI Pipeline/Docker build & smoke test           ]   | 
+[CI Pipeline/Docker build & smoke test           ]   | s16-ci-smoke
+[CI Pipeline/Docker build & smoke test           ]   ✅  Success - Main Smoke test container [8.483897583s]
+[CI Pipeline/Docker build & smoke test           ] ⭐ Run Main Save image as artifact
+[CI Pipeline/Docker build & smoke test           ]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/5] user= workdir=
+[CI Pipeline/Docker build & smoke test           ]   | -rw-r--r-- 1 root root 44M Oct  7 18:44 image.tar.gz
+[CI Pipeline/Docker build & smoke test           ]   ✅  Success - Main Save image as artifact [18.747773708s]
+[CI Pipeline/Docker build & smoke test           ] ⭐ Run Main Upload Docker image artifact
+[CI Pipeline/Docker build & smoke test           ]   🐳  docker cp src=/Users/poorav/.cache/act/actions-upload-artifact@v4/ dst=/var/run/act/actions/actions-upload-artifact@v4/
+[CI Pipeline/Docker build & smoke test           ]   🐳  docker exec cmd=[/opt/acttoolcache/node/24.19.0/arm64/bin/node /var/run/act/actions/actions-upload-artifact@v4/dist/upload/index.js] user= workdir=
+[CI Pipeline/Docker build & smoke test           ]   | (node:179) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[CI Pipeline/Docker build & smoke test           ]   | (Use `node --trace-deprecation ...` to show where the warning was created)
+[CI Pipeline/Docker build & smoke test           ]   | With the provided path, there will be 1 file uploaded
+[CI Pipeline/Docker build & smoke test           ]   | Artifact name is valid!
+[CI Pipeline/Docker build & smoke test           ]   | Root directory input is valid!
+[CI Pipeline/Docker build & smoke test           ]   | Beginning upload of artifact content to blob storage
+[CI Pipeline/Docker build & smoke test           ]   | (node:179) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+[CI Pipeline/Docker build & smoke test           ]   | Uploaded bytes 8388608
+[CI Pipeline/Docker build & smoke test           ]   | Uploaded bytes 16777216
+[CI Pipeline/Docker build & smoke test           ]   | Uploaded bytes 25165824
+[CI Pipeline/Docker build & smoke test           ]   | Uploaded bytes 33554432
+[CI Pipeline/Docker build & smoke test           ]   | Uploaded bytes 41943040
+[CI Pipeline/Docker build & smoke test           ]   | Uploaded bytes 45241620
+[CI Pipeline/Docker build & smoke test           ]   | Finished uploading artifact content to blob storage!
+[CI Pipeline/Docker build & smoke test           ]   | SHA256 digest of uploaded artifact zip is e116892e4d1285f7ca2d100bc87859503a670d4234244ee0ef0cd903f137f4c9
+[CI Pipeline/Docker build & smoke test           ]   | Finalizing artifact upload
+[CI Pipeline/Docker build & smoke test           ]   | Artifact docker-image.zip successfully finalized. Artifact ID 3572604477
+[CI Pipeline/Docker build & smoke test           ]   | Artifact docker-image has been successfully uploaded! Final size is 45241620 bytes. Artifact ID is 3572604477
+[CI Pipeline/Docker build & smoke test           ]   | Artifact download URL: https://github.com/nektos/act/actions/runs/1/artifacts/3572604477
+[CI Pipeline/Docker build & smoke test           ]   ✅  Success - Main Upload Docker image artifact [7.911706s]
+[CI Pipeline/Docker build & smoke test           ]   ⚙  ::set-output:: artifact-id=3572604477
+[CI Pipeline/Docker build & smoke test           ]   ⚙  ::set-output:: artifact-digest=e116892e4d1285f7ca2d100bc87859503a670d4234244ee0ef0cd903f137f4c9
+[CI Pipeline/Docker build & smoke test           ]   ⚙  ::set-output:: artifact-url=https://github.com/nektos/act/actions/runs/1/artifacts/3572604477
+[CI Pipeline/Docker build & smoke test           ] ⭐ Run Complete job
+[CI Pipeline/Docker build & smoke test           ] Cleaning up container for job Docker build & smoke test
+[CI Pipeline/Docker build & smoke test           ]   ✅  Success - Complete job
+[CI Pipeline/Docker build & smoke test           ] 🏁  Job succeeded

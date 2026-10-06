@@ -1,0 +1,73 @@
+# Continuous Delivery/Deployment: push image to a registry, then deploy to Kubernetes.
+name: CD Pipeline
+
+on:
+  push:
+    branches: [main]
+    paths-ignore: ["**.md", "screenshots/**"]
+  workflow_dispatch:
+
+env:
+  IMAGE_NAME: s16-calculator
+  REGISTRY: ${{ vars.REGISTRY || 'ghcr.io/poorav' }}
+  K8S_NAMESPACE: s16-cicd
+
+jobs:
+  test:
+    name: Re-run tests (gate before delivery)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements-dev.txt && pytest -q
+
+  push-image:
+    name: Build & push image to registry
+    needs: test
+    runs-on: ubuntu-latest
+    outputs:
+      image: ${{ steps.meta.outputs.image }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compute image tag
+        id: meta
+        run: echo "image=$REGISTRY/$IMAGE_NAME:${GITHUB_SHA::7}" >> "$GITHUB_OUTPUT"
+      - name: Log in to container registry (credentials from secrets)
+        run: echo "${{ secrets.REGISTRY_PASSWORD }}" | docker login "${REGISTRY%%/*}" -u "${{ secrets.REGISTRY_USERNAME }}" --password-stdin
+      - name: Build image
+        run: docker build --build-arg APP_VERSION=${GITHUB_SHA::7} -t ${{ steps.meta.outputs.image }} -t $REGISTRY/$IMAGE_NAME:latest .
+      - name: Push image
+        run: |
+          docker push ${{ steps.meta.outputs.image }}
+          docker push $REGISTRY/$IMAGE_NAME:latest
+
+  deploy:
+    name: Deploy to Kubernetes
+    needs: push-image
+    runs-on: self-hosted                 # runner inside the network that can reach the cluster
+    environment: production
+    env:
+      IMAGE: ${{ needs.push-image.outputs.image }}
+      DOCKER_CONFIG: ${{ github.workspace }}/.docker-ci   # isolated docker login for this job
+    steps:
+      - uses: actions/checkout@v4
+      - name: Pull image from registry
+        run: |
+          echo "${{ secrets.REGISTRY_PASSWORD }}" | docker login "${REGISTRY%%/*}" -u "${{ secrets.REGISTRY_USERNAME }}" --password-stdin
+          docker pull "$IMAGE"
+      - name: Make image available to the cluster
+        run: minikube image load "$IMAGE"
+      - name: Apply Kubernetes manifests
+        run: |
+          kubectl --context minikube create namespace $K8S_NAMESPACE --dry-run=client -o yaml | kubectl --context minikube apply -f -
+          sed "s|IMAGE_PLACEHOLDER|$IMAGE|" k8s/deployment.yaml | kubectl --context minikube apply -n $K8S_NAMESPACE -f -
+          kubectl --context minikube apply -n $K8S_NAMESPACE -f k8s/service.yaml
+      - name: Wait for rollout
+        run: kubectl --context minikube rollout status deployment/calculator -n $K8S_NAMESPACE --timeout=180s
+      - name: Smoke test deployed service
+        run: |
+          kubectl --context minikube get deploy,pods,svc -n $K8S_NAMESPACE -o wide
+          kubectl --context minikube exec -n $K8S_NAMESPACE deploy/calculator -- \
+            python -c "import urllib.request as u;print(u.urlopen('http://calculator/health').read().decode());print(u.urlopen('http://calculator/api/multiply?a=6&b=7').read().decode())"

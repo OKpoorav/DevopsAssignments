@@ -1,0 +1,238 @@
+time="2026-10-08T00:17:58+05:30" level=info msg="Using docker host 'unix:///var/run/docker.sock', and daemon socket 'unix:///var/run/docker.sock'"
+[CD Pipeline/Re-run tests (gate before delivery)] ⭐ Run Set up job
+[CD Pipeline/Re-run tests (gate before delivery)] 🚀  Start image=catthehacker/ubuntu:act-latest
+[CD Pipeline/Re-run tests (gate before delivery)]   🐳  docker pull image=catthehacker/ubuntu:act-latest platform=linux/arm64 username= forcePull=false
+[CD Pipeline/Re-run tests (gate before delivery)]   🐳  docker create image=catthehacker/ubuntu:act-latest platform=linux/arm64 entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[CD Pipeline/Re-run tests (gate before delivery)]   🐳  docker run image=catthehacker/ubuntu:act-latest platform=linux/arm64 entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[CD Pipeline/Re-run tests (gate before delivery)]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[CD Pipeline/Re-run tests (gate before delivery)]   ✅  Success - Set up job
+[CD Pipeline/Re-run tests (gate before delivery)]   ☁  git clone 'https://github.com/actions/setup-python' # ref=v5
+[CD Pipeline/Re-run tests (gate before delivery)] ⭐ Run Main actions/checkout@v4
+[CD Pipeline/Re-run tests (gate before delivery)]   🐳  docker cp src=/Users/poorav/Devops/session16-github-actions-cicd/. dst=/Users/poorav/Devops/session16-github-actions-cicd
+[CD Pipeline/Re-run tests (gate before delivery)]   ✅  Success - Main actions/checkout@v4 [472.158958ms]
+[CD Pipeline/Re-run tests (gate before delivery)] ⭐ Run Main actions/setup-python@v5
+[CD Pipeline/Re-run tests (gate before delivery)]   🐳  docker cp src=/Users/poorav/.cache/act/actions-setup-python@v5/ dst=/var/run/act/actions/actions-setup-python@v5/
+[CD Pipeline/Re-run tests (gate before delivery)]   🐳  docker exec cmd=[/opt/acttoolcache/node/24.19.0/arm64/bin/node /var/run/act/actions/actions-setup-python@v5/dist/setup/index.js] user= workdir=
+[CD Pipeline/Re-run tests (gate before delivery)]   ❓  ::group::Installed versions
+[CD Pipeline/Re-run tests (gate before delivery)]   | (node:32) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[CD Pipeline/Re-run tests (gate before delivery)]   | (Use `node --trace-deprecation ...` to show where the warning was created)
+[CD Pipeline/Re-run tests (gate before delivery)]   | Successfully set up CPython (3.12.15)
+[CD Pipeline/Re-run tests (gate before delivery)]   ❓  ::endgroup::
+[CD Pipeline/Re-run tests (gate before delivery)]   ❓ add-matcher /run/act/actions/actions-setup-python@v5/.github/python.json
+[CD Pipeline/Re-run tests (gate before delivery)]   ✅  Success - Main actions/setup-python@v5 [5.57162175s]
+[CD Pipeline/Re-run tests (gate before delivery)]   ⚙  ::set-env:: LD_LIBRARY_PATH=/opt/hostedtoolcache/Python/3.12.15/arm64/lib
+[CD Pipeline/Re-run tests (gate before delivery)]   ⚙  ::set-env:: pythonLocation=/opt/hostedtoolcache/Python/3.12.15/arm64
+[CD Pipeline/Re-run tests (gate before delivery)]   ⚙  ::set-env:: PKG_CONFIG_PATH=/opt/hostedtoolcache/Python/3.12.15/arm64/lib/pkgconfig
+[CD Pipeline/Re-run tests (gate before delivery)]   ⚙  ::set-env:: Python_ROOT_DIR=/opt/hostedtoolcache/Python/3.12.15/arm64
+[CD Pipeline/Re-run tests (gate before delivery)]   ⚙  ::set-env:: Python2_ROOT_DIR=/opt/hostedtoolcache/Python/3.12.15/arm64
+[CD Pipeline/Re-run tests (gate before delivery)]   ⚙  ::set-env:: Python3_ROOT_DIR=/opt/hostedtoolcache/Python/3.12.15/arm64
+[CD Pipeline/Re-run tests (gate before delivery)]   ⚙  ::set-output:: python-version=3.12.15
+[CD Pipeline/Re-run tests (gate before delivery)]   ⚙  ::set-output:: python-path=/opt/hostedtoolcache/Python/3.12.15/arm64/bin/python
+[CD Pipeline/Re-run tests (gate before delivery)]   ⚙  ::add-path:: /opt/hostedtoolcache/Python/3.12.15/arm64
+[CD Pipeline/Re-run tests (gate before delivery)]   ⚙  ::add-path:: /opt/hostedtoolcache/Python/3.12.15/arm64/bin
+[CD Pipeline/Re-run tests (gate before delivery)] ⭐ Run Main pip install -r requirements-dev.txt && pytest -q
+[CD Pipeline/Re-run tests (gate before delivery)]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=
+[CD Pipeline/Re-run tests (gate before delivery)]   | Requirement already satisfied: flask==3.1.2 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from -r /Users/poorav/Devops/session16-github-actions-cicd/requirements.txt (line 1)) (3.1.2)
+[CD Pipeline/Re-run tests (gate before delivery)]   | Requirement already satisfied: gunicorn==23.0.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from -r /Users/poorav/Devops/session16-github-actions-cicd/requirements.txt (line 2)) (23.0.0)
+[CD Pipeline/Re-run tests (gate before delivery)]   | Requirement already satisfied: pytest==8.4.2 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from -r requirements-dev.txt (line 2)) (8.4.2)
+[CD Pipeline/Re-run tests (gate before delivery)]   | Requirement already satisfied: pytest-cov==7.0.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from -r requirements-dev.txt (line 3)) (7.0.0)
+[CD Pipeline/Re-run tests (gate before delivery)]   | Requirement already satisfied: flake8==7.3.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from -r requirements-dev.txt (line 4)) (7.3.0)
+[CD Pipeline/Re-run tests (gate before delivery)]   | Requirement already satisfied: blinker>=1.9.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from flask==3.1.2->-r /Users/poorav/Devops/session16-github-actions-cicd/requirements.txt (line 1)) (1.9.0)
+[CD Pipeline/Re-run tests (gate before delivery)]   | Requirement already satisfied: click>=8.1.3 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from flask==3.1.2->-r /Users/poorav/Devops/session16-github-actions-cicd/requirements.txt (line 1)) (8.5.0)
+[CD Pipeline/Re-run tests (gate before delivery)]   | Requirement already satisfied: itsdangerous>=2.2.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from flask==3.1.2->-r /Users/poorav/Devops/session16-github-actions-cicd/requirements.txt (line 1)) (2.2.0)
+[CD Pipeline/Re-run tests (gate before delivery)]   | Requirement already satisfied: jinja2>=3.1.2 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from flask==3.1.2->-r /Users/poorav/Devops/session16-github-actions-cicd/requirements.txt (line 1)) (3.1.6)
+[CD Pipeline/Re-run tests (gate before delivery)]   | Requirement already satisfied: markupsafe>=2.1.1 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from flask==3.1.2->-r /Users/poorav/Devops/session16-github-actions-cicd/requirements.txt (line 1)) (3.0.4)
+[CD Pipeline/Re-run tests (gate before delivery)]   | Requirement already satisfied: werkzeug>=3.1.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from flask==3.1.2->-r /Users/poorav/Devops/session16-github-actions-cicd/requirements.txt (line 1)) (3.1.9)
+[CD Pipeline/Re-run tests (gate before delivery)]   | Requirement already satisfied: packaging in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from gunicorn==23.0.0->-r /Users/poorav/Devops/session16-github-actions-cicd/requirements.txt (line 2)) (26.3)
+[CD Pipeline/Re-run tests (gate before delivery)]   | Requirement already satisfied: iniconfig>=1 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from pytest==8.4.2->-r requirements-dev.txt (line 2)) (2.3.1)
+[CD Pipeline/Re-run tests (gate before delivery)]   | Requirement already satisfied: pluggy<2,>=1.5 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from pytest==8.4.2->-r requirements-dev.txt (line 2)) (1.6.0)
+[CD Pipeline/Re-run tests (gate before delivery)]   | Requirement already satisfied: pygments>=2.7.2 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from pytest==8.4.2->-r requirements-dev.txt (line 2)) (2.21.0)
+[CD Pipeline/Re-run tests (gate before delivery)]   | Requirement already satisfied: coverage>=7.10.6 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from coverage[toml]>=7.10.6->pytest-cov==7.0.0->-r requirements-dev.txt (line 3)) (7.16.2)
+[CD Pipeline/Re-run tests (gate before delivery)]   | Requirement already satisfied: mccabe<0.8.0,>=0.7.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from flake8==7.3.0->-r requirements-dev.txt (line 4)) (0.7.0)
+[CD Pipeline/Re-run tests (gate before delivery)]   | Requirement already satisfied: pycodestyle<2.15.0,>=2.14.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from flake8==7.3.0->-r requirements-dev.txt (line 4)) (2.14.0)
+[CD Pipeline/Re-run tests (gate before delivery)]   | Requirement already satisfied: pyflakes<3.5.0,>=3.4.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from flake8==7.3.0->-r requirements-dev.txt (line 4)) (3.4.0)
+[CD Pipeline/Re-run tests (gate before delivery)]   | WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+[CD Pipeline/Re-run tests (gate before delivery)]   | ..........                                                               [100%]
+[CD Pipeline/Re-run tests (gate before delivery)]   | 10 passed in 0.45s
+[CD Pipeline/Re-run tests (gate before delivery)]   ✅  Success - Main pip install -r requirements-dev.txt && pytest -q [5.841244917s]
+[CD Pipeline/Re-run tests (gate before delivery)] ⭐ Run Post actions/setup-python@v5
+[CD Pipeline/Re-run tests (gate before delivery)]   🐳  docker exec cmd=[/opt/acttoolcache/node/24.19.0/arm64/bin/node /var/run/act/actions/actions-setup-python@v5/dist/cache-save/index.js] user= workdir=
+[CD Pipeline/Re-run tests (gate before delivery)]   | (node:69) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[CD Pipeline/Re-run tests (gate before delivery)]   | (Use `node --trace-deprecation ...` to show where the warning was created)
+[CD Pipeline/Re-run tests (gate before delivery)]   ✅  Success - Post actions/setup-python@v5 [622.699ms]
+[CD Pipeline/Re-run tests (gate before delivery)] ⭐ Run Complete job
+[CD Pipeline/Re-run tests (gate before delivery)] Cleaning up container for job Re-run tests (gate before delivery)
+[CD Pipeline/Re-run tests (gate before delivery)]   ✅  Success - Complete job
+[CD Pipeline/Re-run tests (gate before delivery)] 🏁  Job succeeded
+[CD Pipeline/Build & push image to registry     ] ⭐ Run Set up job
+[CD Pipeline/Build & push image to registry     ] 🚀  Start image=catthehacker/ubuntu:act-latest
+[CD Pipeline/Build & push image to registry     ]   🐳  docker pull image=catthehacker/ubuntu:act-latest platform=linux/arm64 username= forcePull=false
+[CD Pipeline/Build & push image to registry     ]   🐳  docker create image=catthehacker/ubuntu:act-latest platform=linux/arm64 entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[CD Pipeline/Build & push image to registry     ]   🐳  docker run image=catthehacker/ubuntu:act-latest platform=linux/arm64 entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[CD Pipeline/Build & push image to registry     ]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[CD Pipeline/Build & push image to registry     ]   ✅  Success - Set up job
+[CD Pipeline/Build & push image to registry     ] ⭐ Run Main actions/checkout@v4
+[CD Pipeline/Build & push image to registry     ]   🐳  docker cp src=/Users/poorav/Devops/session16-github-actions-cicd/. dst=/Users/poorav/Devops/session16-github-actions-cicd
+[CD Pipeline/Build & push image to registry     ]   ✅  Success - Main actions/checkout@v4 [110.184166ms]
+[CD Pipeline/Build & push image to registry     ] ⭐ Run Main Compute image tag
+[CD Pipeline/Build & push image to registry     ]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/meta] user= workdir=
+[CD Pipeline/Build & push image to registry     ]   ✅  Success - Main Compute image tag [218.352875ms]
+[CD Pipeline/Build & push image to registry     ]   ⚙  ::set-output:: image=localhost:18410/s16-calculator:f02858c
+[CD Pipeline/Build & push image to registry     ] ⭐ Run Main Log in to container registry (credentials from secrets)
+[CD Pipeline/Build & push image to registry     ]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=
+[CD Pipeline/Build & push image to registry     ]   | Login Succeeded
+[CD Pipeline/Build & push image to registry     ]   | 
+[CD Pipeline/Build & push image to registry     ]   | WARNING! Your credentials are stored unencrypted in '/root/.docker/config.json'.
+[CD Pipeline/Build & push image to registry     ]   | Configure a credential helper to remove this warning. See
+[CD Pipeline/Build & push image to registry     ]   | https://docs.docker.com/go/credential-store/
+[CD Pipeline/Build & push image to registry     ]   | 
+[CD Pipeline/Build & push image to registry     ]   ✅  Success - Main Log in to container registry (credentials from secrets) [1.487596084s]
+[CD Pipeline/Build & push image to registry     ] ⭐ Run Main Build image
+[CD Pipeline/Build & push image to registry     ]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/3] user= workdir=
+[CD Pipeline/Build & push image to registry     ]   | #0 building with "default" instance using docker driver
+[CD Pipeline/Build & push image to registry     ]   | 
+[CD Pipeline/Build & push image to registry     ]   | #1 [internal] load build definition from Dockerfile
+[CD Pipeline/Build & push image to registry     ]   | #1 transferring dockerfile: 518B 0.0s done
+[CD Pipeline/Build & push image to registry     ]   | #1 DONE 0.1s
+[CD Pipeline/Build & push image to registry     ]   | 
+[CD Pipeline/Build & push image to registry     ]   | #2 [internal] load metadata for docker.io/library/python:3.12-slim
+[CD Pipeline/Build & push image to registry     ]   | #2 DONE 2.1s
+[CD Pipeline/Build & push image to registry     ]   | 
+[CD Pipeline/Build & push image to registry     ]   | #3 [internal] load .dockerignore
+[CD Pipeline/Build & push image to registry     ]   | #3 transferring context:
+[CD Pipeline/Build & push image to registry     ]   | #3 transferring context: 122B 0.1s done
+[CD Pipeline/Build & push image to registry     ]   | #3 DONE 0.2s
+[CD Pipeline/Build & push image to registry     ]   | 
+[CD Pipeline/Build & push image to registry     ]   | #4 [1/6] FROM docker.io/library/python:3.12-slim@sha256:05cda9777409a9c3ffddd94a4c476b79f0769a0b4857f0c7ed9226b6800b0d6f
+[CD Pipeline/Build & push image to registry     ]   | #4 DONE 0.0s
+[CD Pipeline/Build & push image to registry     ]   | 
+[CD Pipeline/Build & push image to registry     ]   | #5 [internal] load build context
+[CD Pipeline/Build & push image to registry     ]   | #5 transferring context: 1.86kB 0.0s done
+[CD Pipeline/Build & push image to registry     ]   | #5 DONE 0.1s
+[CD Pipeline/Build & push image to registry     ]   | 
+[CD Pipeline/Build & push image to registry     ]   | #6 [4/6] RUN pip install --no-cache-dir -r requirements.txt
+[CD Pipeline/Build & push image to registry     ]   | #6 CACHED
+[CD Pipeline/Build & push image to registry     ]   | 
+[CD Pipeline/Build & push image to registry     ]   | #7 [5/6] COPY app ./app
+[CD Pipeline/Build & push image to registry     ]   | #7 CACHED
+[CD Pipeline/Build & push image to registry     ]   | 
+[CD Pipeline/Build & push image to registry     ]   | #8 [2/6] WORKDIR /app
+[CD Pipeline/Build & push image to registry     ]   | #8 CACHED
+[CD Pipeline/Build & push image to registry     ]   | 
+[CD Pipeline/Build & push image to registry     ]   | #9 [3/6] COPY requirements.txt .
+[CD Pipeline/Build & push image to registry     ]   | #9 CACHED
+[CD Pipeline/Build & push image to registry     ]   | 
+[CD Pipeline/Build & push image to registry     ]   | #10 [6/6] RUN useradd --uid 10001 --no-create-home appuser
+[CD Pipeline/Build & push image to registry     ]   | #10 CACHED
+[CD Pipeline/Build & push image to registry     ]   | 
+[CD Pipeline/Build & push image to registry     ]   | #11 exporting to image
+[CD Pipeline/Build & push image to registry     ]   | #11 exporting layers done
+[CD Pipeline/Build & push image to registry     ]   | #11 writing image sha256:a07ca251efa3c403af3c4ef3e151cfe750024a976880a33f2e71773a833fa74d 0.0s done
+[CD Pipeline/Build & push image to registry     ]   | #11 naming to localhost:18410/s16-calculator:f02858c 0.0s done
+[CD Pipeline/Build & push image to registry     ]   | #11 naming to localhost:18410/s16-calculator:latest
+[CD Pipeline/Build & push image to registry     ]   | #11 naming to localhost:18410/s16-calculator:latest 0.2s done
+[CD Pipeline/Build & push image to registry     ]   | #11 DONE 0.3s
+[CD Pipeline/Build & push image to registry     ]   ✅  Success - Main Build image [5.217976416s]
+[CD Pipeline/Build & push image to registry     ] ⭐ Run Main Push image
+[CD Pipeline/Build & push image to registry     ]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/4] user= workdir=
+[CD Pipeline/Build & push image to registry     ]   | The push refers to repository [localhost:18410/s16-calculator]
+[CD Pipeline/Build & push image to registry     ]   | f1a6bda2695f: Preparing
+[CD Pipeline/Build & push image to registry     ]   | c81ca14d3352: Preparing
+[CD Pipeline/Build & push image to registry     ]   | 762d3261ee80: Preparing
+[CD Pipeline/Build & push image to registry     ]   | de6a4df95c53: Preparing
+[CD Pipeline/Build & push image to registry     ]   | c0951c7cc8a2: Preparing
+[CD Pipeline/Build & push image to registry     ]   | 84dd5a4db43e: Preparing
+[CD Pipeline/Build & push image to registry     ]   | 11d89b6e886f: Preparing
+[CD Pipeline/Build & push image to registry     ]   | 373ce1c1778b: Preparing
+[CD Pipeline/Build & push image to registry     ]   | 258ba1f62b51: Preparing
+[CD Pipeline/Build & push image to registry     ]   | 11d89b6e886f: Waiting
+[CD Pipeline/Build & push image to registry     ]   | 373ce1c1778b: Waiting
+[CD Pipeline/Build & push image to registry     ]   | 258ba1f62b51: Waiting
+[CD Pipeline/Build & push image to registry     ]   | c0951c7cc8a2: Layer already exists
+[CD Pipeline/Build & push image to registry     ]   | de6a4df95c53: Layer already exists
+[CD Pipeline/Build & push image to registry     ]   | c81ca14d3352: Layer already exists
+[CD Pipeline/Build & push image to registry     ]   | f1a6bda2695f: Layer already exists
+[CD Pipeline/Build & push image to registry     ]   | 762d3261ee80: Layer already exists
+[CD Pipeline/Build & push image to registry     ]   | 84dd5a4db43e: Layer already exists
+[CD Pipeline/Build & push image to registry     ]   | 11d89b6e886f: Layer already exists
+[CD Pipeline/Build & push image to registry     ]   | 258ba1f62b51: Layer already exists
+[CD Pipeline/Build & push image to registry     ]   | 373ce1c1778b: Layer already exists
+[CD Pipeline/Build & push image to registry     ]   | f02858c: digest: sha256:133f07d8373f2970cba9ed9e1c2807ffeaddee02660d7227b500b879d34b05bc size: 2199
+[CD Pipeline/Build & push image to registry     ]   | The push refers to repository [localhost:18410/s16-calculator]
+[CD Pipeline/Build & push image to registry     ]   | f1a6bda2695f: Preparing
+[CD Pipeline/Build & push image to registry     ]   | c81ca14d3352: Preparing
+[CD Pipeline/Build & push image to registry     ]   | 762d3261ee80: Preparing
+[CD Pipeline/Build & push image to registry     ]   | de6a4df95c53: Preparing
+[CD Pipeline/Build & push image to registry     ]   | c0951c7cc8a2: Preparing
+[CD Pipeline/Build & push image to registry     ]   | 84dd5a4db43e: Preparing
+[CD Pipeline/Build & push image to registry     ]   | 11d89b6e886f: Preparing
+[CD Pipeline/Build & push image to registry     ]   | 84dd5a4db43e: Waiting
+[CD Pipeline/Build & push image to registry     ]   | 373ce1c1778b: Preparing
+[CD Pipeline/Build & push image to registry     ]   | 258ba1f62b51: Preparing
+[CD Pipeline/Build & push image to registry     ]   | 373ce1c1778b: Waiting
+[CD Pipeline/Build & push image to registry     ]   | 11d89b6e886f: Waiting
+[CD Pipeline/Build & push image to registry     ]   | 258ba1f62b51: Waiting
+[CD Pipeline/Build & push image to registry     ]   | c81ca14d3352: Layer already exists
+[CD Pipeline/Build & push image to registry     ]   | 762d3261ee80: Layer already exists
+[CD Pipeline/Build & push image to registry     ]   | f1a6bda2695f: Layer already exists
+[CD Pipeline/Build & push image to registry     ]   | c0951c7cc8a2: Layer already exists
+[CD Pipeline/Build & push image to registry     ]   | 84dd5a4db43e: Layer already exists
+[CD Pipeline/Build & push image to registry     ]   | 11d89b6e886f: Layer already exists
+[CD Pipeline/Build & push image to registry     ]   | de6a4df95c53: Layer already exists
+[CD Pipeline/Build & push image to registry     ]   | 373ce1c1778b: Layer already exists
+[CD Pipeline/Build & push image to registry     ]   | 258ba1f62b51: Layer already exists
+[CD Pipeline/Build & push image to registry     ]   | latest: digest: sha256:133f07d8373f2970cba9ed9e1c2807ffeaddee02660d7227b500b879d34b05bc size: 2199
+[CD Pipeline/Build & push image to registry     ]   ✅  Success - Main Push image [3.182642375s]
+[CD Pipeline/Build & push image to registry     ] ⭐ Run Complete job
+[CD Pipeline/Build & push image to registry     ] Cleaning up container for job Build & push image to registry
+[CD Pipeline/Build & push image to registry     ]   ✅  Success - Complete job
+[CD Pipeline/Build & push image to registry     ] 🏁  Job succeeded
+[CD Pipeline/Deploy to Kubernetes               ] ⭐ Run Set up job
+[CD Pipeline/Deploy to Kubernetes               ]   ✅  Success - Set up job
+[CD Pipeline/Deploy to Kubernetes               ] ⭐ Run Main actions/checkout@v4
+[CD Pipeline/Deploy to Kubernetes               ]   ✅  Success - Main actions/checkout@v4 [182.268666ms]
+[CD Pipeline/Deploy to Kubernetes               ] ⭐ Run Main Pull image from registry
+[CD Pipeline/Deploy to Kubernetes               ]   | Login Succeeded
+[CD Pipeline/Deploy to Kubernetes               ]   | f02858c: Pulling from s16-calculator
+[CD Pipeline/Deploy to Kubernetes               ]   | Digest: sha256:133f07d8373f2970cba9ed9e1c2807ffeaddee02660d7227b500b879d34b05bc
+[CD Pipeline/Deploy to Kubernetes               ]   | Status: Image is up to date for localhost:18410/s16-calculator:f02858c
+[CD Pipeline/Deploy to Kubernetes               ]   | localhost:18410/s16-calculator:f02858c
+[CD Pipeline/Deploy to Kubernetes               ]   ✅  Success - Main Pull image from registry [2.833815s]
+[CD Pipeline/Deploy to Kubernetes               ] ⭐ Run Main Make image available to the cluster
+[CD Pipeline/Deploy to Kubernetes               ]   ✅  Success - Main Make image available to the cluster [38.712290042s]
+[CD Pipeline/Deploy to Kubernetes               ] ⭐ Run Main Apply Kubernetes manifests
+[CD Pipeline/Deploy to Kubernetes               ]   | namespace/s16-cicd unchanged
+[CD Pipeline/Deploy to Kubernetes               ]   | deployment.apps/calculator configured
+[CD Pipeline/Deploy to Kubernetes               ]   | service/calculator unchanged
+[CD Pipeline/Deploy to Kubernetes               ]   ✅  Success - Main Apply Kubernetes manifests [2.007595542s]
+[CD Pipeline/Deploy to Kubernetes               ] ⭐ Run Main Wait for rollout
+[CD Pipeline/Deploy to Kubernetes               ]   | Waiting for deployment spec update to be observed...
+[CD Pipeline/Deploy to Kubernetes               ]   | Waiting for deployment "calculator" rollout to finish: 0 out of 2 new replicas have been updated...
+[CD Pipeline/Deploy to Kubernetes               ]   | Waiting for deployment "calculator" rollout to finish: 1 out of 2 new replicas have been updated...
+[CD Pipeline/Deploy to Kubernetes               ]   | Waiting for deployment "calculator" rollout to finish: 1 out of 2 new replicas have been updated...
+[CD Pipeline/Deploy to Kubernetes               ]   | Waiting for deployment "calculator" rollout to finish: 1 out of 2 new replicas have been updated...
+[CD Pipeline/Deploy to Kubernetes               ]   | Waiting for deployment "calculator" rollout to finish: 1 old replicas are pending termination...
+[CD Pipeline/Deploy to Kubernetes               ]   | Waiting for deployment "calculator" rollout to finish: 1 old replicas are pending termination...
+[CD Pipeline/Deploy to Kubernetes               ]   | Waiting for deployment "calculator" rollout to finish: 1 old replicas are pending termination...
+[CD Pipeline/Deploy to Kubernetes               ]   | deployment "calculator" successfully rolled out
+[CD Pipeline/Deploy to Kubernetes               ]   ✅  Success - Main Wait for rollout [58.066392666s]
+[CD Pipeline/Deploy to Kubernetes               ] ⭐ Run Main Smoke test deployed service
+[CD Pipeline/Deploy to Kubernetes               ]   | NAME                         READY   UP-TO-DATE   AVAILABLE   AGE     CONTAINERS   IMAGES                                   SELECTOR
+[CD Pipeline/Deploy to Kubernetes               ]   | deployment.apps/calculator   2/2     2            2           2m53s   calculator   localhost:18410/s16-calculator:f02858c   app=calculator
+[CD Pipeline/Deploy to Kubernetes               ]   | 
+[CD Pipeline/Deploy to Kubernetes               ]   | NAME                              READY   STATUS        RESTARTS   AGE     IP             NODE       NOMINATED NODE   READINESS GATES
+[CD Pipeline/Deploy to Kubernetes               ]   | pod/calculator-697985f756-ccjnm   1/1     Running       0          58s     10.244.0.243   minikube   <none>           <none>
+[CD Pipeline/Deploy to Kubernetes               ]   | pod/calculator-697985f756-jtx7k   1/1     Running       0          25s     10.244.0.244   minikube   <none>           <none>
+[CD Pipeline/Deploy to Kubernetes               ]   | pod/calculator-7dfd7c9cbf-5lxqt   1/1     Terminating   0          2m53s   10.244.0.223   minikube   <none>           <none>
+[CD Pipeline/Deploy to Kubernetes               ]   | 
+[CD Pipeline/Deploy to Kubernetes               ]   | NAME                 TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)   AGE     SELECTOR
+[CD Pipeline/Deploy to Kubernetes               ]   | service/calculator   ClusterIP   10.110.115.206   <none>        80/TCP    2m53s   app=calculator
+[CD Pipeline/Deploy to Kubernetes               ]   | {"status":"ok","version":"f02858c"}
+[CD Pipeline/Deploy to Kubernetes               ]   | 
+[CD Pipeline/Deploy to Kubernetes               ]   | {"a":6.0,"b":7.0,"operation":"multiply","result":42.0}
+[CD Pipeline/Deploy to Kubernetes               ]   | 
+[CD Pipeline/Deploy to Kubernetes               ]   ✅  Success - Main Smoke test deployed service [5.079083208s]
+[CD Pipeline/Deploy to Kubernetes               ] ⭐ Run Complete job
+[CD Pipeline/Deploy to Kubernetes               ] Cleaning up container for job Deploy to Kubernetes
+[CD Pipeline/Deploy to Kubernetes               ]   ✅  Success - Complete job
+[CD Pipeline/Deploy to Kubernetes               ] 🏁  Job succeeded
