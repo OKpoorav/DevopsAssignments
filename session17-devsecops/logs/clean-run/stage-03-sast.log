@@ -1,0 +1,15 @@
+===================================================================
+ STAGE 3: SAST        (source: session17-devsecops, image: s17-devsecops:ac578a1)
+===================================================================
+--- bandit (Python SAST) ---
+LOW    B311 app/app.py:79  Standard pseudo-random generators are not suitable for security/cryptographic purposes.
+LOW    B311 app/app.py:190  Standard pseudo-random generators are not suitable for security/cryptographic purposes.
+LOW    B311 app/app.py:192  Standard pseudo-random generators are not suitable for security/cryptographic purposes.
+LOW    B311 app/app.py:196  Standard pseudo-random generators are not suitable for security/cryptographic purposes.
+LOW    B311 app/app.py:207  Standard pseudo-random generators are not suitable for security/cryptographic purposes.
+bandit totals: HIGH=0 MEDIUM=0 LOW=5
+--- semgrep (p/python community rules + security/semgrep.yml custom rules) ---
+semgrep findings: 0 (ERROR=0)
+--- hadolint (Dockerfile lint, informational) ---
+hadolint: done
+[STAGE 3: SAST] SUCCESS

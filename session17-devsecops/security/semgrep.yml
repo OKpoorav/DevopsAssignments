@@ -1,0 +1,33 @@
+# Custom SAST rules (run together with the community ruleset p/python)
+rules:
+  - id: flask-debug-enabled
+    languages: [python]
+    severity: ERROR
+    message: Flask app started with debug=True - exposes the Werkzeug debugger (remote code execution)
+    pattern: $APP.run(..., debug=True, ...)
+  - id: subprocess-shell-true
+    languages: [python]
+    severity: ERROR
+    message: subprocess called with shell=True - command injection risk
+    pattern-either:
+      - pattern: subprocess.$FUNC(..., shell=True, ...)
+      - pattern: os.system(...)
+  - id: dangerous-eval
+    languages: [python]
+    severity: ERROR
+    message: eval()/exec() on dynamic data allows arbitrary code execution
+    pattern-either:
+      - pattern: eval(...)
+      - pattern: exec(...)
+  - id: unsafe-yaml-load
+    languages: [python]
+    severity: ERROR
+    message: yaml.load without SafeLoader can construct arbitrary Python objects
+    patterns:
+      - pattern: yaml.load(...)
+      - pattern-not: yaml.load(..., Loader=yaml.SafeLoader, ...)
+  - id: weak-hash-md5
+    languages: [python]
+    severity: WARNING
+    message: MD5 is not collision resistant - do not use it for passwords or integrity
+    pattern: hashlib.md5(...)

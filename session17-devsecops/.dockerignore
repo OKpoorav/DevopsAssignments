@@ -1,0 +1,13 @@
+.git
+.github
+tests
+reports
+screenshots
+security
+scripts
+demo
+k8s
+*.md
+__pycache__
+.coverage
+.pytest_cache

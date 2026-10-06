@@ -1,0 +1,229 @@
+===================================================================
+ STAGE 1: Build        (source: s17-vulnerable-change, image: s17-devsecops:4f62b7e)
+===================================================================
+compileall: all modules byte-compiled OK
+import check OK: app.app - routes: 8
+[STAGE 1: Build] SUCCESS
+===================================================================
+ STAGE 2: Unit Test        (source: s17-vulnerable-change, image: s17-devsecops:4f62b7e)
+===================================================================
+============================= test session starts ==============================
+platform darwin -- Python 3.11.7, pytest-8.4.2, pluggy-1.6.0 -- /tmp/s17-pipeline-venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /Users/poorav/Devops/s17-vulnerable-change
+configfile: pytest.ini
+testpaths: tests
+plugins: cov-7.0.0
+collecting ... collected 8 items
+
+tests/test_app.py::test_home PASSED                                      [ 12%]
+tests/test_app.py::test_health PASSED                                    [ 25%]
+tests/test_app.py::test_greet PASSED                                     [ 37%]
+tests/test_app.py::test_add_numbers PASSED                               [ 50%]
+tests/test_app.py::test_add_numbers_missing_fields PASSED                [ 62%]
+tests/test_app.py::test_calculator_multiply PASSED                       [ 75%]
+tests/test_app.py::test_calculator_divide_by_zero PASSED                 [ 87%]
+tests/test_app.py::test_status PASSED                                    [100%]
+
+- generated xml file: /Users/poorav/Devops/s17-vulnerable-change/reports/junit.xml -
+================================ tests coverage ================================
+_______________ coverage: platform darwin, python 3.11.7-final-0 _______________
+
+Name                    Stmts   Miss  Cover
+-------------------------------------------
+app/__init__.py             0      0   100%
+app/app.py                102     32    69%
+app/insecure_utils.py      13     13     0%
+-------------------------------------------
+TOTAL                     115     45    61%
+============================== 8 passed in 0.18s ===============================
+[STAGE 2: Unit Test] SUCCESS
+===================================================================
+ STAGE 3: SAST        (source: s17-vulnerable-change, image: s17-devsecops:4f62b7e)
+===================================================================
+--- bandit (Python SAST) ---
+LOW    B311 app/app.py:79  Standard pseudo-random generators are not suitable for security/cryptographic purposes.
+LOW    B311 app/app.py:190  Standard pseudo-random generators are not suitable for security/cryptographic purposes.
+LOW    B311 app/app.py:192  Standard pseudo-random generators are not suitable for security/cryptographic purposes.
+LOW    B311 app/app.py:196  Standard pseudo-random generators are not suitable for security/cryptographic purposes.
+LOW    B311 app/app.py:207  Standard pseudo-random generators are not suitable for security/cryptographic purposes.
+LOW    B404 app/insecure_utils.py:3  Consider possible security implications associated with the subprocess module.
+LOW    B105 app/insecure_utils.py:6  Possible hardcoded password: 'ze9o****REDACTED'
+LOW    B105 app/insecure_utils.py:7  Possible hardcoded password: 'ghp_****REDACTED'
+HIGH   B602 app/insecure_utils.py:12  subprocess call with shell=True identified, security issue.
+MEDIUM B307 app/insecure_utils.py:17  Use of possibly insecure function - consider using safer ast.literal_eval.
+HIGH   B324 app/insecure_utils.py:22  Use of weak MD5 hash for security. Consider usedforsecurity=False
+MEDIUM B104 app/insecure_utils.py:27  Possible binding to all interfaces.
+bandit totals: HIGH=2 MEDIUM=2 LOW=8
+--- semgrep (p/python community rules + security/semgrep.yml custom rules) ---
+ERROR    app/insecure_utils.py:12  subprocess-shell-true
+ERROR    app/insecure_utils.py:12  subprocess-shell-true
+ERROR    app/insecure_utils.py:17  dangerous-eval
+WARNING  app/insecure_utils.py:22  insecure-hash-algorithm-md5
+WARNING  app/insecure_utils.py:22  weak-hash-md5
+WARNING  app/insecure_utils.py:22  md5-used-as-password
+WARNING  app/insecure_utils.py:27  avoid_app_run_with_bad_host
+ERROR    app/insecure_utils.py:27  flask-debug-enabled
+semgrep findings: 8 (ERROR=4)
+--- hadolint (Dockerfile lint, informational) ---
+hadolint: done
+[STAGE 3: SAST] SUCCESS
+===================================================================
+ STAGE 4: SCA        (source: s17-vulnerable-change, image: s17-devsecops:4f62b7e)
+===================================================================
+--- pip-audit (PyPI advisory DB / OSV) ---
+Found 19 known vulnerabilities in 3 packages
+Name     Version ID              Fix Versions
+-------- ------- --------------- -------------
+requests 2.19.1  PYSEC-2018-28   2.20.0
+requests 2.19.1  PYSEC-2023-74   2.31.0
+requests 2.19.1  PYSEC-2026-1873 2.32.0
+requests 2.19.1  PYSEC-2026-1872 2.32.4
+requests 2.19.1  PYSEC-2026-2275 2.33.0
+idna     2.7     PYSEC-2024-60   3.7
+idna     2.7     PYSEC-2026-215  3.15
+urllib3  1.23    PYSEC-2019-133  1.24.2
+urllib3  1.23    PYSEC-2019-132  1.24.3
+urllib3  1.23    PYSEC-2020-148  1.25.9
+urllib3  1.23    PYSEC-2023-192  1.26.17,2.0.6
+urllib3  1.23    PYSEC-2023-207  1.24.2
+urllib3  1.23    PYSEC-2023-212  1.26.18,2.0.7
+urllib3  1.23    PYSEC-2026-141  2.7.0
+urllib3  1.23    PYSEC-2026-1999 2.5.0
+urllib3  1.23    PYSEC-2026-1995 1.26.19,2.2.2
+urllib3  1.23    PYSEC-2026-1994 2.6.0
+urllib3  1.23    PYSEC-2026-1996 2.6.3
+urllib3  1.23    PYSEC-2026-4177 2.8.0
+--- trivy fs (dependency manifests, HIGH/CRITICAL, fixable) ---
+
+Report Summary
+
+┌──────────────────┬──────┬─────────────────┐
+│      Target      │ Type │ Vulnerabilities │
+├──────────────────┼──────┼─────────────────┤
+│ requirements.txt │ pip  │        1        │
+└──────────────────┴──────┴─────────────────┘
+Legend:
+- '-': Not scanned
+- '0': Clean (no security findings detected)
+
+
+requirements.txt (pip)
+======================
+Total: 1 (HIGH: 1, CRITICAL: 0)
+
+┌──────────┬────────────────┬──────────┬────────┬───────────────────┬───────────────┬──────────────────────────────────────────────────────────────┐
+│ Library  │ Vulnerability  │ Severity │ Status │ Installed Version │ Fixed Version │                            Title                             │
+├──────────┼────────────────┼──────────┼────────┼───────────────────┼───────────────┼──────────────────────────────────────────────────────────────┤
+│ requests │ CVE-2018-18074 │ HIGH     │ fixed  │ 2.19.1            │ 2.20.0        │ python-requests: Redirect from HTTPS to HTTP does not remove │
+│          │                │          │        │                   │               │ Authorization header                                         │
+│          │                │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2018-18074                   │
+└──────────┴────────────────┴──────────┴────────┴───────────────────┴───────────────┴──────────────────────────────────────────────────────────────┘
+[STAGE 4: SCA] SUCCESS
+===================================================================
+ STAGE 5: Secret Scan        (source: s17-vulnerable-change, image: s17-devsecops:4f62b7e)
+===================================================================
+--- gitleaks (default rules + security/gitleaks.toml) ---
+[90m12:33AM[0m [32mINF[0m [1mscanned ~58491 bytes (58.49 KB) in 14.4ms[0m
+[90m12:33AM[0m [33mWRN[0m [1mleaks found: 3[0m
+LEAK  github-pat             app/insecure_utils.py:7  secret=REDACTED
+LEAK  aws-access-token       app/insecure_utils.py:5  secret=REDACTED
+LEAK  generic-api-key        app/insecure_utils.py:6  secret=REDACTED
+gitleaks findings: 3
+[STAGE 5: Secret Scan] SUCCESS
+===================================================================
+ STAGE 6: Docker Build        (source: s17-vulnerable-change, image: s17-devsecops:4f62b7e)
+===================================================================
+#1 [internal] load build definition from Dockerfile
+#1 DONE 0.0s
+#2 [internal] load metadata for docker.io/library/python:3.12-slim
+#2 DONE 1.5s
+#3 [internal] load .dockerignore
+#3 DONE 0.0s
+#4 [builder 1/4] FROM docker.io/library/python:3.12-slim@sha256:05cda9777409a9c3ffddd94a4c476b79f0769a0b4857f0c7ed9226b6800b0d6f
+#4 DONE 0.0s
+#5 [internal] load build context
+#5 DONE 0.0s
+#6 [builder 2/4] WORKDIR /build
+#7 [stage-1 3/5] COPY --from=builder /install /usr/local
+#8 [builder 3/4] COPY requirements.txt .
+#9 [stage-1 2/5] RUN apt-get update && apt-get upgrade -y --no-install-recommends && rm -rf /var/lib/apt/lists/*     && rm -rf /usr/local/lib/python3.12/site-packages/pip* /usr/local/lib/python3.12/ensurepip /usr/local/bin/pip*     && useradd --uid 10001 --no-create-home --shell /usr/sbin/nologin appuser
+#10 [builder 4/4] RUN pip install --prefix=/install -r requirements.txt
+#11 [stage-1 4/5] WORKDIR /app
+#12 [stage-1 5/5] COPY app ./app
+#12 DONE 0.0s
+#13 naming to docker.io/library/s17-devsecops:4f62b7e done
+#13 DONE 0.1s
+IMAGE                   ID             DISK USAGE   CONTENT SIZE   EXTRA
+s17-devsecops:19d68a8   cb19acd0e370        154MB             0B        
+s17-devsecops:2de0642   cf8e3becec4a        162MB             0B        
+s17-devsecops:4f62b7e   681163912603        154MB             0B        
+s17-devsecops:ac578a1   ff906cb19931        151MB             0B        
+[STAGE 6: Docker Build] SUCCESS
+===================================================================
+ STAGE 7: Container Image Scan        (source: s17-vulnerable-change, image: s17-devsecops:4f62b7e)
+===================================================================
+--- trivy image (OS packages + Python packages in the image) ---
+
+Report Summary
+
+┌──────────────────────────────────────────────────────────────────────────────┬────────────┬─────────────────┐
+│                                    Target                                    │    Type    │ Vulnerabilities │
+├──────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
+│ s17-devsecops:4f62b7e (debian 13.7)                                          │   debian   │        0        │
+├──────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
+│ usr/local/lib/python3.12/site-packages/blinker-1.9.0.dist-info/METADATA      │ python-pkg │        0        │
+├──────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
+│ usr/local/lib/python3.12/site-packages/certifi-2026.7.22.dist-info/METADATA  │ python-pkg │        0        │
+├──────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
+│ usr/local/lib/python3.12/site-packages/chardet-3.0.4.dist-info/METADATA      │ python-pkg │        0        │
+├──────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
+│ usr/local/lib/python3.12/site-packages/click-8.5.0.dist-info/METADATA        │ python-pkg │        0        │
+├──────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
+│ usr/local/lib/python3.12/site-packages/flask-3.1.3.dist-info/METADATA        │ python-pkg │        0        │
+├──────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
+│ usr/local/lib/python3.12/site-packages/gunicorn-23.0.0.dist-info/METADATA    │ python-pkg │        0        │
+├──────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
+│ usr/local/lib/python3.12/site-packages/idna-2.7.dist-info/METADATA           │ python-pkg │        0        │
+├──────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
+│ usr/local/lib/python3.12/site-packages/itsdangerous-2.2.0.dist-info/METADATA │ python-pkg │        0        │
+├──────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
+│ usr/local/lib/python3.12/site-packages/jinja2-3.1.6.dist-info/METADATA       │ python-pkg │        0        │
+├──────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
+│ usr/local/lib/python3.12/site-packages/markupsafe-3.0.4.dist-info/METADATA   │ python-pkg │        0        │
+├──────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
+│ usr/local/lib/python3.12/site-packages/packaging-26.3.dist-info/METADATA     │ python-pkg │        0        │
+├──────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
+│ usr/local/lib/python3.12/site-packages/requests-2.19.1.dist-info/METADATA    │ python-pkg │        1        │
+├──────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
+│ usr/local/lib/python3.12/site-packages/urllib3-1.23.dist-info/METADATA       │ python-pkg │        6        │
+├──────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
+│ usr/local/lib/python3.12/site-packages/werkzeug-3.1.9.dist-info/METADATA     │ python-pkg │        0        │
+└──────────────────────────────────────────────────────────────────────────────┴────────────┴─────────────────┘
+Legend:
+- '-': Not scanned
+- '0': Clean (no security findings detected)
+
+
+Python (python-pkg)
+===================
+Total: 7 (HIGH: 7, CRITICAL: 0)
+
+[STAGE 7: Container Image Scan] SUCCESS
+===================================================================
+ STAGE 8: Security Gate        (source: s17-vulnerable-change, image: s17-devsecops:4f62b7e)
+===================================================================
+========================================================================
+STAGE    CHECK                           FOUND   MAX   RESULT
+------------------------------------------------------------------------
+SAST     bandit HIGH severity                2     0   FAIL
+SAST     semgrep ERROR findings              4     0   FAIL
+SCA      pip-audit vulnerable deps          19     0   FAIL
+SCA      trivy fs HIGH/CRITICAL              1     0   FAIL
+SECRETS  gitleaks leaked secrets             3     0   FAIL
+IMAGE    trivy image CRITICAL                0     0   PASS
+IMAGE    trivy image HIGH                    7     0   FAIL
+------------------------------------------------------------------------
+SECURITY GATE: FAILED (6 check(s) over threshold) - image will NOT be pushed or deployed
+[STAGE 8: Security Gate] FAILED (exit 1)
+PIPELINE STOPPED at stage 8 (Security Gate)

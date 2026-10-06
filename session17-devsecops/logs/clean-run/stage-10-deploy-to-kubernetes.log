@@ -1,0 +1,21 @@
+===================================================================
+ STAGE 10: Deploy to Kubernetes        (source: session17-devsecops, image: s17-devsecops:ac578a1)
+===================================================================
+image loaded into cluster: localhost:18420/s17-devsecops:ac578a1
+namespace/s17-devsecops unchanged
+deployment.apps/devsecops-app unchanged
+service/devsecops-app unchanged
+deployment "devsecops-app" successfully rolled out
+NAME                            READY   UP-TO-DATE   AVAILABLE   AGE     CONTAINERS   IMAGES                                  SELECTOR
+deployment.apps/devsecops-app   2/2     2            2           3m48s   app          localhost:18420/s17-devsecops:ac578a1   app=devsecops-app
+
+NAME                                 READY   STATUS    RESTARTS   AGE     IP            NODE       NOMINATED NODE   READINESS GATES
+pod/devsecops-app-69847bc85b-dsktd   1/1     Running   0          3m48s   10.244.0.24   minikube   <none>           <none>
+pod/devsecops-app-69847bc85b-s4cbx   1/1     Running   0          3m48s   10.244.0.23   minikube   <none>           <none>
+
+NAME                    TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)   AGE     SELECTOR
+service/devsecops-app   ClusterIP   10.108.36.48   <none>        80/TCP    3m48s   app=devsecops-app
+--- smoke test (from inside the cluster) ---
+{"status":"healthy","timestamp":"2026-10-07T19:03:59.905790Z","uptime_seconds":225.8}
+
+[STAGE 10: Deploy to Kubernetes] SUCCESS

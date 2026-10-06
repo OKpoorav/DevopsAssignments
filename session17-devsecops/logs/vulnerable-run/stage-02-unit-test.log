@@ -1,0 +1,34 @@
+===================================================================
+ STAGE 2: Unit Test        (source: s17-vulnerable-change, image: s17-devsecops:4f62b7e)
+===================================================================
+============================= test session starts ==============================
+platform darwin -- Python 3.11.7, pytest-8.4.2, pluggy-1.6.0 -- /tmp/s17-pipeline-venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /Users/poorav/Devops/s17-vulnerable-change
+configfile: pytest.ini
+testpaths: tests
+plugins: cov-7.0.0
+collecting ... collected 8 items
+
+tests/test_app.py::test_home PASSED                                      [ 12%]
+tests/test_app.py::test_health PASSED                                    [ 25%]
+tests/test_app.py::test_greet PASSED                                     [ 37%]
+tests/test_app.py::test_add_numbers PASSED                               [ 50%]
+tests/test_app.py::test_add_numbers_missing_fields PASSED                [ 62%]
+tests/test_app.py::test_calculator_multiply PASSED                       [ 75%]
+tests/test_app.py::test_calculator_divide_by_zero PASSED                 [ 87%]
+tests/test_app.py::test_status PASSED                                    [100%]
+
+- generated xml file: /Users/poorav/Devops/s17-vulnerable-change/reports/junit.xml -
+================================ tests coverage ================================
+_______________ coverage: platform darwin, python 3.11.7-final-0 _______________
+
+Name                    Stmts   Miss  Cover
+-------------------------------------------
+app/__init__.py             0      0   100%
+app/app.py                102     32    69%
+app/insecure_utils.py      13     13     0%
+-------------------------------------------
+TOTAL                     115     45    61%
+============================== 8 passed in 0.18s ===============================
+[STAGE 2: Unit Test] SUCCESS

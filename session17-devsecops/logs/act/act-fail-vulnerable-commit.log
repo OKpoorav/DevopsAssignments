@@ -1,0 +1,1104 @@
+time="2026-10-08T00:44:43+05:30" level=info msg="Using docker host 'unix:///var/run/docker.sock', and daemon socket 'unix:///var/run/docker.sock'"
+time="2026-10-08T00:44:43+05:30" level=info msg="Start server on http://100.128.166.41:34567"
+[DevSecOps Pipeline/1. Build] ⭐ Run Set up job
+[DevSecOps Pipeline/1. Build] 🚀  Start image=catthehacker/ubuntu:act-latest
+[DevSecOps Pipeline/1. Build]   🐳  docker pull image=catthehacker/ubuntu:act-latest platform=linux/arm64 username= forcePull=false
+[DevSecOps Pipeline/1. Build]   🐳  docker create image=catthehacker/ubuntu:act-latest platform=linux/arm64 entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[DevSecOps Pipeline/1. Build]   🐳  docker run image=catthehacker/ubuntu:act-latest platform=linux/arm64 entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[DevSecOps Pipeline/1. Build]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[DevSecOps Pipeline/1. Build]   ✅  Success - Set up job
+[DevSecOps Pipeline/1. Build]   ☁  git clone 'https://github.com/actions/setup-python' # ref=v5
+[DevSecOps Pipeline/1. Build] ⭐ Run Main actions/checkout@v4
+[DevSecOps Pipeline/1. Build]   🐳  docker cp src=/tmp/s17-repo/. dst=/tmp/s17-repo
+[DevSecOps Pipeline/1. Build]   ✅  Success - Main actions/checkout@v4 [50.1505ms]
+[DevSecOps Pipeline/1. Build] ⭐ Run Main actions/setup-python@v5
+[DevSecOps Pipeline/1. Build]   🐳  docker cp src=/Users/poorav/.cache/act/actions-setup-python@v5/ dst=/var/run/act/actions/actions-setup-python@v5/
+[DevSecOps Pipeline/1. Build]   🐳  docker exec cmd=[/opt/acttoolcache/node/24.19.0/arm64/bin/node /var/run/act/actions/actions-setup-python@v5/dist/setup/index.js] user= workdir=
+[DevSecOps Pipeline/1. Build]   ❓  ::group::Installed versions
+[DevSecOps Pipeline/1. Build]   | (node:31) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[DevSecOps Pipeline/1. Build]   | (Use `node --trace-deprecation ...` to show where the warning was created)
+[DevSecOps Pipeline/1. Build]   | Successfully set up CPython (3.12.15)
+[DevSecOps Pipeline/1. Build]   ❓  ::endgroup::
+[DevSecOps Pipeline/1. Build]   ❓ add-matcher /run/act/actions/actions-setup-python@v5/.github/python.json
+[DevSecOps Pipeline/1. Build]   ✅  Success - Main actions/setup-python@v5 [744.889375ms]
+[DevSecOps Pipeline/1. Build]   ⚙  ::set-env:: Python3_ROOT_DIR=/opt/hostedtoolcache/Python/3.12.15/arm64
+[DevSecOps Pipeline/1. Build]   ⚙  ::set-env:: LD_LIBRARY_PATH=/opt/hostedtoolcache/Python/3.12.15/arm64/lib
+[DevSecOps Pipeline/1. Build]   ⚙  ::set-env:: pythonLocation=/opt/hostedtoolcache/Python/3.12.15/arm64
+[DevSecOps Pipeline/1. Build]   ⚙  ::set-env:: PKG_CONFIG_PATH=/opt/hostedtoolcache/Python/3.12.15/arm64/lib/pkgconfig
+[DevSecOps Pipeline/1. Build]   ⚙  ::set-env:: Python_ROOT_DIR=/opt/hostedtoolcache/Python/3.12.15/arm64
+[DevSecOps Pipeline/1. Build]   ⚙  ::set-env:: Python2_ROOT_DIR=/opt/hostedtoolcache/Python/3.12.15/arm64
+[DevSecOps Pipeline/1. Build]   ⚙  ::set-output:: python-path=/opt/hostedtoolcache/Python/3.12.15/arm64/bin/python
+[DevSecOps Pipeline/1. Build]   ⚙  ::set-output:: python-version=3.12.15
+[DevSecOps Pipeline/1. Build]   ⚙  ::add-path:: /opt/hostedtoolcache/Python/3.12.15/arm64
+[DevSecOps Pipeline/1. Build]   ⚙  ::add-path:: /opt/hostedtoolcache/Python/3.12.15/arm64/bin
+[DevSecOps Pipeline/1. Build] ⭐ Run Main Install runtime dependencies
+[DevSecOps Pipeline/1. Build]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=
+[DevSecOps Pipeline/1. Build]   | Requirement already satisfied: Flask==3.1.3 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from -r requirements.txt (line 1)) (3.1.3)
+[DevSecOps Pipeline/1. Build]   | Requirement already satisfied: gunicorn==23.0.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from -r requirements.txt (line 2)) (23.0.0)
+[DevSecOps Pipeline/1. Build]   | Collecting requests==2.19.1 (from -r requirements.txt (line 3))
+[DevSecOps Pipeline/1. Build]   |   Downloading requests-2.19.1-py2.py3-none-any.whl.metadata (52 kB)
+[DevSecOps Pipeline/1. Build]   | Requirement already satisfied: blinker>=1.9.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from Flask==3.1.3->-r requirements.txt (line 1)) (1.9.0)
+[DevSecOps Pipeline/1. Build]   | Requirement already satisfied: click>=8.1.3 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from Flask==3.1.3->-r requirements.txt (line 1)) (8.4.2)
+[DevSecOps Pipeline/1. Build]   | Requirement already satisfied: itsdangerous>=2.2.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from Flask==3.1.3->-r requirements.txt (line 1)) (2.2.0)
+[DevSecOps Pipeline/1. Build]   | Requirement already satisfied: jinja2>=3.1.2 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from Flask==3.1.3->-r requirements.txt (line 1)) (3.1.6)
+[DevSecOps Pipeline/1. Build]   | Requirement already satisfied: markupsafe>=2.1.1 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from Flask==3.1.3->-r requirements.txt (line 1)) (3.0.4)
+[DevSecOps Pipeline/1. Build]   | Requirement already satisfied: werkzeug>=3.1.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from Flask==3.1.3->-r requirements.txt (line 1)) (3.1.9)
+[DevSecOps Pipeline/1. Build]   | Requirement already satisfied: packaging in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from gunicorn==23.0.0->-r requirements.txt (line 2)) (26.3)
+[DevSecOps Pipeline/1. Build]   | Requirement already satisfied: chardet<3.1.0,>=3.0.2 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from requests==2.19.1->-r requirements.txt (line 3)) (3.0.4)
+[DevSecOps Pipeline/1. Build]   | Collecting idna<2.8,>=2.5 (from requests==2.19.1->-r requirements.txt (line 3))
+[DevSecOps Pipeline/1. Build]   |   Downloading idna-2.7-py2.py3-none-any.whl.metadata (8.9 kB)
+[DevSecOps Pipeline/1. Build]   | Collecting urllib3<1.24,>=1.21.1 (from requests==2.19.1->-r requirements.txt (line 3))
+[DevSecOps Pipeline/1. Build]   |   Downloading urllib3-1.23-py2.py3-none-any.whl.metadata (34 kB)
+[DevSecOps Pipeline/1. Build]   | Requirement already satisfied: certifi>=2017.4.17 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from requests==2.19.1->-r requirements.txt (line 3)) (2026.7.22)
+[DevSecOps Pipeline/1. Build]   | Downloading requests-2.19.1-py2.py3-none-any.whl (91 kB)
+[DevSecOps Pipeline/1. Build]   | Downloading idna-2.7-py2.py3-none-any.whl (58 kB)
+[DevSecOps Pipeline/1. Build]   | Downloading urllib3-1.23-py2.py3-none-any.whl (133 kB)
+[DevSecOps Pipeline/1. Build]   | Installing collected packages: idna, urllib3, requests
+[DevSecOps Pipeline/1. Build]   |   Attempting uninstall: idna
+[DevSecOps Pipeline/1. Build]   |     Found existing installation: idna 3.20
+[DevSecOps Pipeline/1. Build]   |     Uninstalling idna-3.20:
+[DevSecOps Pipeline/1. Build]   |       Successfully uninstalled idna-3.20
+[DevSecOps Pipeline/1. Build]   |   Attempting uninstall: urllib3
+[DevSecOps Pipeline/1. Build]   |     Found existing installation: urllib3 2.8.0
+[DevSecOps Pipeline/1. Build]   |     Uninstalling urllib3-2.8.0:
+[DevSecOps Pipeline/1. Build]   |       Successfully uninstalled urllib3-2.8.0
+[DevSecOps Pipeline/1. Build]   |   Attempting uninstall: requests
+[DevSecOps Pipeline/1. Build]   |     Found existing installation: requests 2.34.2
+[DevSecOps Pipeline/1. Build]   |     Uninstalling requests-2.34.2:
+[DevSecOps Pipeline/1. Build]   |       Successfully uninstalled requests-2.34.2
+[DevSecOps Pipeline/1. Build]   | 
+[DevSecOps Pipeline/1. Build]   | ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+[DevSecOps Pipeline/1. Build]   | anyio 4.15.1 requires idna>=2.8, but you have idna 2.7 which is incompatible.
+[DevSecOps Pipeline/1. Build]   | semgrep 1.179.0 requires requests~=2.22, but you have requests 2.19.1 which is incompatible.
+[DevSecOps Pipeline/1. Build]   | semgrep 1.179.0 requires urllib3~=2.0, but you have urllib3 1.23 which is incompatible.
+[DevSecOps Pipeline/1. Build]   | pip-audit 2.9.0 requires requests>=2.31.0, but you have requests 2.19.1 which is incompatible.
+[DevSecOps Pipeline/1. Build]   | Successfully installed idna-2.7 requests-2.19.1 urllib3-1.23
+[DevSecOps Pipeline/1. Build]   | WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+[DevSecOps Pipeline/1. Build]   ✅  Success - Main Install runtime dependencies [3.193176583s]
+[DevSecOps Pipeline/1. Build] ⭐ Run Main Byte-compile and import check
+[DevSecOps Pipeline/1. Build]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/3] user= workdir=
+[DevSecOps Pipeline/1. Build]   | import OK, routes: 8
+[DevSecOps Pipeline/1. Build]   ✅  Success - Main Byte-compile and import check [181.64625ms]
+[DevSecOps Pipeline/1. Build] ⭐ Run Post actions/setup-python@v5
+[DevSecOps Pipeline/1. Build]   🐳  docker exec cmd=[/opt/acttoolcache/node/24.19.0/arm64/bin/node /var/run/act/actions/actions-setup-python@v5/dist/cache-save/index.js] user= workdir=
+[DevSecOps Pipeline/1. Build]   | (node:77) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[DevSecOps Pipeline/1. Build]   | (Use `node --trace-deprecation ...` to show where the warning was created)
+[DevSecOps Pipeline/1. Build]   ✅  Success - Post actions/setup-python@v5 [138.515375ms]
+[DevSecOps Pipeline/1. Build] ⭐ Run Complete job
+[DevSecOps Pipeline/1. Build] Cleaning up container for job 1. Build
+[DevSecOps Pipeline/1. Build]   ✅  Success - Complete job
+[DevSecOps Pipeline/1. Build] 🏁  Job succeeded
+[DevSecOps Pipeline/2. Unit Test] ⭐ Run Set up job
+[DevSecOps Pipeline/2. Unit Test] 🚀  Start image=catthehacker/ubuntu:act-latest
+[DevSecOps Pipeline/2. Unit Test]   🐳  docker pull image=catthehacker/ubuntu:act-latest platform=linux/arm64 username= forcePull=false
+[DevSecOps Pipeline/2. Unit Test]   🐳  docker create image=catthehacker/ubuntu:act-latest platform=linux/arm64 entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[DevSecOps Pipeline/2. Unit Test]   🐳  docker run image=catthehacker/ubuntu:act-latest platform=linux/arm64 entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[DevSecOps Pipeline/2. Unit Test]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[DevSecOps Pipeline/2. Unit Test]   ✅  Success - Set up job
+[DevSecOps Pipeline/2. Unit Test]   ☁  git clone 'https://github.com/actions/setup-python' # ref=v5
+[DevSecOps Pipeline/2. Unit Test]   ☁  git clone 'https://github.com/actions/upload-artifact' # ref=v4
+[DevSecOps Pipeline/2. Unit Test] ⭐ Run Main actions/checkout@v4
+[DevSecOps Pipeline/2. Unit Test]   🐳  docker cp src=/tmp/s17-repo/. dst=/tmp/s17-repo
+[DevSecOps Pipeline/2. Unit Test]   ✅  Success - Main actions/checkout@v4 [43.833709ms]
+[DevSecOps Pipeline/2. Unit Test] ⭐ Run Main actions/setup-python@v5
+[DevSecOps Pipeline/2. Unit Test]   🐳  docker cp src=/Users/poorav/.cache/act/actions-setup-python@v5/ dst=/var/run/act/actions/actions-setup-python@v5/
+[DevSecOps Pipeline/2. Unit Test]   🐳  docker exec cmd=[/opt/acttoolcache/node/24.19.0/arm64/bin/node /var/run/act/actions/actions-setup-python@v5/dist/setup/index.js] user= workdir=
+[DevSecOps Pipeline/2. Unit Test]   ❓  ::group::Installed versions
+[DevSecOps Pipeline/2. Unit Test]   | (node:31) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[DevSecOps Pipeline/2. Unit Test]   | (Use `node --trace-deprecation ...` to show where the warning was created)
+[DevSecOps Pipeline/2. Unit Test]   | Successfully set up CPython (3.12.15)
+[DevSecOps Pipeline/2. Unit Test]   ❓  ::endgroup::
+[DevSecOps Pipeline/2. Unit Test]   ❓ add-matcher /run/act/actions/actions-setup-python@v5/.github/python.json
+[DevSecOps Pipeline/2. Unit Test]   ✅  Success - Main actions/setup-python@v5 [811.816875ms]
+[DevSecOps Pipeline/2. Unit Test]   ⚙  ::set-env:: PKG_CONFIG_PATH=/opt/hostedtoolcache/Python/3.12.15/arm64/lib/pkgconfig
+[DevSecOps Pipeline/2. Unit Test]   ⚙  ::set-env:: Python_ROOT_DIR=/opt/hostedtoolcache/Python/3.12.15/arm64
+[DevSecOps Pipeline/2. Unit Test]   ⚙  ::set-env:: Python2_ROOT_DIR=/opt/hostedtoolcache/Python/3.12.15/arm64
+[DevSecOps Pipeline/2. Unit Test]   ⚙  ::set-env:: Python3_ROOT_DIR=/opt/hostedtoolcache/Python/3.12.15/arm64
+[DevSecOps Pipeline/2. Unit Test]   ⚙  ::set-env:: LD_LIBRARY_PATH=/opt/hostedtoolcache/Python/3.12.15/arm64/lib
+[DevSecOps Pipeline/2. Unit Test]   ⚙  ::set-env:: pythonLocation=/opt/hostedtoolcache/Python/3.12.15/arm64
+[DevSecOps Pipeline/2. Unit Test]   ⚙  ::set-output:: python-version=3.12.15
+[DevSecOps Pipeline/2. Unit Test]   ⚙  ::set-output:: python-path=/opt/hostedtoolcache/Python/3.12.15/arm64/bin/python
+[DevSecOps Pipeline/2. Unit Test]   ⚙  ::add-path:: /opt/hostedtoolcache/Python/3.12.15/arm64
+[DevSecOps Pipeline/2. Unit Test]   ⚙  ::add-path:: /opt/hostedtoolcache/Python/3.12.15/arm64/bin
+[DevSecOps Pipeline/2. Unit Test] ⭐ Run Main pip install -r requirements-dev.txt
+[DevSecOps Pipeline/2. Unit Test]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=
+[DevSecOps Pipeline/2. Unit Test]   | Requirement already satisfied: Flask==3.1.3 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from -r /tmp/s17-repo/requirements.txt (line 1)) (3.1.3)
+[DevSecOps Pipeline/2. Unit Test]   | Requirement already satisfied: gunicorn==23.0.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from -r /tmp/s17-repo/requirements.txt (line 2)) (23.0.0)
+[DevSecOps Pipeline/2. Unit Test]   | Requirement already satisfied: requests==2.19.1 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from -r /tmp/s17-repo/requirements.txt (line 3)) (2.19.1)
+[DevSecOps Pipeline/2. Unit Test]   | Requirement already satisfied: pytest==8.4.2 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from -r requirements-dev.txt (line 2)) (8.4.2)
+[DevSecOps Pipeline/2. Unit Test]   | Requirement already satisfied: pytest-cov==7.0.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from -r requirements-dev.txt (line 3)) (7.0.0)
+[DevSecOps Pipeline/2. Unit Test]   | Requirement already satisfied: blinker>=1.9.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from Flask==3.1.3->-r /tmp/s17-repo/requirements.txt (line 1)) (1.9.0)
+[DevSecOps Pipeline/2. Unit Test]   | Requirement already satisfied: click>=8.1.3 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from Flask==3.1.3->-r /tmp/s17-repo/requirements.txt (line 1)) (8.4.2)
+[DevSecOps Pipeline/2. Unit Test]   | Requirement already satisfied: itsdangerous>=2.2.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from Flask==3.1.3->-r /tmp/s17-repo/requirements.txt (line 1)) (2.2.0)
+[DevSecOps Pipeline/2. Unit Test]   | Requirement already satisfied: jinja2>=3.1.2 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from Flask==3.1.3->-r /tmp/s17-repo/requirements.txt (line 1)) (3.1.6)
+[DevSecOps Pipeline/2. Unit Test]   | Requirement already satisfied: markupsafe>=2.1.1 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from Flask==3.1.3->-r /tmp/s17-repo/requirements.txt (line 1)) (3.0.4)
+[DevSecOps Pipeline/2. Unit Test]   | Requirement already satisfied: werkzeug>=3.1.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from Flask==3.1.3->-r /tmp/s17-repo/requirements.txt (line 1)) (3.1.9)
+[DevSecOps Pipeline/2. Unit Test]   | Requirement already satisfied: packaging in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from gunicorn==23.0.0->-r /tmp/s17-repo/requirements.txt (line 2)) (26.3)
+[DevSecOps Pipeline/2. Unit Test]   | Requirement already satisfied: chardet<3.1.0,>=3.0.2 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from requests==2.19.1->-r /tmp/s17-repo/requirements.txt (line 3)) (3.0.4)
+[DevSecOps Pipeline/2. Unit Test]   | Requirement already satisfied: idna<2.8,>=2.5 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from requests==2.19.1->-r /tmp/s17-repo/requirements.txt (line 3)) (2.7)
+[DevSecOps Pipeline/2. Unit Test]   | Requirement already satisfied: urllib3<1.24,>=1.21.1 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from requests==2.19.1->-r /tmp/s17-repo/requirements.txt (line 3)) (1.23)
+[DevSecOps Pipeline/2. Unit Test]   | Requirement already satisfied: certifi>=2017.4.17 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from requests==2.19.1->-r /tmp/s17-repo/requirements.txt (line 3)) (2026.7.22)
+[DevSecOps Pipeline/2. Unit Test]   | Requirement already satisfied: iniconfig>=1 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from pytest==8.4.2->-r requirements-dev.txt (line 2)) (2.3.1)
+[DevSecOps Pipeline/2. Unit Test]   | Requirement already satisfied: pluggy<2,>=1.5 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from pytest==8.4.2->-r requirements-dev.txt (line 2)) (1.6.0)
+[DevSecOps Pipeline/2. Unit Test]   | Requirement already satisfied: pygments>=2.7.2 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from pytest==8.4.2->-r requirements-dev.txt (line 2)) (2.21.0)
+[DevSecOps Pipeline/2. Unit Test]   | Requirement already satisfied: coverage>=7.10.6 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from coverage[toml]>=7.10.6->pytest-cov==7.0.0->-r requirements-dev.txt (line 3)) (7.16.2)
+[DevSecOps Pipeline/2. Unit Test]   | WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+[DevSecOps Pipeline/2. Unit Test]   ✅  Success - Main pip install -r requirements-dev.txt [622.959917ms]
+[DevSecOps Pipeline/2. Unit Test] ⭐ Run Main Run pytest with coverage
+[DevSecOps Pipeline/2. Unit Test]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/3] user= workdir=
+[DevSecOps Pipeline/2. Unit Test]   | ============================= test session starts ==============================
+[DevSecOps Pipeline/2. Unit Test]   | platform linux -- Python 3.12.15, pytest-8.4.2, pluggy-1.6.0 -- /opt/hostedtoolcache/Python/3.12.15/arm64/bin/python
+[DevSecOps Pipeline/2. Unit Test]   | cachedir: .pytest_cache
+[DevSecOps Pipeline/2. Unit Test]   | rootdir: /tmp/s17-repo
+[DevSecOps Pipeline/2. Unit Test]   | configfile: pytest.ini
+[DevSecOps Pipeline/2. Unit Test]   | testpaths: tests
+[DevSecOps Pipeline/2. Unit Test]   | plugins: cov-7.0.0, platformdirs-4.12.3, anyio-4.15.1
+[DevSecOps Pipeline/2. Unit Test]   | collecting ... collected 8 items
+[DevSecOps Pipeline/2. Unit Test]   | 
+[DevSecOps Pipeline/2. Unit Test]   | tests/test_app.py::test_home PASSED                                      [ 12%]
+[DevSecOps Pipeline/2. Unit Test]   | tests/test_app.py::test_health PASSED                                    [ 25%]
+[DevSecOps Pipeline/2. Unit Test]   | tests/test_app.py::test_greet PASSED                                     [ 37%]
+[DevSecOps Pipeline/2. Unit Test]   | tests/test_app.py::test_add_numbers PASSED                               [ 50%]
+[DevSecOps Pipeline/2. Unit Test]   | tests/test_app.py::test_add_numbers_missing_fields PASSED                [ 62%]
+[DevSecOps Pipeline/2. Unit Test]   | tests/test_app.py::test_calculator_multiply PASSED                       [ 75%]
+[DevSecOps Pipeline/2. Unit Test]   | tests/test_app.py::test_calculator_divide_by_zero PASSED                 [ 87%]
+[DevSecOps Pipeline/2. Unit Test]   | tests/test_app.py::test_status PASSED                                    [100%]
+[DevSecOps Pipeline/2. Unit Test]   | 
+[DevSecOps Pipeline/2. Unit Test]   | =============================== warnings summary ===============================
+[DevSecOps Pipeline/2. Unit Test]   | app/app.py:13
+[DevSecOps Pipeline/2. Unit Test]   |   /tmp/s17-repo/app/app.py:13: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+[DevSecOps Pipeline/2. Unit Test]   |     _start_time = datetime.datetime.utcnow()
+[DevSecOps Pipeline/2. Unit Test]   | 
+[DevSecOps Pipeline/2. Unit Test]   | tests/test_app.py::test_health
+[DevSecOps Pipeline/2. Unit Test]   |   /tmp/s17-repo/app/app.py:38: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+[DevSecOps Pipeline/2. Unit Test]   |     uptime_seconds = (datetime.datetime.utcnow() - _start_time).total_seconds()
+[DevSecOps Pipeline/2. Unit Test]   | 
+[DevSecOps Pipeline/2. Unit Test]   | tests/test_app.py::test_health
+[DevSecOps Pipeline/2. Unit Test]   |   /tmp/s17-repo/app/app.py:42: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+[DevSecOps Pipeline/2. Unit Test]   |     "timestamp": datetime.datetime.utcnow().isoformat() + "Z",
+[DevSecOps Pipeline/2. Unit Test]   | 
+[DevSecOps Pipeline/2. Unit Test]   | tests/test_app.py::test_greet
+[DevSecOps Pipeline/2. Unit Test]   |   /tmp/s17-repo/app/app.py:81: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+[DevSecOps Pipeline/2. Unit Test]   |     "timestamp": datetime.datetime.utcnow().isoformat() + "Z",
+[DevSecOps Pipeline/2. Unit Test]   | 
+[DevSecOps Pipeline/2. Unit Test]   | tests/test_app.py::test_status
+[DevSecOps Pipeline/2. Unit Test]   |   /tmp/s17-repo/app/app.py:49: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+[DevSecOps Pipeline/2. Unit Test]   |     uptime = datetime.datetime.utcnow() - _start_time
+[DevSecOps Pipeline/2. Unit Test]   | 
+[DevSecOps Pipeline/2. Unit Test]   | tests/test_app.py::test_status
+[DevSecOps Pipeline/2. Unit Test]   |   /tmp/s17-repo/app/app.py:60: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+[DevSecOps Pipeline/2. Unit Test]   |     "timestamp": datetime.datetime.utcnow().isoformat() + "Z",
+[DevSecOps Pipeline/2. Unit Test]   | 
+[DevSecOps Pipeline/2. Unit Test]   | -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+[DevSecOps Pipeline/2. Unit Test]   | -------- generated xml file: /tmp/s17-repo/junit.xml --------
+[DevSecOps Pipeline/2. Unit Test]   | ================================ tests coverage ================================
+[DevSecOps Pipeline/2. Unit Test]   | _______________ coverage: platform linux, python 3.12.15-final-0 _______________
+[DevSecOps Pipeline/2. Unit Test]   | 
+[DevSecOps Pipeline/2. Unit Test]   | Name                    Stmts   Miss  Cover
+[DevSecOps Pipeline/2. Unit Test]   | -------------------------------------------
+[DevSecOps Pipeline/2. Unit Test]   | app/__init__.py             0      0   100%
+[DevSecOps Pipeline/2. Unit Test]   | app/app.py                102     32    69%
+[DevSecOps Pipeline/2. Unit Test]   | app/insecure_utils.py      13     13     0%
+[DevSecOps Pipeline/2. Unit Test]   | -------------------------------------------
+[DevSecOps Pipeline/2. Unit Test]   | TOTAL                     115     45    61%
+[DevSecOps Pipeline/2. Unit Test]   | ======================== 8 passed, 6 warnings in 0.18s =========================
+[DevSecOps Pipeline/2. Unit Test]   ✅  Success - Main Run pytest with coverage [449.710167ms]
+[DevSecOps Pipeline/2. Unit Test] ⭐ Run Main actions/upload-artifact@v4
+[DevSecOps Pipeline/2. Unit Test]   🐳  docker cp src=/Users/poorav/.cache/act/actions-upload-artifact@v4/ dst=/var/run/act/actions/actions-upload-artifact@v4/
+[DevSecOps Pipeline/2. Unit Test]   🐳  docker exec cmd=[/opt/acttoolcache/node/24.19.0/arm64/bin/node /var/run/act/actions/actions-upload-artifact@v4/dist/upload/index.js] user= workdir=
+[DevSecOps Pipeline/2. Unit Test]   | (node:74) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[DevSecOps Pipeline/2. Unit Test]   | (Use `node --trace-deprecation ...` to show where the warning was created)
+[DevSecOps Pipeline/2. Unit Test]   | With the provided path, there will be 1 file uploaded
+[DevSecOps Pipeline/2. Unit Test]   | Artifact name is valid!
+[DevSecOps Pipeline/2. Unit Test]   | Root directory input is valid!
+[DevSecOps Pipeline/2. Unit Test]   | Beginning upload of artifact content to blob storage
+[DevSecOps Pipeline/2. Unit Test]   | (node:74) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+[DevSecOps Pipeline/2. Unit Test]   | Uploaded bytes 411
+[DevSecOps Pipeline/2. Unit Test]   | Finished uploading artifact content to blob storage!
+[DevSecOps Pipeline/2. Unit Test]   | SHA256 digest of uploaded artifact zip is 9a149e619ed8ec3c1ee13718486dd58b4386aee9ba4c4c4986e3152f2e5d620e
+[DevSecOps Pipeline/2. Unit Test]   | Finalizing artifact upload
+[DevSecOps Pipeline/2. Unit Test]   | Artifact test-results.zip successfully finalized. Artifact ID 3486992502
+[DevSecOps Pipeline/2. Unit Test]   | Artifact test-results has been successfully uploaded! Final size is 411 bytes. Artifact ID is 3486992502
+[DevSecOps Pipeline/2. Unit Test]   | Artifact download URL: https://github.com/nektos/act/actions/runs/1/artifacts/3486992502
+[DevSecOps Pipeline/2. Unit Test]   ✅  Success - Main actions/upload-artifact@v4 [667.125417ms]
+[DevSecOps Pipeline/2. Unit Test]   ⚙  ::set-output:: artifact-id=3486992502
+[DevSecOps Pipeline/2. Unit Test]   ⚙  ::set-output:: artifact-digest=9a149e619ed8ec3c1ee13718486dd58b4386aee9ba4c4c4986e3152f2e5d620e
+[DevSecOps Pipeline/2. Unit Test]   ⚙  ::set-output:: artifact-url=https://github.com/nektos/act/actions/runs/1/artifacts/3486992502
+[DevSecOps Pipeline/2. Unit Test] ⭐ Run Post actions/setup-python@v5
+[DevSecOps Pipeline/2. Unit Test]   🐳  docker exec cmd=[/opt/acttoolcache/node/24.19.0/arm64/bin/node /var/run/act/actions/actions-setup-python@v5/dist/cache-save/index.js] user= workdir=
+[DevSecOps Pipeline/2. Unit Test]   | (node:91) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[DevSecOps Pipeline/2. Unit Test]   | (Use `node --trace-deprecation ...` to show where the warning was created)
+[DevSecOps Pipeline/2. Unit Test]   ✅  Success - Post actions/setup-python@v5 [123.96175ms]
+[DevSecOps Pipeline/2. Unit Test] ⭐ Run Complete job
+[DevSecOps Pipeline/2. Unit Test] Cleaning up container for job 2. Unit Test
+[DevSecOps Pipeline/2. Unit Test]   ✅  Success - Complete job
+[DevSecOps Pipeline/2. Unit Test] 🏁  Job succeeded
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)] ⭐ Run Set up job
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)] 🚀  Start image=catthehacker/ubuntu:act-latest
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   🐳  docker pull image=catthehacker/ubuntu:act-latest platform=linux/arm64 username= forcePull=false
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   🐳  docker create image=catthehacker/ubuntu:act-latest platform=linux/arm64 entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   🐳  docker run image=catthehacker/ubuntu:act-latest platform=linux/arm64 entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   ✅  Success - Set up job
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   ☁  git clone 'https://github.com/actions/setup-python' # ref=v5
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   ☁  git clone 'https://github.com/actions/upload-artifact' # ref=v4
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)] ⭐ Run Main actions/checkout@v4
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   🐳  docker cp src=/tmp/s17-repo/. dst=/tmp/s17-repo
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   ✅  Success - Main actions/checkout@v4 [40.341458ms]
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)] ⭐ Run Main actions/setup-python@v5
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   🐳  docker cp src=/Users/poorav/.cache/act/actions-setup-python@v5/ dst=/var/run/act/actions/actions-setup-python@v5/
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   🐳  docker exec cmd=[/opt/acttoolcache/node/24.19.0/arm64/bin/node /var/run/act/actions/actions-setup-python@v5/dist/setup/index.js] user= workdir=
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   ❓  ::group::Installed versions
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | (node:31) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | (Use `node --trace-deprecation ...` to show where the warning was created)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Successfully set up CPython (3.12.15)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   ❓  ::endgroup::
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   ❓ add-matcher /run/act/actions/actions-setup-python@v5/.github/python.json
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   ✅  Success - Main actions/setup-python@v5 [755.488584ms]
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   ⚙  ::set-env:: Python3_ROOT_DIR=/opt/hostedtoolcache/Python/3.12.15/arm64
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   ⚙  ::set-env:: LD_LIBRARY_PATH=/opt/hostedtoolcache/Python/3.12.15/arm64/lib
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   ⚙  ::set-env:: pythonLocation=/opt/hostedtoolcache/Python/3.12.15/arm64
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   ⚙  ::set-env:: PKG_CONFIG_PATH=/opt/hostedtoolcache/Python/3.12.15/arm64/lib/pkgconfig
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   ⚙  ::set-env:: Python_ROOT_DIR=/opt/hostedtoolcache/Python/3.12.15/arm64
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   ⚙  ::set-env:: Python2_ROOT_DIR=/opt/hostedtoolcache/Python/3.12.15/arm64
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   ⚙  ::set-output:: python-version=3.12.15
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   ⚙  ::set-output:: python-path=/opt/hostedtoolcache/Python/3.12.15/arm64/bin/python
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   ⚙  ::add-path:: /opt/hostedtoolcache/Python/3.12.15/arm64
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   ⚙  ::add-path:: /opt/hostedtoolcache/Python/3.12.15/arm64/bin
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)] ⭐ Run Main Install SAST tools
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: semgrep in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (1.179.0)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: bandit==1.8.6 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from -r security/requirements-tools.txt (line 2)) (1.8.6)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: pip-audit==2.9.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from -r security/requirements-tools.txt (line 3)) (2.9.0)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: PyYAML>=5.3.1 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from bandit==1.8.6->-r security/requirements-tools.txt (line 2)) (6.0.3)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: stevedore>=1.20.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from bandit==1.8.6->-r security/requirements-tools.txt (line 2)) (5.9.1)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: rich in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from bandit==1.8.6->-r security/requirements-tools.txt (line 2)) (15.0.0)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: CacheControl>=0.13.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from CacheControl[filecache]>=0.13.0->pip-audit==2.9.0->-r security/requirements-tools.txt (line 3)) (0.14.4)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: cyclonedx-python-lib<10,>=5 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from pip-audit==2.9.0->-r security/requirements-tools.txt (line 3)) (9.1.0)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: packaging>=23.0.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from pip-audit==2.9.0->-r security/requirements-tools.txt (line 3)) (26.3)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: pip-api>=0.0.28 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from pip-audit==2.9.0->-r security/requirements-tools.txt (line 3)) (0.0.35)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: pip-requirements-parser>=32.0.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from pip-audit==2.9.0->-r security/requirements-tools.txt (line 3)) (32.0.1)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Collecting requests>=2.31.0 (from pip-audit==2.9.0->-r security/requirements-tools.txt (line 3))
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |   Downloading requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: toml>=0.10 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from pip-audit==2.9.0->-r security/requirements-tools.txt (line 3)) (0.10.2)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: platformdirs>=4.2.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from pip-audit==2.9.0->-r security/requirements-tools.txt (line 3)) (4.12.3)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: license-expression<31,>=30 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from cyclonedx-python-lib<10,>=5->pip-audit==2.9.0->-r security/requirements-tools.txt (line 3)) (30.4.4)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: packageurl-python<2,>=0.11 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from cyclonedx-python-lib<10,>=5->pip-audit==2.9.0->-r security/requirements-tools.txt (line 3)) (0.17.6)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: py-serializable<3.0.0,>=2.0.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from cyclonedx-python-lib<10,>=5->pip-audit==2.9.0->-r security/requirements-tools.txt (line 3)) (2.1.0)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: sortedcontainers<3.0.0,>=2.4.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from cyclonedx-python-lib<10,>=5->pip-audit==2.9.0->-r security/requirements-tools.txt (line 3)) (2.4.0)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: boolean.py>=4.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from license-expression<31,>=30->cyclonedx-python-lib<10,>=5->pip-audit==2.9.0->-r security/requirements-tools.txt (line 3)) (5.0)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: defusedxml<0.8.0,>=0.7.1 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from py-serializable<3.0.0,>=2.0.0->cyclonedx-python-lib<10,>=5->pip-audit==2.9.0->-r security/requirements-tools.txt (line 3)) (0.7.1)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: attrs>=21.3 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from semgrep) (26.1.0)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: boltons~=21.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from semgrep) (21.0.0)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: click-option-group~=0.5 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from semgrep) (0.5.9)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: click~=8.4.2 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from semgrep) (8.4.2)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: colorama~=0.4.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from semgrep) (0.4.6)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: exceptiongroup~=1.2.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from semgrep) (1.2.2)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: glom>=23.3 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from semgrep) (25.12.0)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: jsonschema~=4.25.1 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from semgrep) (4.25.1)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: mcp==1.29.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from semgrep) (1.29.0)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: opentelemetry-api~=1.37.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from semgrep) (1.37.0)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: opentelemetry-sdk~=1.37.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from semgrep) (1.37.0)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: opentelemetry-exporter-otlp-proto-http~=1.37.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from semgrep) (1.37.0)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: opentelemetry-instrumentation-requests~=0.58b0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from semgrep) (0.58b0)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: opentelemetry-instrumentation-threading~=0.58b0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from semgrep) (0.58b0)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: peewee~=3.14 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from semgrep) (3.19.0)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: pyjwt<3,>=2.15.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from pyjwt[crypto]<3,>=2.15.0->semgrep) (2.15.1)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: ruamel.yaml>=0.18.15 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from semgrep) (0.19.1)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: ruamel.yaml.clib==0.2.15 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from semgrep) (0.2.15)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: semantic-version~=2.10.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from semgrep) (2.10.0)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: tomli~=2.4.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from semgrep) (2.4.1)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: typing-extensions~=4.2 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from semgrep) (4.16.0)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Collecting urllib3~=2.0 (from semgrep)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |   Downloading urllib3-2.8.0-py3-none-any.whl.metadata (7.4 kB)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: wcmatch~=8.3 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from semgrep) (8.5.2)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: anyio>=4.5 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from mcp==1.29.0->semgrep) (4.15.1)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: httpx-sse>=0.4 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from mcp==1.29.0->semgrep) (0.4.3)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: httpx<1.0.0,>=0.27.1 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from mcp==1.29.0->semgrep) (0.28.1)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: pydantic-settings>=2.5.2 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from mcp==1.29.0->semgrep) (2.15.0)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: pydantic<3.0.0,>=2.11.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from mcp==1.29.0->semgrep) (2.13.5)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: python-multipart>=0.0.9 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from mcp==1.29.0->semgrep) (0.0.32)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: sse-starlette>=1.6.1 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from mcp==1.29.0->semgrep) (3.5.0)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: starlette>=0.27 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from mcp==1.29.0->semgrep) (1.7.0)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: typing-inspection>=0.4.1 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from mcp==1.29.0->semgrep) (0.4.4)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: uvicorn>=0.31.1 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from mcp==1.29.0->semgrep) (0.54.0)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: certifi in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from httpx<1.0.0,>=0.27.1->mcp==1.29.0->semgrep) (2026.7.22)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: httpcore==1.* in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from httpx<1.0.0,>=0.27.1->mcp==1.29.0->semgrep) (1.0.9)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: idna in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from httpx<1.0.0,>=0.27.1->mcp==1.29.0->semgrep) (2.7)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: h11>=0.16 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from httpcore==1.*->httpx<1.0.0,>=0.27.1->mcp==1.29.0->semgrep) (0.16.0)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: jsonschema-specifications>=2023.03.6 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from jsonschema~=4.25.1->semgrep) (2025.9.1)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: referencing>=0.28.4 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from jsonschema~=4.25.1->semgrep) (0.37.0)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: rpds-py>=0.7.1 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from jsonschema~=4.25.1->semgrep) (2026.9.1)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: importlib-metadata<8.8.0,>=6.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from opentelemetry-api~=1.37.0->semgrep) (8.7.1)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: zipp>=3.20 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from importlib-metadata<8.8.0,>=6.0->opentelemetry-api~=1.37.0->semgrep) (4.1.1)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: googleapis-common-protos~=1.52 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from opentelemetry-exporter-otlp-proto-http~=1.37.0->semgrep) (1.75.5)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: opentelemetry-exporter-otlp-proto-common==1.37.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from opentelemetry-exporter-otlp-proto-http~=1.37.0->semgrep) (1.37.0)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: opentelemetry-proto==1.37.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from opentelemetry-exporter-otlp-proto-http~=1.37.0->semgrep) (1.37.0)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: protobuf<7.0,>=5.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from opentelemetry-proto==1.37.0->opentelemetry-exporter-otlp-proto-http~=1.37.0->semgrep) (6.33.6)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: opentelemetry-instrumentation==0.58b0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from opentelemetry-instrumentation-requests~=0.58b0->semgrep) (0.58b0)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: opentelemetry-semantic-conventions==0.58b0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from opentelemetry-instrumentation-requests~=0.58b0->semgrep) (0.58b0)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: opentelemetry-util-http==0.58b0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from opentelemetry-instrumentation-requests~=0.58b0->semgrep) (0.58b0)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: wrapt<2.0.0,>=1.0.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from opentelemetry-instrumentation==0.58b0->opentelemetry-instrumentation-requests~=0.58b0->semgrep) (1.17.3)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: annotated-types>=0.6.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from pydantic<3.0.0,>=2.11.0->mcp==1.29.0->semgrep) (0.8.0)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: pydantic-core==2.46.5 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from pydantic<3.0.0,>=2.11.0->mcp==1.29.0->semgrep) (2.46.5)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: cryptography>=3.4.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from pyjwt[crypto]<3,>=2.15.0->semgrep) (50.0.2)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: charset_normalizer<4,>=2 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from requests>=2.31.0->pip-audit==2.9.0->-r security/requirements-tools.txt (line 3)) (3.5.2)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: bracex>=2.1.1 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from wcmatch~=8.3->semgrep) (3.0.1)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Collecting idna (from httpx<1.0.0,>=0.27.1->mcp==1.29.0->semgrep)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |   Downloading idna-3.20-py3-none-any.whl.metadata (7.2 kB)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: msgpack<2.0.0,>=0.5.2 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from CacheControl>=0.13.0->CacheControl[filecache]>=0.13.0->pip-audit==2.9.0->-r security/requirements-tools.txt (line 3)) (1.2.3)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: filelock>=3.8.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from CacheControl[filecache]>=0.13.0->pip-audit==2.9.0->-r security/requirements-tools.txt (line 3)) (4.0.12)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: cffi>=2.0.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from cryptography>=3.4.0->pyjwt[crypto]<3,>=2.15.0->semgrep) (2.1.1)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: pycparser in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from cffi>=2.0.0->cryptography>=3.4.0->pyjwt[crypto]<3,>=2.15.0->semgrep) (3.0)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: face>=20.1.1 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from glom>=23.3->semgrep) (26.0.1)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: pip in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from pip-api>=0.0.28->pip-audit==2.9.0->-r security/requirements-tools.txt (line 3)) (26.2.1)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: pyparsing in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from pip-requirements-parser>=32.0.0->pip-audit==2.9.0->-r security/requirements-tools.txt (line 3)) (3.3.3)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: python-dotenv>=0.21.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from pydantic-settings>=2.5.2->mcp==1.29.0->semgrep) (1.2.4)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: markdown-it-py>=2.2.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from rich->bandit==1.8.6->-r security/requirements-tools.txt (line 2)) (4.2.0)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: pygments<3.0.0,>=2.13.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from rich->bandit==1.8.6->-r security/requirements-tools.txt (line 2)) (2.21.0)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Requirement already satisfied: mdurl~=0.1 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from markdown-it-py>=2.2.0->rich->bandit==1.8.6->-r security/requirements-tools.txt (line 2)) (0.1.2)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Downloading requests-2.34.2-py3-none-any.whl (73 kB)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Downloading urllib3-2.8.0-py3-none-any.whl (135 kB)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Downloading idna-3.20-py3-none-any.whl (69 kB)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Installing collected packages: urllib3, idna, requests
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |   Attempting uninstall: urllib3
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |     Found existing installation: urllib3 1.23
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |     Uninstalling urllib3-1.23:
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |       Successfully uninstalled urllib3-1.23
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |   Attempting uninstall: idna
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |     Found existing installation: idna 2.7
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |     Uninstalling idna-2.7:
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |       Successfully uninstalled idna-2.7
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |   Attempting uninstall: requests
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |     Found existing installation: requests 2.19.1
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |     Uninstalling requests-2.19.1:
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |       Successfully uninstalled requests-2.19.1
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | 
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Successfully installed idna-3.20 requests-2.34.2 urllib3-2.8.0
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   ✅  Success - Main Install SAST tools [1.471063083s]
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)] ⭐ Run Main bandit
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/3] user= workdir=
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | [main]	INFO	profile include tests: None
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | [main]	INFO	profile exclude tests: None
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | [main]	INFO	cli include tests: None
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | [main]	INFO	cli exclude tests: None
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | [json]	INFO	JSON output written to file: reports/bandit.json
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | LOW    B311 app/app.py:79  Standard pseudo-random generators are not suitable for security/cryptographic purposes.
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | LOW    B311 app/app.py:190  Standard pseudo-random generators are not suitable for security/cryptographic purposes.
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | LOW    B311 app/app.py:192  Standard pseudo-random generators are not suitable for security/cryptographic purposes.
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | LOW    B311 app/app.py:196  Standard pseudo-random generators are not suitable for security/cryptographic purposes.
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | LOW    B311 app/app.py:207  Standard pseudo-random generators are not suitable for security/cryptographic purposes.
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | LOW    B404 app/insecure_utils.py:3  Consider possible security implications associated with the subprocess module.
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | LOW    B105 app/insecure_utils.py:6  Possible hardcoded password: 'xqJc****REDACTED'
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | LOW    B105 app/insecure_utils.py:7  Possible hardcoded password: 'ghp_****REDACTED'
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | HIGH   B602 app/insecure_utils.py:12  subprocess call with shell=True identified, security issue.
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | MEDIUM B307 app/insecure_utils.py:17  Use of possibly insecure function - consider using safer ast.literal_eval.
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | HIGH   B324 app/insecure_utils.py:22  Use of weak MD5 hash for security. Consider usedforsecurity=False
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | MEDIUM B104 app/insecure_utils.py:27  Possible binding to all interfaces.
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   ✅  Success - Main bandit [301.406667ms]
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)] ⭐ Run Main semgrep (p/python + custom rules)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/4] user= workdir=
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |                
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |                
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | ┌─────────────┐
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | │ Scan Status │
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | └─────────────┘
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |   Scanning 6 files tracked by git with 156 Code rules:
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |   Scanning 3 files with 156 python rules.
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |                 
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |                 
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | ┌──────────────┐
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | │ Scan Summary │
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | └──────────────┘
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | ✅ Scan completed successfully.
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |  • Findings: 8 (8 blocking)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |  • Rules run: 156
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |  • Targets scanned: 3
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |  • Parsed lines: ~100.0%
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |  • Scan was limited to files tracked by git
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |  • For a detailed list of skipped files and lines, run semgrep with the --verbose flag
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Ran 156 rules on 3 files: 8 findings.
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |                
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |                
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | ┌─────────────┐
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | │ Scan Status │
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | └─────────────┘
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |   Scanning 6 files tracked by git with 156 Code rules:
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |   Scanning 3 files with 156 python rules.
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |                    
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |                    
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | ┌─────────────────┐
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | │ 8 Code Findings │
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | └─────────────────┘
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |                          
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |     app/insecure_utils.py
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |    ❯❯❱ security.subprocess-shell-true
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |           ❰❰ Blocking ❱❱
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |           subprocess called with shell=True - command injection risk
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |                                                                     
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |            12┆ return subprocess.check_output("tar -czf /tmp/report.tgz " + filename, shell=True)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |    
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |    ❯❯❱ python.lang.security.audit.subprocess-shell-true.subprocess-shell-true
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |           ❰❰ Blocking ❱❱
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |           Found 'subprocess' function 'check_output' with 'shell=True'. This is dangerous because this call 
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |           will spawn the command using a shell process. Doing so propagates current shell settings and      
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |           variables, which makes it much easier for a malicious actor to execute commands. Use 'shell=False'
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |           instead.                                                                                          
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |           Details: https://sg.run/J92w                                                                      
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |                                                                                                             
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |            ▶▶┆ Autofix ▶ False
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |            12┆ return subprocess.check_output("tar -czf /tmp/report.tgz " + filename, shell=True)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |    
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |    ❯❯❱ security.dangerous-eval
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |           ❰❰ Blocking ❱❱
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |           eval()/exec() on dynamic data allows arbitrary code execution
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |                                                                        
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |            17┆ return eval(expression)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |    
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |     ❯❱ python.lang.security.insecure-hash-algorithms-md5.insecure-hash-algorithm-md5
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |           ❰❰ Blocking ❱❱
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |           Detected MD5 hash algorithm which is considered insecure. MD5 is not collision resistant and is
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |           therefore not suitable as a cryptographic signature. Use SHA256 or SHA3 instead.               
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |           Details: https://sg.run/vYrY                                                                   
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |                                                                                                          
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |            22┆ return hashlib.md5(password.encode()).hexdigest()
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |    
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |     ❯❱ security.weak-hash-md5
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |           ❰❰ Blocking ❱❱
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |           MD5 is not collision resistant - do not use it for passwords or integrity
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |                                                                                    
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |            22┆ return hashlib.md5(password.encode()).hexdigest()
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |    
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |     ❯❱ python.lang.security.audit.md5-used-as-password.md5-used-as-password
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |           ❰❰ Blocking ❱❱
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |           It looks like MD5 is used as a password hash. MD5 is not considered a secure password hash because  
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |           it can be cracked by an attacker in a short amount of time. Use a suitable password hashing function
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |           such as scrypt. You can use `hashlib.scrypt`.                                                       
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |           Details: https://sg.run/5DwD                                                                        
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |                                                                                                               
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |            22┆ return hashlib.md5(password.encode()).hexdigest()
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |    
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |     ❯❱ python.flask.security.audit.app-run-param-config.avoid_app_run_with_bad_host
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |           ❰❰ Blocking ❱❱
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |           Running flask app with host 0.0.0.0 could expose the server publicly.
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |           Details: https://sg.run/eLby                                         
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |                                                                                
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |            27┆ app.run(host="0.0.0.0", port=5001, debug=True)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |    
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |    ❯❯❱ security.flask-debug-enabled
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |           ❰❰ Blocking ❱❱
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |           Flask app started with debug=True - exposes the Werkzeug debugger (remote code execution)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |                                                                                                    
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |            27┆ app.run(host="0.0.0.0", port=5001, debug=True)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | 
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |                 
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |                 
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | ┌──────────────┐
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | │ Scan Summary │
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | └──────────────┘
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | ✅ Scan completed successfully.
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |  • Findings: 8 (8 blocking)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |  • Rules run: 156
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |  • Targets scanned: 3
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |  • Parsed lines: ~100.0%
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |  • Scan was limited to files tracked by git
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   |  • For a detailed list of skipped files and lines, run semgrep with the --verbose flag
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Ran 156 rules on 3 files: 8 findings.
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   ✅  Success - Main semgrep (p/python + custom rules) [3.9702355s]
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)] ⭐ Run Main actions/upload-artifact@v4
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   🐳  docker cp src=/Users/poorav/.cache/act/actions-upload-artifact@v4/ dst=/var/run/act/actions/actions-upload-artifact@v4/
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   🐳  docker exec cmd=[/opt/acttoolcache/node/24.19.0/arm64/bin/node /var/run/act/actions/actions-upload-artifact@v4/dist/upload/index.js] user= workdir=
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | (node:259) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | (Use `node --trace-deprecation ...` to show where the warning was created)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | With the provided path, there will be 2 files uploaded
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Artifact name is valid!
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Root directory input is valid!
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Beginning upload of artifact content to blob storage
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | (node:259) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Uploaded bytes 4850
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Finished uploading artifact content to blob storage!
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | SHA256 digest of uploaded artifact zip is ce8697bbc7db4d85ed42e951da544ae95b611f48b9a0e18fc866c54874aa4468
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Finalizing artifact upload
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Artifact reports-sast.zip successfully finalized. Artifact ID 3158610192
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Artifact reports-sast has been successfully uploaded! Final size is 4850 bytes. Artifact ID is 3158610192
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | Artifact download URL: https://github.com/nektos/act/actions/runs/1/artifacts/3158610192
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   ✅  Success - Main actions/upload-artifact@v4 [670.261583ms]
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   ⚙  ::set-output:: artifact-id=3158610192
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   ⚙  ::set-output:: artifact-digest=ce8697bbc7db4d85ed42e951da544ae95b611f48b9a0e18fc866c54874aa4468
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   ⚙  ::set-output:: artifact-url=https://github.com/nektos/act/actions/runs/1/artifacts/3158610192
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)] ⭐ Run Post actions/setup-python@v5
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   🐳  docker exec cmd=[/opt/acttoolcache/node/24.19.0/arm64/bin/node /var/run/act/actions/actions-setup-python@v5/dist/cache-save/index.js] user= workdir=
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | (node:276) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   | (Use `node --trace-deprecation ...` to show where the warning was created)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   ✅  Success - Post actions/setup-python@v5 [109.800042ms]
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)] ⭐ Run Complete job
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)] Cleaning up container for job 3. SAST (bandit + semgrep)
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)]   ✅  Success - Complete job
+[DevSecOps Pipeline/3. SAST (bandit + semgrep)] 🏁  Job succeeded
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)] ⭐ Run Set up job
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)] 🚀  Start image=catthehacker/ubuntu:act-latest
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   🐳  docker pull image=catthehacker/ubuntu:act-latest platform=linux/arm64 username= forcePull=false
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   🐳  docker create image=catthehacker/ubuntu:act-latest platform=linux/arm64 entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   🐳  docker run image=catthehacker/ubuntu:act-latest platform=linux/arm64 entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   ✅  Success - Set up job
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   ☁  git clone 'https://github.com/actions/setup-python' # ref=v5
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   ☁  git clone 'https://github.com/actions/upload-artifact' # ref=v4
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)] ⭐ Run Main actions/checkout@v4
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   🐳  docker cp src=/tmp/s17-repo/. dst=/tmp/s17-repo
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   ✅  Success - Main actions/checkout@v4 [46.679875ms]
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)] ⭐ Run Main actions/setup-python@v5
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   🐳  docker cp src=/Users/poorav/.cache/act/actions-setup-python@v5/ dst=/var/run/act/actions/actions-setup-python@v5/
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   🐳  docker exec cmd=[/opt/acttoolcache/node/24.19.0/arm64/bin/node /var/run/act/actions/actions-setup-python@v5/dist/setup/index.js] user= workdir=
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   ❓  ::group::Installed versions
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | (node:31) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | (Use `node --trace-deprecation ...` to show where the warning was created)
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | Successfully set up CPython (3.12.15)
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   ❓  ::endgroup::
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   ❓ add-matcher /run/act/actions/actions-setup-python@v5/.github/python.json
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   ✅  Success - Main actions/setup-python@v5 [790.87925ms]
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   ⚙  ::set-env:: Python2_ROOT_DIR=/opt/hostedtoolcache/Python/3.12.15/arm64
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   ⚙  ::set-env:: Python3_ROOT_DIR=/opt/hostedtoolcache/Python/3.12.15/arm64
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   ⚙  ::set-env:: LD_LIBRARY_PATH=/opt/hostedtoolcache/Python/3.12.15/arm64/lib
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   ⚙  ::set-env:: pythonLocation=/opt/hostedtoolcache/Python/3.12.15/arm64
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   ⚙  ::set-env:: PKG_CONFIG_PATH=/opt/hostedtoolcache/Python/3.12.15/arm64/lib/pkgconfig
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   ⚙  ::set-env:: Python_ROOT_DIR=/opt/hostedtoolcache/Python/3.12.15/arm64
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   ⚙  ::set-output:: python-version=3.12.15
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   ⚙  ::set-output:: python-path=/opt/hostedtoolcache/Python/3.12.15/arm64/bin/python
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   ⚙  ::add-path:: /opt/hostedtoolcache/Python/3.12.15/arm64
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   ⚙  ::add-path:: /opt/hostedtoolcache/Python/3.12.15/arm64/bin
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)] ⭐ Run Main Install tools
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | Requirement already satisfied: bandit==1.8.6 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from -r security/requirements-tools.txt (line 2)) (1.8.6)
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | Requirement already satisfied: pip-audit==2.9.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from -r security/requirements-tools.txt (line 3)) (2.9.0)
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | Requirement already satisfied: PyYAML>=5.3.1 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from bandit==1.8.6->-r security/requirements-tools.txt (line 2)) (6.0.3)
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | Requirement already satisfied: stevedore>=1.20.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from bandit==1.8.6->-r security/requirements-tools.txt (line 2)) (5.9.1)
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | Requirement already satisfied: rich in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from bandit==1.8.6->-r security/requirements-tools.txt (line 2)) (15.0.0)
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | Requirement already satisfied: CacheControl>=0.13.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from CacheControl[filecache]>=0.13.0->pip-audit==2.9.0->-r security/requirements-tools.txt (line 3)) (0.14.4)
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | Requirement already satisfied: cyclonedx-python-lib<10,>=5 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from pip-audit==2.9.0->-r security/requirements-tools.txt (line 3)) (9.1.0)
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | Requirement already satisfied: packaging>=23.0.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from pip-audit==2.9.0->-r security/requirements-tools.txt (line 3)) (26.3)
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | Requirement already satisfied: pip-api>=0.0.28 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from pip-audit==2.9.0->-r security/requirements-tools.txt (line 3)) (0.0.35)
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | Requirement already satisfied: pip-requirements-parser>=32.0.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from pip-audit==2.9.0->-r security/requirements-tools.txt (line 3)) (32.0.1)
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | Requirement already satisfied: requests>=2.31.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from pip-audit==2.9.0->-r security/requirements-tools.txt (line 3)) (2.34.2)
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | Requirement already satisfied: toml>=0.10 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from pip-audit==2.9.0->-r security/requirements-tools.txt (line 3)) (0.10.2)
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | Requirement already satisfied: platformdirs>=4.2.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from pip-audit==2.9.0->-r security/requirements-tools.txt (line 3)) (4.12.3)
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | Requirement already satisfied: license-expression<31,>=30 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from cyclonedx-python-lib<10,>=5->pip-audit==2.9.0->-r security/requirements-tools.txt (line 3)) (30.4.4)
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | Requirement already satisfied: packageurl-python<2,>=0.11 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from cyclonedx-python-lib<10,>=5->pip-audit==2.9.0->-r security/requirements-tools.txt (line 3)) (0.17.6)
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | Requirement already satisfied: py-serializable<3.0.0,>=2.0.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from cyclonedx-python-lib<10,>=5->pip-audit==2.9.0->-r security/requirements-tools.txt (line 3)) (2.1.0)
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | Requirement already satisfied: sortedcontainers<3.0.0,>=2.4.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from cyclonedx-python-lib<10,>=5->pip-audit==2.9.0->-r security/requirements-tools.txt (line 3)) (2.4.0)
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | Requirement already satisfied: boolean.py>=4.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from license-expression<31,>=30->cyclonedx-python-lib<10,>=5->pip-audit==2.9.0->-r security/requirements-tools.txt (line 3)) (5.0)
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | Requirement already satisfied: defusedxml<0.8.0,>=0.7.1 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from py-serializable<3.0.0,>=2.0.0->cyclonedx-python-lib<10,>=5->pip-audit==2.9.0->-r security/requirements-tools.txt (line 3)) (0.7.1)
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | Requirement already satisfied: msgpack<2.0.0,>=0.5.2 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from CacheControl>=0.13.0->CacheControl[filecache]>=0.13.0->pip-audit==2.9.0->-r security/requirements-tools.txt (line 3)) (1.2.3)
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | Requirement already satisfied: filelock>=3.8.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from CacheControl[filecache]>=0.13.0->pip-audit==2.9.0->-r security/requirements-tools.txt (line 3)) (4.0.12)
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | Requirement already satisfied: pip in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from pip-api>=0.0.28->pip-audit==2.9.0->-r security/requirements-tools.txt (line 3)) (26.2.1)
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | Requirement already satisfied: pyparsing in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from pip-requirements-parser>=32.0.0->pip-audit==2.9.0->-r security/requirements-tools.txt (line 3)) (3.3.3)
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | Requirement already satisfied: charset_normalizer<4,>=2 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from requests>=2.31.0->pip-audit==2.9.0->-r security/requirements-tools.txt (line 3)) (3.5.2)
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | Requirement already satisfied: idna<4,>=2.5 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from requests>=2.31.0->pip-audit==2.9.0->-r security/requirements-tools.txt (line 3)) (3.20)
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | Requirement already satisfied: urllib3<3,>=1.26 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from requests>=2.31.0->pip-audit==2.9.0->-r security/requirements-tools.txt (line 3)) (2.8.0)
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | Requirement already satisfied: certifi>=2023.5.7 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from requests>=2.31.0->pip-audit==2.9.0->-r security/requirements-tools.txt (line 3)) (2026.7.22)
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | Requirement already satisfied: markdown-it-py>=2.2.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from rich->bandit==1.8.6->-r security/requirements-tools.txt (line 2)) (4.2.0)
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | Requirement already satisfied: pygments<3.0.0,>=2.13.0 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from rich->bandit==1.8.6->-r security/requirements-tools.txt (line 2)) (2.21.0)
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | Requirement already satisfied: mdurl~=0.1 in /opt/hostedtoolcache/Python/3.12.15/arm64/lib/python3.12/site-packages (from markdown-it-py>=2.2.0->rich->bandit==1.8.6->-r security/requirements-tools.txt (line 2)) (0.1.2)
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | aquasecurity/trivy info checking GitHub for tag 'v0.75.0'
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | aquasecurity/trivy info found version: 0.75.0 for v0.75.0/Linux/ARM64
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | aquasecurity/trivy info installed /usr/local/bin/trivy
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   ✅  Success - Main Install tools [10.458369666s]
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)] ⭐ Run Main pip-audit
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/3] user= workdir=
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | Found 19 known vulnerabilities in 3 packages
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | Found 19 known vulnerabilities in 3 packages
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | Name     Version ID              Fix Versions
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | -------- ------- --------------- -------------
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | requests 2.19.1  PYSEC-2018-28   2.20.0
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | requests 2.19.1  PYSEC-2023-74   2.31.0
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | requests 2.19.1  PYSEC-2026-1873 2.32.0
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | requests 2.19.1  PYSEC-2026-1872 2.32.4
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | requests 2.19.1  PYSEC-2026-2275 2.33.0
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | idna     2.7     PYSEC-2024-60   3.7
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | idna     2.7     PYSEC-2026-215  3.15
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | urllib3  1.23    PYSEC-2019-133  1.24.2
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | urllib3  1.23    PYSEC-2019-132  1.24.3
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | urllib3  1.23    PYSEC-2020-148  1.25.9
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | urllib3  1.23    PYSEC-2023-192  1.26.17,2.0.6
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | urllib3  1.23    PYSEC-2023-207  1.24.2
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | urllib3  1.23    PYSEC-2023-212  1.26.18,2.0.7
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | urllib3  1.23    PYSEC-2026-141  2.7.0
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | urllib3  1.23    PYSEC-2026-1999 2.5.0
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | urllib3  1.23    PYSEC-2026-1995 1.26.19,2.2.2
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | urllib3  1.23    PYSEC-2026-1994 2.6.0
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | urllib3  1.23    PYSEC-2026-1996 2.6.3
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | urllib3  1.23    PYSEC-2026-4177 2.8.0
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   ✅  Success - Main pip-audit [11.497478292s]
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)] ⭐ Run Main trivy fs
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/4] user= workdir=
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | 2026-10-07T19:15:31Z	INFO	Loaded	file_path="security/trivy.yaml"
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | 2026-10-07T19:15:31Z	INFO	[vulndb] Need to update DB
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | 2026-10-07T19:15:31Z	INFO	[vulndb] Downloading vulnerability DB...
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | 2026-10-07T19:15:31Z	INFO	[vulndb] Downloading artifact...	repo="mirror.gcr.io/aquasec/trivy-db:2"
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | 159.25 KiB / 119.53 MiB [>___________________________________________________________] 0.13% ? p/s ?719.25 KiB / 119.53 MiB [>___________________________________________________________] 0.59% ? p/s ?1.53 MiB / 119.53 MiB [>_____________________________________________________________] 1.28% ? p/s ?2.55 MiB / 119.53 MiB [->_______________________________________________] 2.13% 4.08 MiB p/s ETA 28s3.64 MiB / 119.53 MiB [->_______________________________________________] 3.05% 4.08 MiB p/s ETA 28s4.77 MiB / 119.53 MiB [->_______________________________________________] 3.99% 4.08 MiB p/s ETA 28s5.86 MiB / 119.53 MiB [-->______________________________________________] 4.90% 4.17 MiB p/s ETA 27s6.70 MiB / 119.53 MiB [-->______________________________________________] 5.61% 4.17 MiB p/s ETA 27s7.83 MiB / 119.53 MiB [--->_____________________________________________] 6.55% 4.17 MiB p/s ETA 26s8.92 MiB / 119.53 MiB [--->_____________________________________________] 7.46% 4.23 MiB p/s ETA 26s9.83 MiB / 119.53 MiB [---->____________________________________________] 8.22% 4.23 MiB p/s ETA 25s11.08 MiB / 119.53 MiB [---->___________________________________________] 9.27% 4.23 MiB p/s ETA 25s11.92 MiB / 119.53 MiB [---->___________________________________________] 9.97% 4.28 MiB p/s ETA 25s13.08 MiB / 119.53 MiB [----->_________________________________________] 10.94% 4.28 MiB p/s ETA 24s14.36 MiB / 119.53 MiB [----->_________________________________________] 12.01% 4.28 MiB p/s ETA 24s15.61 MiB / 119.53 MiB [------>________________________________________] 13.06% 4.40 MiB p/s ETA 23s16.58 MiB / 119.53 MiB [------>________________________________________] 13.87% 4.40 MiB p/s ETA 23s17.92 MiB / 119.53 MiB [------->_______________________________________] 14.99% 4.40 MiB p/s ETA 23s19.77 MiB / 119.53 MiB [------->_______________________________________] 16.54% 4.56 MiB p/s ETA 21s21.20 MiB / 119.53 MiB [-------->______________________________________] 17.74% 4.56 MiB p/s ETA 21s22.89 MiB / 119.53 MiB [--------->_____________________________________] 19.15% 4.56 MiB p/s ETA 21s24.36 MiB / 119.53 MiB [--------->_____________________________________] 20.38% 4.77 MiB p/s ETA 19s26.05 MiB / 119.53 MiB [---------->____________________________________] 21.79% 4.77 MiB p/s ETA 19s27.39 MiB / 119.53 MiB [---------->____________________________________] 22.91% 4.77 MiB p/s ETA 19s28.80 MiB / 119.53 MiB [----------->___________________________________] 24.09% 4.94 MiB p/s ETA 18s30.48 MiB / 119.53 MiB [----------->___________________________________] 25.50% 4.94 MiB p/s ETA 18s32.08 MiB / 119.53 MiB [------------>__________________________________] 26.84% 4.94 MiB p/s ETA 17s34.36 MiB / 119.53 MiB [------------->_________________________________] 28.74% 5.21 MiB p/s ETA 16s35.64 MiB / 119.53 MiB [-------------->________________________________] 29.82% 5.21 MiB p/s ETA 16s36.48 MiB / 119.53 MiB [-------------->________________________________] 30.52% 5.21 MiB p/s ETA 15s37.39 MiB / 119.53 MiB [-------------->________________________________] 31.28% 5.20 MiB p/s ETA 15s38.27 MiB / 119.53 MiB [--------------->_______________________________] 32.01% 5.20 MiB p/s ETA 15s39.48 MiB / 119.53 MiB [--------------->_______________________________] 33.03% 5.20 MiB p/s ETA 15s41.27 MiB / 119.53 MiB [---------------->______________________________] 34.52% 5.28 MiB p/s ETA 14s43.80 MiB / 119.53 MiB [----------------->_____________________________] 36.64% 5.28 MiB p/s ETA 14s45.64 MiB / 119.53 MiB [----------------->_____________________________] 38.18% 5.28 MiB p/s ETA 13s47.83 MiB / 119.53 MiB [------------------>____________________________] 40.01% 5.65 MiB p/s ETA 12s48.89 MiB / 119.53 MiB [------------------->___________________________] 40.90% 5.65 MiB p/s ETA 12s50.14 MiB / 119.53 MiB [------------------->___________________________] 41.95% 5.65 MiB p/s ETA 12s51.61 MiB / 119.53 MiB [-------------------->__________________________] 43.18% 5.69 MiB p/s ETA 11s53.05 MiB / 119.53 MiB [-------------------->__________________________] 44.38% 5.69 MiB p/s ETA 11s54.67 MiB / 119.53 MiB [--------------------->_________________________] 45.74% 5.69 MiB p/s ETA 11s57.08 MiB / 119.53 MiB [---------------------->________________________] 47.75% 5.91 MiB p/s ETA 10s59.27 MiB / 119.53 MiB [----------------------->_______________________] 49.58% 5.91 MiB p/s ETA 10s61.11 MiB / 119.53 MiB [------------------------>_______________________] 51.12% 5.91 MiB p/s ETA 9s62.89 MiB / 119.53 MiB [------------------------->______________________] 52.61% 6.16 MiB p/s ETA 9s64.58 MiB / 119.53 MiB [------------------------->______________________] 54.03% 6.16 MiB p/s ETA 8s66.33 MiB / 119.53 MiB [-------------------------->_____________________] 55.49% 6.16 MiB p/s ETA 8s68.14 MiB / 119.53 MiB [--------------------------->____________________] 57.01% 6.32 MiB p/s ETA 8s69.86 MiB / 119.53 MiB [---------------------------->___________________] 58.44% 6.32 MiB p/s ETA 7s71.42 MiB / 119.53 MiB [---------------------------->___________________] 59.75% 6.32 MiB p/s ETA 7s73.23 MiB / 119.53 MiB [----------------------------->__________________] 61.27% 6.46 MiB p/s ETA 7s75.67 MiB / 119.53 MiB [------------------------------>_________________] 63.31% 6.46 MiB p/s ETA 6s76.77 MiB / 119.53 MiB [------------------------------>_________________] 64.22% 6.46 MiB p/s ETA 6s78.48 MiB / 119.53 MiB [------------------------------->________________] 65.66% 6.61 MiB p/s ETA 6s80.20 MiB / 119.53 MiB [-------------------------------->_______________] 67.10% 6.61 MiB p/s ETA 5s81.95 MiB / 119.53 MiB [-------------------------------->_______________] 68.56% 6.61 MiB p/s ETA 5s83.23 MiB / 119.53 MiB [--------------------------------->______________] 69.63% 6.69 MiB p/s ETA 5s84.73 MiB / 119.53 MiB [---------------------------------->_____________] 70.89% 6.69 MiB p/s ETA 5s86.11 MiB / 119.53 MiB [---------------------------------->_____________] 72.04% 6.69 MiB p/s ETA 4s87.45 MiB / 119.53 MiB [----------------------------------->____________] 73.16% 6.72 MiB p/s ETA 4s88.70 MiB / 119.53 MiB [----------------------------------->____________] 74.21% 6.72 MiB p/s ETA 4s89.83 MiB / 119.53 MiB [------------------------------------>___________] 75.15% 6.72 MiB p/s ETA 4s91.17 MiB / 119.53 MiB [------------------------------------>___________] 76.27% 6.68 MiB p/s ETA 4s92.55 MiB / 119.53 MiB [------------------------------------->__________] 77.42% 6.68 MiB p/s ETA 4s95.14 MiB / 119.53 MiB [-------------------------------------->_________] 79.59% 6.68 MiB p/s ETA 3s96.20 MiB / 119.53 MiB [-------------------------------------->_________] 80.48% 6.79 MiB p/s ETA 3s97.36 MiB / 119.53 MiB [--------------------------------------->________] 81.45% 6.79 MiB p/s ETA 3s98.42 MiB / 119.53 MiB [--------------------------------------->________] 82.34% 6.79 MiB p/s ETA 3s99.36 MiB / 119.53 MiB [--------------------------------------->________] 83.12% 6.69 MiB p/s ETA 3s100.17 MiB / 119.53 MiB [--------------------------------------->_______] 83.80% 6.69 MiB p/s ETA 2s101.64 MiB / 119.53 MiB [--------------------------------------->_______] 85.03% 6.69 MiB p/s ETA 2s103.39 MiB / 119.53 MiB [---------------------------------------->______] 86.49% 6.70 MiB p/s ETA 2s105.17 MiB / 119.53 MiB [----------------------------------------->_____] 87.99% 6.70 MiB p/s ETA 2s106.33 MiB / 119.53 MiB [----------------------------------------->_____] 88.95% 6.70 MiB p/s ETA 1s107.70 MiB / 119.53 MiB [------------------------------------------>____] 90.10% 6.73 MiB p/s ETA 1s108.95 MiB / 119.53 MiB [------------------------------------------>____] 91.15% 6.73 MiB p/s ETA 1s110.05 MiB / 119.53 MiB [------------------------------------------->___] 92.06% 6.73 MiB p/s ETA 1s111.33 MiB / 119.53 MiB [------------------------------------------->___] 93.14% 6.68 MiB p/s ETA 1s112.73 MiB / 119.53 MiB [-------------------------------------------->__] 94.31% 6.68 MiB p/s ETA 1s113.73 MiB / 119.53 MiB [-------------------------------------------->__] 95.15% 6.68 MiB p/s ETA 0s115.23 MiB / 119.53 MiB [--------------------------------------------->_] 96.40% 6.67 MiB p/s ETA 0s116.83 MiB / 119.53 MiB [--------------------------------------------->_] 97.74% 6.67 MiB p/s ETA 0s118.42 MiB / 119.53 MiB [---------------------------------------------->] 99.07% 6.67 MiB p/s ETA 0s119.53 MiB / 119.53 MiB [--------------------------------------------->] 100.00% 6.70 MiB p/s ETA 0s119.53 MiB / 119.53 MiB [--------------------------------------------->] 100.00% 6.70 MiB p/s ETA 0s119.53 MiB / 119.53 MiB [--------------------------------------------->] 100.00% 6.70 MiB p/s ETA 0s119.53 MiB / 119.53 MiB [--------------------------------------------->] 100.00% 6.27 MiB p/s ETA 0s119.53 MiB / 119.53 MiB [--------------------------------------------->] 100.00% 6.27 MiB p/s ETA 0s119.53 MiB / 119.53 MiB [--------------------------------------------->] 100.00% 6.27 MiB p/s ETA 0s119.53 MiB / 119.53 MiB [--------------------------------------------->] 100.00% 5.87 MiB p/s ETA 0s119.53 MiB / 119.53 MiB [--------------------------------------------->] 100.00% 5.87 MiB p/s ETA 0s119.53 MiB / 119.53 MiB [--------------------------------------------->] 100.00% 5.87 MiB p/s ETA 0s119.53 MiB / 119.53 MiB [--------------------------------------------->] 100.00% 5.49 MiB p/s ETA 0s119.53 MiB / 119.53 MiB [--------------------------------------------->] 100.00% 5.49 MiB p/s ETA 0s119.53 MiB / 119.53 MiB [--------------------------------------------->] 100.00% 5.49 MiB p/s ETA 0s119.53 MiB / 119.53 MiB [--------------------------------------------->] 100.00% 5.13 MiB p/s ETA 0s119.53 MiB / 119.53 MiB [--------------------------------------------->] 100.00% 5.13 MiB p/s ETA 0s119.53 MiB / 119.53 MiB [--------------------------------------------->] 100.00% 5.13 MiB p/s ETA 0s119.53 MiB / 119.53 MiB [--------------------------------------------->] 100.00% 4.80 MiB p/s ETA 0s119.53 MiB / 119.53 MiB [--------------------------------------------->] 100.00% 4.80 MiB p/s ETA 0s119.53 MiB / 119.53 MiB [--------------------------------------------->] 100.00% 4.80 MiB p/s ETA 0s119.53 MiB / 119.53 MiB [--------------------------------------------->] 100.00% 4.49 MiB p/s ETA 0s119.53 MiB / 119.53 MiB [--------------------------------------------->] 100.00% 4.49 MiB p/s ETA 0s119.53 MiB / 119.53 MiB [--------------------------------------------->] 100.00% 4.49 MiB p/s ETA 0s119.53 MiB / 119.53 MiB [--------------------------------------------->] 100.00% 4.20 MiB p/s ETA 0s119.53 MiB / 119.53 MiB [--------------------------------------------->] 100.00% 4.20 MiB p/s ETA 0s119.53 MiB / 119.53 MiB [--------------------------------------------->] 100.00% 4.20 MiB p/s ETA 0s119.53 MiB / 119.53 MiB [--------------------------------------------->] 100.00% 3.93 MiB p/s ETA 0s119.53 MiB / 119.53 MiB [--------------------------------------------->] 100.00% 3.93 MiB p/s ETA 0s119.53 MiB / 119.53 MiB [--------------------------------------------->] 100.00% 3.93 MiB p/s ETA 0s119.53 MiB / 119.53 MiB [--------------------------------------------->] 100.00% 3.68 MiB p/s ETA 0s119.53 MiB / 119.53 MiB [--------------------------------------------->] 100.00% 3.68 MiB p/s ETA 0s119.53 MiB / 119.53 MiB [--------------------------------------------->] 100.00% 3.68 MiB p/s ETA 0s119.53 MiB / 119.53 MiB [--------------------------------------------->] 100.00% 3.44 MiB p/s ETA 0s119.53 MiB / 119.53 MiB [--------------------------------------------->] 100.00% 3.44 MiB p/s ETA 0s119.53 MiB / 119.53 MiB [--------------------------------------------->] 100.00% 3.44 MiB p/s ETA 0s119.53 MiB / 119.53 MiB [--------------------------------------------->] 100.00% 3.22 MiB p/s ETA 0s119.53 MiB / 119.53 MiB [-------------------------------------------------] 100.00% 5.09 MiB p/s 24s2026-10-07T19:15:56Z	INFO	[vulndb] Artifact successfully downloaded	repo="mirror.gcr.io/aquasec/trivy-db:2"
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | 2026-10-07T19:15:56Z	INFO	[vuln] Vulnerability scanning is enabled
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | 2026-10-07T19:15:56Z	INFO	[python] Licenses acquired from one or more METADATA files may be subject to additional terms. Use `--debug` flag to see all affected packages.
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | 2026-10-07T19:15:56Z	INFO	Number of language-specific files	num=1
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | 2026-10-07T19:15:56Z	INFO	[pip] Detecting vulnerabilities...
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | 2026-10-07T19:15:56Z	INFO	Loaded	file_path="security/trivy.yaml"
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | 2026-10-07T19:15:56Z	INFO	[vuln] Vulnerability scanning is enabled
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | 2026-10-07T19:15:56Z	INFO	[python] Licenses acquired from one or more METADATA files may be subject to additional terms. Use `--debug` flag to see all affected packages.
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | 2026-10-07T19:15:56Z	INFO	Number of language-specific files	num=1
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | 2026-10-07T19:15:56Z	INFO	[pip] Detecting vulnerabilities...
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | 
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | Report Summary
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | 
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | ┌──────────────────┬──────┬─────────────────┐
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | │      Target      │ Type │ Vulnerabilities │
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | ├──────────────────┼──────┼─────────────────┤
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | │ requirements.txt │ pip  │        1        │
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | └──────────────────┴──────┴─────────────────┘
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | Legend:
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | - '-': Not scanned
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | - '0': Clean (no security findings detected)
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | 
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | 
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | For OSS Maintainers: VEX Notice
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | --------------------------------
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | If you're an OSS maintainer and Trivy has detected vulnerabilities in your project that you believe are not actually exploitable, consider issuing a VEX (Vulnerability Exploitability eXchange) statement.
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | VEX allows you to communicate the actual status of vulnerabilities in your project, improving security transparency and reducing false positives for your users.
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | Learn more and start using VEX: https://trivy.dev/docs/v0.75/guide/supply-chain/vex/repo#publishing-vex-documents
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | 
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | To disable this notice, set the TRIVY_DISABLE_VEX_NOTICE environment variable.
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | 
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | 
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | requirements.txt (pip)
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | ======================
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | Total: 1 (HIGH: 1, CRITICAL: 0)
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | 
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | ┌──────────┬────────────────┬──────────┬────────┬───────────────────┬───────────────┬──────────────────────────────────────────────────────────────┐
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | │ Library  │ Vulnerability  │ Severity │ Status │ Installed Version │ Fixed Version │                            Title                             │
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | ├──────────┼────────────────┼──────────┼────────┼───────────────────┼───────────────┼──────────────────────────────────────────────────────────────┤
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | │ requests │ CVE-2018-18074 │ HIGH     │ fixed  │ 2.19.1            │ 2.20.0        │ python-requests: Redirect from HTTPS to HTTP does not remove │
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | │          │                │          │        │                   │               │ Authorization header                                         │
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | │          │                │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2018-18074                   │
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | └──────────┴────────────────┴──────────┴────────┴───────────────────┴───────────────┴──────────────────────────────────────────────────────────────┘
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   ✅  Success - Main trivy fs [25.573181042s]
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)] ⭐ Run Main actions/upload-artifact@v4
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   🐳  docker cp src=/Users/poorav/.cache/act/actions-upload-artifact@v4/ dst=/var/run/act/actions/actions-upload-artifact@v4/
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   🐳  docker exec cmd=[/opt/acttoolcache/node/24.19.0/arm64/bin/node /var/run/act/actions/actions-upload-artifact@v4/dist/upload/index.js] user= workdir=
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | (node:273) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | (Use `node --trace-deprecation ...` to show where the warning was created)
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | With the provided path, there will be 2 files uploaded
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | Artifact name is valid!
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | Root directory input is valid!
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | Beginning upload of artifact content to blob storage
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | (node:273) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | Uploaded bytes 9337
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | Finished uploading artifact content to blob storage!
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | SHA256 digest of uploaded artifact zip is 479c2653082c040756786dd158f0c968b911b29288684ef0af9f332c73a5724a
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | Finalizing artifact upload
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | Artifact reports-sca.zip successfully finalized. Artifact ID 3352424300
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | Artifact reports-sca has been successfully uploaded! Final size is 9337 bytes. Artifact ID is 3352424300
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | Artifact download URL: https://github.com/nektos/act/actions/runs/1/artifacts/3352424300
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   ✅  Success - Main actions/upload-artifact@v4 [2.806317375s]
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   ⚙  ::set-output:: artifact-id=3352424300
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   ⚙  ::set-output:: artifact-digest=479c2653082c040756786dd158f0c968b911b29288684ef0af9f332c73a5724a
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   ⚙  ::set-output:: artifact-url=https://github.com/nektos/act/actions/runs/1/artifacts/3352424300
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)] ⭐ Run Post actions/setup-python@v5
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   🐳  docker exec cmd=[/opt/acttoolcache/node/24.19.0/arm64/bin/node /var/run/act/actions/actions-setup-python@v5/dist/cache-save/index.js] user= workdir=
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | (node:290) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   | (Use `node --trace-deprecation ...` to show where the warning was created)
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   ✅  Success - Post actions/setup-python@v5 [257.4715ms]
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)] ⭐ Run Complete job
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)] Cleaning up container for job 4. SCA (pip-audit + trivy fs)
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)]   ✅  Success - Complete job
+[DevSecOps Pipeline/4. SCA (pip-audit + trivy fs)] 🏁  Job succeeded
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ] ⭐ Run Set up job
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ] 🚀  Start image=catthehacker/ubuntu:act-latest
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ]   🐳  docker pull image=catthehacker/ubuntu:act-latest platform=linux/arm64 username= forcePull=false
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ]   🐳  docker create image=catthehacker/ubuntu:act-latest platform=linux/arm64 entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ]   🐳  docker run image=catthehacker/ubuntu:act-latest platform=linux/arm64 entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ]   ✅  Success - Set up job
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ]   ☁  git clone 'https://github.com/actions/upload-artifact' # ref=v4
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ] ⭐ Run Main actions/checkout@v4
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ]   🐳  docker cp src=/tmp/s17-repo/. dst=/tmp/s17-repo
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ]   ✅  Success - Main actions/checkout@v4 [45.131958ms]
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ] ⭐ Run Main Install gitleaks
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/1] user= workdir=
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ]   ✅  Success - Main Install gitleaks [1.957972333s]
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ] ⭐ Run Main gitleaks (working tree + git history)
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ]   | 
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ]   |     ○
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ]   |     │╲
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ]   |     │ ○
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ]   |     ○ ░
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ]   |     ░    gitleaks
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ]   | 
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ]   | [90m7:16PM[0m [32mINF[0m [1mscanned ~69429 bytes (69.43 KB) in 27.4ms[0m
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ]   | [90m7:16PM[0m [33mWRN[0m [1mleaks found: 3[0m
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ]   | 
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ]   |     ○
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ]   |     │╲
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ]   |     │ ○
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ]   |     ○ ░
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ]   |     ░    gitleaks
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ]   | 
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ]   | [90m7:16PM[0m [32mINF[0m [1m4 commits scanned.[0m
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ]   | [90m7:16PM[0m [32mINF[0m [1mscanned ~70099 bytes (70.10 KB) in 129ms[0m
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ]   | [90m7:16PM[0m [33mWRN[0m [1mleaks found: 3[0m
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ]   | aws-access-token app/insecure_utils.py 5
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ]   | github-pat app/insecure_utils.py 7
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ]   | generic-api-key app/insecure_utils.py 6
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ]   | findings: 3
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ]   ✅  Success - Main gitleaks (working tree + git history) [788.512875ms]
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ] ⭐ Run Main actions/upload-artifact@v4
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ]   🐳  docker cp src=/Users/poorav/.cache/act/actions-upload-artifact@v4/ dst=/var/run/act/actions/actions-upload-artifact@v4/
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ]   🐳  docker exec cmd=[/opt/acttoolcache/node/24.19.0/arm64/bin/node /var/run/act/actions/actions-upload-artifact@v4/dist/upload/index.js] user= workdir=
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ]   | (node:81) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ]   | (Use `node --trace-deprecation ...` to show where the warning was created)
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ]   | With the provided path, there will be 2 files uploaded
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ]   | Artifact name is valid!
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ]   | Root directory input is valid!
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ]   | Beginning upload of artifact content to blob storage
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ]   | (node:81) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ]   | Uploaded bytes 1482
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ]   | Finished uploading artifact content to blob storage!
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ]   | SHA256 digest of uploaded artifact zip is d50caa3eb22c401db7ba1847905f5786047210db4aba386b154fab8cca0ed005
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ]   | Finalizing artifact upload
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ]   | Artifact reports-secrets.zip successfully finalized. Artifact ID 344493484
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ]   | Artifact reports-secrets has been successfully uploaded! Final size is 1482 bytes. Artifact ID is 344493484
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ]   | Artifact download URL: https://github.com/nektos/act/actions/runs/1/artifacts/344493484
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ]   ✅  Success - Main actions/upload-artifact@v4 [667.302375ms]
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ]   ⚙  ::set-output:: artifact-id=344493484
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ]   ⚙  ::set-output:: artifact-digest=d50caa3eb22c401db7ba1847905f5786047210db4aba386b154fab8cca0ed005
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ]   ⚙  ::set-output:: artifact-url=https://github.com/nektos/act/actions/runs/1/artifacts/344493484
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ] ⭐ Run Complete job
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ] Cleaning up container for job 5. Secret Scan (gitleaks)
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ]   ✅  Success - Complete job
+[DevSecOps Pipeline/5. Secret Scan (gitleaks)    ] 🏁  Job succeeded
+[DevSecOps Pipeline/6. Docker Build              ] ⭐ Run Set up job
+[DevSecOps Pipeline/6. Docker Build              ] 🚀  Start image=catthehacker/ubuntu:act-latest
+[DevSecOps Pipeline/6. Docker Build              ]   🐳  docker pull image=catthehacker/ubuntu:act-latest platform=linux/arm64 username= forcePull=false
+[DevSecOps Pipeline/6. Docker Build              ]   🐳  docker create image=catthehacker/ubuntu:act-latest platform=linux/arm64 entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[DevSecOps Pipeline/6. Docker Build              ]   🐳  docker run image=catthehacker/ubuntu:act-latest platform=linux/arm64 entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[DevSecOps Pipeline/6. Docker Build              ]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[DevSecOps Pipeline/6. Docker Build              ]   ✅  Success - Set up job
+[DevSecOps Pipeline/6. Docker Build              ]   ☁  git clone 'https://github.com/actions/upload-artifact' # ref=v4
+[DevSecOps Pipeline/6. Docker Build              ] ⭐ Run Main actions/checkout@v4
+[DevSecOps Pipeline/6. Docker Build              ]   🐳  docker cp src=/tmp/s17-repo/. dst=/tmp/s17-repo
+[DevSecOps Pipeline/6. Docker Build              ]   ✅  Success - Main actions/checkout@v4 [42.417292ms]
+[DevSecOps Pipeline/6. Docker Build              ] ⭐ Run Main Build image
+[DevSecOps Pipeline/6. Docker Build              ]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/1] user= workdir=
+[DevSecOps Pipeline/6. Docker Build              ]   | #0 building with "default" instance using docker driver
+[DevSecOps Pipeline/6. Docker Build              ]   | 
+[DevSecOps Pipeline/6. Docker Build              ]   | #1 [internal] load build definition from Dockerfile
+[DevSecOps Pipeline/6. Docker Build              ]   | #1 transferring dockerfile: 1.15kB done
+[DevSecOps Pipeline/6. Docker Build              ]   | #1 DONE 0.0s
+[DevSecOps Pipeline/6. Docker Build              ]   | 
+[DevSecOps Pipeline/6. Docker Build              ]   | #2 [internal] load metadata for docker.io/library/python:3.12-slim
+[DevSecOps Pipeline/6. Docker Build              ]   | #2 DONE 1.0s
+[DevSecOps Pipeline/6. Docker Build              ]   | 
+[DevSecOps Pipeline/6. Docker Build              ]   | #3 [internal] load .dockerignore
+[DevSecOps Pipeline/6. Docker Build              ]   | #3 transferring context: 146B done
+[DevSecOps Pipeline/6. Docker Build              ]   | #3 DONE 0.0s
+[DevSecOps Pipeline/6. Docker Build              ]   | 
+[DevSecOps Pipeline/6. Docker Build              ]   | #4 [builder 1/4] FROM docker.io/library/python:3.12-slim@sha256:05cda9777409a9c3ffddd94a4c476b79f0769a0b4857f0c7ed9226b6800b0d6f
+[DevSecOps Pipeline/6. Docker Build              ]   | #4 DONE 0.0s
+[DevSecOps Pipeline/6. Docker Build              ]   | 
+[DevSecOps Pipeline/6. Docker Build              ]   | #5 [internal] load build context
+[DevSecOps Pipeline/6. Docker Build              ]   | #5 transferring context: 40.42kB 0.0s done
+[DevSecOps Pipeline/6. Docker Build              ]   | #5 DONE 0.0s
+[DevSecOps Pipeline/6. Docker Build              ]   | 
+[DevSecOps Pipeline/6. Docker Build              ]   | #6 [stage-1 2/5] RUN apt-get update && apt-get upgrade -y --no-install-recommends && rm -rf /var/lib/apt/lists/*     && rm -rf /usr/local/lib/python3.12/site-packages/pip* /usr/local/lib/python3.12/ensurepip /usr/local/bin/pip*     && useradd --uid 10001 --no-create-home --shell /usr/sbin/nologin appuser
+[DevSecOps Pipeline/6. Docker Build              ]   | #6 CACHED
+[DevSecOps Pipeline/6. Docker Build              ]   | 
+[DevSecOps Pipeline/6. Docker Build              ]   | #7 [builder 4/4] RUN pip install --prefix=/install -r requirements.txt
+[DevSecOps Pipeline/6. Docker Build              ]   | #7 CACHED
+[DevSecOps Pipeline/6. Docker Build              ]   | 
+[DevSecOps Pipeline/6. Docker Build              ]   | #8 [stage-1 3/5] COPY --from=builder /install /usr/local
+[DevSecOps Pipeline/6. Docker Build              ]   | #8 CACHED
+[DevSecOps Pipeline/6. Docker Build              ]   | 
+[DevSecOps Pipeline/6. Docker Build              ]   | #9 [builder 3/4] COPY requirements.txt .
+[DevSecOps Pipeline/6. Docker Build              ]   | #9 CACHED
+[DevSecOps Pipeline/6. Docker Build              ]   | 
+[DevSecOps Pipeline/6. Docker Build              ]   | #10 [stage-1 4/5] WORKDIR /app
+[DevSecOps Pipeline/6. Docker Build              ]   | #10 CACHED
+[DevSecOps Pipeline/6. Docker Build              ]   | 
+[DevSecOps Pipeline/6. Docker Build              ]   | #11 [builder 2/4] WORKDIR /build
+[DevSecOps Pipeline/6. Docker Build              ]   | #11 CACHED
+[DevSecOps Pipeline/6. Docker Build              ]   | 
+[DevSecOps Pipeline/6. Docker Build              ]   | #12 [stage-1 5/5] COPY app ./app
+[DevSecOps Pipeline/6. Docker Build              ]   | #12 CACHED
+[DevSecOps Pipeline/6. Docker Build              ]   | 
+[DevSecOps Pipeline/6. Docker Build              ]   | #13 exporting to image
+[DevSecOps Pipeline/6. Docker Build              ]   | #13 exporting layers done
+[DevSecOps Pipeline/6. Docker Build              ]   | #13 writing image sha256:0a7bbb21f6977096a70481cf8088a50db58c149e4724d84f0579259dbbd0101d done
+[DevSecOps Pipeline/6. Docker Build              ]   | #13 naming to docker.io/library/s17-devsecops:6c13690 done
+[DevSecOps Pipeline/6. Docker Build              ]   | #13 DONE 0.0s
+[DevSecOps Pipeline/6. Docker Build              ]   ✅  Success - Main Build image [1.851834708s]
+[DevSecOps Pipeline/6. Docker Build              ] ⭐ Run Main Save image for the next jobs
+[DevSecOps Pipeline/6. Docker Build              ]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=
+[DevSecOps Pipeline/6. Docker Build              ]   ✅  Success - Main Save image for the next jobs [5.262112s]
+[DevSecOps Pipeline/6. Docker Build              ] ⭐ Run Main actions/upload-artifact@v4
+[DevSecOps Pipeline/6. Docker Build              ]   🐳  docker cp src=/Users/poorav/.cache/act/actions-upload-artifact@v4/ dst=/var/run/act/actions/actions-upload-artifact@v4/
+[DevSecOps Pipeline/6. Docker Build              ]   🐳  docker exec cmd=[/opt/acttoolcache/node/24.19.0/arm64/bin/node /var/run/act/actions/actions-upload-artifact@v4/dist/upload/index.js] user= workdir=
+[DevSecOps Pipeline/6. Docker Build              ]   | (node:101) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[DevSecOps Pipeline/6. Docker Build              ]   | (Use `node --trace-deprecation ...` to show where the warning was created)
+[DevSecOps Pipeline/6. Docker Build              ]   | With the provided path, there will be 1 file uploaded
+[DevSecOps Pipeline/6. Docker Build              ]   | Artifact name is valid!
+[DevSecOps Pipeline/6. Docker Build              ]   | Root directory input is valid!
+[DevSecOps Pipeline/6. Docker Build              ]   | Beginning upload of artifact content to blob storage
+[DevSecOps Pipeline/6. Docker Build              ]   | (node:101) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+[DevSecOps Pipeline/6. Docker Build              ]   | Uploaded bytes 8388608
+[DevSecOps Pipeline/6. Docker Build              ]   | Uploaded bytes 16777216
+[DevSecOps Pipeline/6. Docker Build              ]   | Uploaded bytes 25165824
+[DevSecOps Pipeline/6. Docker Build              ]   | Uploaded bytes 33554432
+[DevSecOps Pipeline/6. Docker Build              ]   | Uploaded bytes 41943040
+[DevSecOps Pipeline/6. Docker Build              ]   | Uploaded bytes 46169167
+[DevSecOps Pipeline/6. Docker Build              ]   | Finished uploading artifact content to blob storage!
+[DevSecOps Pipeline/6. Docker Build              ]   | SHA256 digest of uploaded artifact zip is 717e540ecde5c568d9411adc5b368b871a8aec90a2df1569cc2cb5a9a0c7073c
+[DevSecOps Pipeline/6. Docker Build              ]   | Finalizing artifact upload
+[DevSecOps Pipeline/6. Docker Build              ]   | Artifact docker-image.zip successfully finalized. Artifact ID 3572604477
+[DevSecOps Pipeline/6. Docker Build              ]   | Artifact docker-image has been successfully uploaded! Final size is 46169167 bytes. Artifact ID is 3572604477
+[DevSecOps Pipeline/6. Docker Build              ]   | Artifact download URL: https://github.com/nektos/act/actions/runs/1/artifacts/3572604477
+[DevSecOps Pipeline/6. Docker Build              ]   ✅  Success - Main actions/upload-artifact@v4 [1.835250625s]
+[DevSecOps Pipeline/6. Docker Build              ]   ⚙  ::set-output:: artifact-id=3572604477
+[DevSecOps Pipeline/6. Docker Build              ]   ⚙  ::set-output:: artifact-digest=717e540ecde5c568d9411adc5b368b871a8aec90a2df1569cc2cb5a9a0c7073c
+[DevSecOps Pipeline/6. Docker Build              ]   ⚙  ::set-output:: artifact-url=https://github.com/nektos/act/actions/runs/1/artifacts/3572604477
+[DevSecOps Pipeline/6. Docker Build              ] ⭐ Run Complete job
+[DevSecOps Pipeline/6. Docker Build              ] Cleaning up container for job 6. Docker Build
+[DevSecOps Pipeline/6. Docker Build              ]   ✅  Success - Complete job
+[DevSecOps Pipeline/6. Docker Build              ] 🏁  Job succeeded
+[DevSecOps Pipeline/7. Container Image Scan (trivy)] ⭐ Run Set up job
+[DevSecOps Pipeline/7. Container Image Scan (trivy)] 🚀  Start image=catthehacker/ubuntu:act-latest
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   🐳  docker pull image=catthehacker/ubuntu:act-latest platform=linux/arm64 username= forcePull=false
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   🐳  docker create image=catthehacker/ubuntu:act-latest platform=linux/arm64 entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   🐳  docker run image=catthehacker/ubuntu:act-latest platform=linux/arm64 entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   ✅  Success - Set up job
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   ☁  git clone 'https://github.com/actions/download-artifact' # ref=v4
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   ☁  git clone 'https://github.com/actions/upload-artifact' # ref=v4
+[DevSecOps Pipeline/7. Container Image Scan (trivy)] ⭐ Run Main actions/checkout@v4
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   🐳  docker cp src=/tmp/s17-repo/. dst=/tmp/s17-repo
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   ✅  Success - Main actions/checkout@v4 [68.016667ms]
+[DevSecOps Pipeline/7. Container Image Scan (trivy)] ⭐ Run Main actions/download-artifact@v4
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   🐳  docker cp src=/Users/poorav/.cache/act/actions-download-artifact@v4/ dst=/var/run/act/actions/actions-download-artifact@v4/
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   🐳  docker exec cmd=[/opt/acttoolcache/node/24.19.0/arm64/bin/node /var/run/act/actions/actions-download-artifact@v4/dist/index.js] user= workdir=
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | Downloading single artifact
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | (node:31) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | (Use `node --trace-deprecation ...` to show where the warning was created)
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | Preparing to download the following artifacts:
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | - docker-image (ID: 3572604477, Size: 96, Expected Digest: undefined)
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | Redirecting to blob download url: http://100.128.166.41:34567/twirp/github.actions.results.api.v1.ArtifactService/DownloadArtifact
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | Starting download of artifact to: /tmp/s17-repo
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | (node:31) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | SHA256 digest of downloaded artifact is 717e540ecde5c568d9411adc5b368b871a8aec90a2df1569cc2cb5a9a0c7073c
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | Artifact download completed successfully.
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | Total of 1 artifact(s) downloaded
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | Download artifact has finished successfully
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   ✅  Success - Main actions/download-artifact@v4 [1.082243542s]
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   ⚙  ::set-output:: download-path=/tmp/s17-repo
+[DevSecOps Pipeline/7. Container Image Scan (trivy)] ⭐ Run Main Load image + install trivy
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | Loaded image: s17-devsecops:6c13690
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | aquasecurity/trivy info checking GitHub for tag 'v0.75.0'
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | aquasecurity/trivy info found version: 0.75.0 for v0.75.0/Linux/ARM64
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | aquasecurity/trivy info installed /usr/local/bin/trivy
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   ✅  Success - Main Load image + install trivy [9.196548625s]
+[DevSecOps Pipeline/7. Container Image Scan (trivy)] ⭐ Run Main trivy image
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/3] user= workdir=
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | 2026-10-07T19:16:33Z	INFO	Loaded	file_path="security/trivy.yaml"
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | 2026-10-07T19:16:33Z	INFO	[vulndb] Need to update DB
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | 2026-10-07T19:16:33Z	INFO	[vulndb] Downloading vulnerability DB...
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | 2026-10-07T19:16:33Z	INFO	[vulndb] Downloading artifact...	repo="mirror.gcr.io/aquasec/trivy-db:2"
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | 127.25 KiB / 119.53 MiB [>___________________________________________________________] 0.10% ? p/s ?575.25 KiB / 119.53 MiB [>___________________________________________________________] 0.47% ? p/s ?1.55 MiB / 119.53 MiB [>_____________________________________________________________] 1.29% ? p/s ?3.00 MiB / 119.53 MiB [->_______________________________________________] 2.51% 4.84 MiB p/s ETA 24s4.25 MiB / 119.53 MiB [->_______________________________________________] 3.55% 4.84 MiB p/s ETA 23s5.56 MiB / 119.53 MiB [-->______________________________________________] 4.65% 4.84 MiB p/s ETA 23s7.22 MiB / 119.53 MiB [-->______________________________________________] 6.04% 4.98 MiB p/s ETA 22s8.75 MiB / 119.53 MiB [--->_____________________________________________] 7.32% 4.98 MiB p/s ETA 22s10.87 MiB / 119.53 MiB [---->___________________________________________] 9.10% 4.98 MiB p/s ETA 21s12.28 MiB / 119.53 MiB [---->__________________________________________] 10.27% 5.20 MiB p/s ETA 20s13.75 MiB / 119.53 MiB [----->_________________________________________] 11.50% 5.20 MiB p/s ETA 20s15.09 MiB / 119.53 MiB [----->_________________________________________] 12.63% 5.20 MiB p/s ETA 20s16.59 MiB / 119.53 MiB [------>________________________________________] 13.88% 5.33 MiB p/s ETA 19s17.87 MiB / 119.53 MiB [------->_______________________________________] 14.95% 5.33 MiB p/s ETA 19s19.00 MiB / 119.53 MiB [------->_______________________________________] 15.89% 5.33 MiB p/s ETA 18s19.69 MiB / 119.53 MiB [------->_______________________________________] 16.47% 5.32 MiB p/s ETA 18s20.72 MiB / 119.53 MiB [-------->______________________________________] 17.33% 5.32 MiB p/s ETA 18s22.37 MiB / 119.53 MiB [-------->______________________________________] 18.72% 5.32 MiB p/s ETA 18s23.84 MiB / 119.53 MiB [--------->_____________________________________] 19.95% 5.42 MiB p/s ETA 17s25.22 MiB / 119.53 MiB [--------->_____________________________________] 21.10% 5.42 MiB p/s ETA 17s26.56 MiB / 119.53 MiB [---------->____________________________________] 22.22% 5.42 MiB p/s ETA 17s27.97 MiB / 119.53 MiB [---------->____________________________________] 23.40% 5.52 MiB p/s ETA 16s29.84 MiB / 119.53 MiB [----------->___________________________________] 24.97% 5.52 MiB p/s ETA 16s31.34 MiB / 119.53 MiB [------------>__________________________________] 26.22% 5.52 MiB p/s ETA 15s33.75 MiB / 119.53 MiB [------------->_________________________________] 28.23% 5.78 MiB p/s ETA 14s35.25 MiB / 119.53 MiB [------------->_________________________________] 29.49% 5.78 MiB p/s ETA 14s35.75 MiB / 119.53 MiB [-------------->________________________________] 29.91% 5.78 MiB p/s ETA 14s36.84 MiB / 119.53 MiB [-------------->________________________________] 30.82% 5.74 MiB p/s ETA 14s37.84 MiB / 119.53 MiB [-------------->________________________________] 31.66% 5.74 MiB p/s ETA 14s38.84 MiB / 119.53 MiB [--------------->_______________________________] 32.50% 5.74 MiB p/s ETA 14s40.09 MiB / 119.53 MiB [--------------->_______________________________] 33.54% 5.72 MiB p/s ETA 13s42.19 MiB / 119.53 MiB [---------------->______________________________] 35.29% 5.72 MiB p/s ETA 13s44.28 MiB / 119.53 MiB [----------------->_____________________________] 37.04% 5.72 MiB p/s ETA 13s46.34 MiB / 119.53 MiB [------------------>____________________________] 38.77% 6.02 MiB p/s ETA 12s47.97 MiB / 119.53 MiB [------------------>____________________________] 40.13% 6.02 MiB p/s ETA 11s50.22 MiB / 119.53 MiB [------------------->___________________________] 42.01% 6.02 MiB p/s ETA 11s51.06 MiB / 119.53 MiB [-------------------->__________________________] 42.72% 6.14 MiB p/s ETA 11s53.44 MiB / 119.53 MiB [--------------------->_________________________] 44.70% 6.14 MiB p/s ETA 10s54.78 MiB / 119.53 MiB [--------------------->_________________________] 45.83% 6.14 MiB p/s ETA 10s56.91 MiB / 119.53 MiB [---------------------->_________________________] 47.61% 6.37 MiB p/s ETA 9s58.50 MiB / 119.53 MiB [----------------------->________________________] 48.94% 6.37 MiB p/s ETA 9s60.22 MiB / 119.53 MiB [------------------------>_______________________] 50.38% 6.37 MiB p/s ETA 9s61.19 MiB / 119.53 MiB [------------------------>_______________________] 51.19% 6.42 MiB p/s ETA 9s61.84 MiB / 119.53 MiB [------------------------>_______________________] 51.74% 6.42 MiB p/s ETA 8s62.03 MiB / 119.53 MiB [------------------------>_______________________] 51.89% 6.42 MiB p/s ETA 8s62.62 MiB / 119.53 MiB [------------------------->______________________] 52.39% 6.16 MiB p/s ETA 9s63.16 MiB / 119.53 MiB [------------------------->______________________] 52.83% 6.16 MiB p/s ETA 9s63.81 MiB / 119.53 MiB [------------------------->______________________] 53.38% 6.16 MiB p/s ETA 9s64.81 MiB / 119.53 MiB [-------------------------->_____________________] 54.22% 6.00 MiB p/s ETA 9s65.66 MiB / 119.53 MiB [-------------------------->_____________________] 54.93% 6.00 MiB p/s ETA 8s66.75 MiB / 119.53 MiB [-------------------------->_____________________] 55.84% 6.00 MiB p/s ETA 8s68.91 MiB / 119.53 MiB [--------------------------->____________________] 57.65% 6.05 MiB p/s ETA 8s70.81 MiB / 119.53 MiB [---------------------------->___________________] 59.24% 6.05 MiB p/s ETA 8s72.53 MiB / 119.53 MiB [----------------------------->__________________] 60.68% 6.05 MiB p/s ETA 7s73.47 MiB / 119.53 MiB [----------------------------->__________________] 61.46% 6.15 MiB p/s ETA 7s74.72 MiB / 119.53 MiB [------------------------------>_________________] 62.51% 6.15 MiB p/s ETA 7s75.97 MiB / 119.53 MiB [------------------------------>_________________] 63.55% 6.15 MiB p/s ETA 7s77.09 MiB / 119.53 MiB [------------------------------>_________________] 64.49% 6.15 MiB p/s ETA 6s77.84 MiB / 119.53 MiB [------------------------------->________________] 65.12% 6.15 MiB p/s ETA 6s78.75 MiB / 119.53 MiB [------------------------------->________________] 65.88% 6.15 MiB p/s ETA 6s79.53 MiB / 119.53 MiB [------------------------------->________________] 66.53% 6.01 MiB p/s ETA 6s80.28 MiB / 119.53 MiB [-------------------------------->_______________] 67.16% 6.01 MiB p/s ETA 6s81.12 MiB / 119.53 MiB [-------------------------------->_______________] 67.87% 6.01 MiB p/s ETA 6s82.56 MiB / 119.53 MiB [--------------------------------->______________] 69.07% 5.95 MiB p/s ETA 6s83.41 MiB / 119.53 MiB [--------------------------------->______________] 69.78% 5.95 MiB p/s ETA 6s84.47 MiB / 119.53 MiB [--------------------------------->______________] 70.66% 5.95 MiB p/s ETA 5s85.53 MiB / 119.53 MiB [---------------------------------->_____________] 71.55% 5.89 MiB p/s ETA 5s86.34 MiB / 119.53 MiB [---------------------------------->_____________] 72.23% 5.89 MiB p/s ETA 5s88.03 MiB / 119.53 MiB [----------------------------------->____________] 73.64% 5.89 MiB p/s ETA 5s88.97 MiB / 119.53 MiB [----------------------------------->____________] 74.43% 5.88 MiB p/s ETA 5s90.47 MiB / 119.53 MiB [------------------------------------>___________] 75.68% 5.88 MiB p/s ETA 4s92.16 MiB / 119.53 MiB [------------------------------------->__________] 77.10% 5.88 MiB p/s ETA 4s93.69 MiB / 119.53 MiB [------------------------------------->__________] 78.38% 6.00 MiB p/s ETA 4s95.62 MiB / 119.53 MiB [-------------------------------------->_________] 80.00% 6.00 MiB p/s ETA 3s97.06 MiB / 119.53 MiB [-------------------------------------->_________] 81.20% 6.00 MiB p/s ETA 3s97.44 MiB / 119.53 MiB [--------------------------------------->________] 81.51% 6.02 MiB p/s ETA 3s98.44 MiB / 119.53 MiB [--------------------------------------->________] 82.35% 6.02 MiB p/s ETA 3s99.66 MiB / 119.53 MiB [---------------------------------------->_______] 83.37% 6.02 MiB p/s ETA 3s100.75 MiB / 119.53 MiB [--------------------------------------->_______] 84.29% 5.99 MiB p/s ETA 3s101.75 MiB / 119.53 MiB [---------------------------------------->______] 85.12% 5.99 MiB p/s ETA 2s102.25 MiB / 119.53 MiB [---------------------------------------->______] 85.54% 5.99 MiB p/s ETA 2s102.47 MiB / 119.53 MiB [---------------------------------------->______] 85.72% 5.79 MiB p/s ETA 2s105.12 MiB / 119.53 MiB [----------------------------------------->_____] 87.95% 5.79 MiB p/s ETA 2s106.47 MiB / 119.53 MiB [----------------------------------------->_____] 89.07% 5.79 MiB p/s ETA 2s107.62 MiB / 119.53 MiB [------------------------------------------>____] 90.04% 5.97 MiB p/s ETA 1s109.50 MiB / 119.53 MiB [------------------------------------------->___] 91.61% 5.97 MiB p/s ETA 1s110.97 MiB / 119.53 MiB [------------------------------------------->___] 92.83% 5.97 MiB p/s ETA 1s111.97 MiB / 119.53 MiB [-------------------------------------------->__] 93.67% 6.05 MiB p/s ETA 1s112.87 MiB / 119.53 MiB [-------------------------------------------->__] 94.43% 6.05 MiB p/s ETA 1s114.62 MiB / 119.53 MiB [--------------------------------------------->_] 95.89% 6.05 MiB p/s ETA 0s115.53 MiB / 119.53 MiB [--------------------------------------------->_] 96.65% 6.04 MiB p/s ETA 0s116.59 MiB / 119.53 MiB [--------------------------------------------->_] 97.54% 6.04 MiB p/s ETA 0s118.25 MiB / 119.53 MiB [---------------------------------------------->] 98.93% 6.04 MiB p/s ETA 0s119.41 MiB / 119.53 MiB [---------------------------------------------->] 99.89% 6.07 MiB p/s ETA 0s119.53 MiB / 119.53 MiB [--------------------------------------------->] 100.00% 6.07 MiB p/s ETA 0s119.53 MiB / 119.53 MiB [--------------------------------------------->] 100.00% 6.07 MiB p/s ETA 0s119.53 MiB / 119.53 MiB [--------------------------------------------->] 100.00% 5.69 MiB p/s ETA 0s119.53 MiB / 119.53 MiB [--------------------------------------------->] 100.00% 5.69 MiB p/s ETA 0s119.53 MiB / 119.53 MiB [--------------------------------------------->] 100.00% 5.69 MiB p/s ETA 0s119.53 MiB / 119.53 MiB [--------------------------------------------->] 100.00% 5.32 MiB p/s ETA 0s119.53 MiB / 119.53 MiB [--------------------------------------------->] 100.00% 5.32 MiB p/s ETA 0s119.53 MiB / 119.53 MiB [--------------------------------------------->] 100.00% 5.32 MiB p/s ETA 0s119.53 MiB / 119.53 MiB [--------------------------------------------->] 100.00% 4.98 MiB p/s ETA 0s119.53 MiB / 119.53 MiB [--------------------------------------------->] 100.00% 4.98 MiB p/s ETA 0s119.53 MiB / 119.53 MiB [--------------------------------------------->] 100.00% 4.98 MiB p/s ETA 0s119.53 MiB / 119.53 MiB [--------------------------------------------->] 100.00% 4.66 MiB p/s ETA 0s119.53 MiB / 119.53 MiB [--------------------------------------------->] 100.00% 4.66 MiB p/s ETA 0s119.53 MiB / 119.53 MiB [--------------------------------------------->] 100.00% 4.66 MiB p/s ETA 0s119.53 MiB / 119.53 MiB [--------------------------------------------->] 100.00% 4.36 MiB p/s ETA 0s119.53 MiB / 119.53 MiB [--------------------------------------------->] 100.00% 4.36 MiB p/s ETA 0s119.53 MiB / 119.53 MiB [--------------------------------------------->] 100.00% 4.36 MiB p/s ETA 0s119.53 MiB / 119.53 MiB [--------------------------------------------->] 100.00% 4.08 MiB p/s ETA 0s119.53 MiB / 119.53 MiB [--------------------------------------------->] 100.00% 4.08 MiB p/s ETA 0s119.53 MiB / 119.53 MiB [--------------------------------------------->] 100.00% 4.08 MiB p/s ETA 0s119.53 MiB / 119.53 MiB [--------------------------------------------->] 100.00% 3.81 MiB p/s ETA 0s119.53 MiB / 119.53 MiB [--------------------------------------------->] 100.00% 3.81 MiB p/s ETA 0s119.53 MiB / 119.53 MiB [-------------------------------------------------] 100.00% 5.16 MiB p/s 23s2026-10-07T19:16:58Z	INFO	[vulndb] Artifact successfully downloaded	repo="mirror.gcr.io/aquasec/trivy-db:2"
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | 2026-10-07T19:16:58Z	INFO	[vuln] Vulnerability scanning is enabled
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | 2026-10-07T19:17:04Z	INFO	[python] Licenses acquired from one or more METADATA files may be subject to additional terms. Use `--debug` flag to see all affected packages.
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | 2026-10-07T19:17:04Z	INFO	Detected OS	family="debian" version="13.7"
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | 2026-10-07T19:17:04Z	INFO	[debian] Detecting vulnerabilities...	os_version="13" pkg_num=87
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | 2026-10-07T19:17:04Z	INFO	Number of language-specific files	num=1
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | 2026-10-07T19:17:04Z	INFO	[python-pkg] Detecting vulnerabilities...
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | 2026-10-07T19:17:04Z	WARN	Using severities from other vendors for some vulnerabilities. Read https://trivy.dev/docs/v0.75/guide/scanner/vulnerability#severity-selection for details.
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | 2026-10-07T19:17:04Z	INFO	Loaded	file_path="security/trivy.yaml"
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | 2026-10-07T19:17:04Z	INFO	[vuln] Vulnerability scanning is enabled
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | 2026-10-07T19:17:04Z	INFO	Detected OS	family="debian" version="13.7"
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | 2026-10-07T19:17:04Z	INFO	[debian] Detecting vulnerabilities...	os_version="13" pkg_num=87
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | 2026-10-07T19:17:04Z	INFO	Number of language-specific files	num=1
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | 2026-10-07T19:17:04Z	INFO	[python-pkg] Detecting vulnerabilities...
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | 2026-10-07T19:17:04Z	WARN	Using severities from other vendors for some vulnerabilities. Read https://trivy.dev/docs/v0.75/guide/scanner/vulnerability#severity-selection for details.
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | 2026-10-07T19:17:04Z	INFO	Table result includes only package filenames. Use '--format json' option to get the full path to the package file.
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | 
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | Report Summary
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | 
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | ┌──────────────────────────────────────────────────────────────────────────────┬────────────┬─────────────────┐
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | │                                    Target                                    │    Type    │ Vulnerabilities │
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | ├──────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | │ s17-devsecops:6c13690 (debian 13.7)                                          │   debian   │        0        │
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | ├──────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | │ usr/local/lib/python3.12/site-packages/blinker-1.9.0.dist-info/METADATA      │ python-pkg │        0        │
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | ├──────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | │ usr/local/lib/python3.12/site-packages/certifi-2026.7.22.dist-info/METADATA  │ python-pkg │        0        │
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | ├──────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | │ usr/local/lib/python3.12/site-packages/chardet-3.0.4.dist-info/METADATA      │ python-pkg │        0        │
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | ├──────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | │ usr/local/lib/python3.12/site-packages/click-8.5.0.dist-info/METADATA        │ python-pkg │        0        │
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | ├──────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | │ usr/local/lib/python3.12/site-packages/flask-3.1.3.dist-info/METADATA        │ python-pkg │        0        │
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | ├──────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | │ usr/local/lib/python3.12/site-packages/gunicorn-23.0.0.dist-info/METADATA    │ python-pkg │        0        │
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | ├──────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | │ usr/local/lib/python3.12/site-packages/idna-2.7.dist-info/METADATA           │ python-pkg │        0        │
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | ├──────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | │ usr/local/lib/python3.12/site-packages/itsdangerous-2.2.0.dist-info/METADATA │ python-pkg │        0        │
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | ├──────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | │ usr/local/lib/python3.12/site-packages/jinja2-3.1.6.dist-info/METADATA       │ python-pkg │        0        │
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | ├──────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | │ usr/local/lib/python3.12/site-packages/markupsafe-3.0.4.dist-info/METADATA   │ python-pkg │        0        │
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | ├──────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | │ usr/local/lib/python3.12/site-packages/packaging-26.3.dist-info/METADATA     │ python-pkg │        0        │
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | ├──────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | │ usr/local/lib/python3.12/site-packages/requests-2.19.1.dist-info/METADATA    │ python-pkg │        1        │
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | ├──────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | │ usr/local/lib/python3.12/site-packages/urllib3-1.23.dist-info/METADATA       │ python-pkg │        6        │
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | ├──────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | │ usr/local/lib/python3.12/site-packages/werkzeug-3.1.9.dist-info/METADATA     │ python-pkg │        0        │
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | └──────────────────────────────────────────────────────────────────────────────┴────────────┴─────────────────┘
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | Legend:
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | - '-': Not scanned
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | - '0': Clean (no security findings detected)
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | 
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | 
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | For OSS Maintainers: VEX Notice
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | --------------------------------
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | If you're an OSS maintainer and Trivy has detected vulnerabilities in your project that you believe are not actually exploitable, consider issuing a VEX (Vulnerability Exploitability eXchange) statement.
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | VEX allows you to communicate the actual status of vulnerabilities in your project, improving security transparency and reducing false positives for your users.
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | Learn more and start using VEX: https://trivy.dev/docs/v0.75/guide/supply-chain/vex/repo#publishing-vex-documents
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | 
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | To disable this notice, set the TRIVY_DISABLE_VEX_NOTICE environment variable.
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | 
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | 
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | Python (python-pkg)
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | ===================
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | Total: 7 (HIGH: 7, CRITICAL: 0)
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | 
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | ┌─────────────────────┬────────────────┬──────────┬────────┬───────────────────┬────────────────┬──────────────────────────────────────────────────────────────┐
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | │       Library       │ Vulnerability  │ Severity │ Status │ Installed Version │ Fixed Version  │                            Title                             │
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | ├─────────────────────┼────────────────┼──────────┼────────┼───────────────────┼────────────────┼──────────────────────────────────────────────────────────────┤
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | │ requests (METADATA) │ CVE-2018-18074 │ HIGH     │ fixed  │ 2.19.1            │ 2.20.0         │ python-requests: Redirect from HTTPS to HTTP does not remove │
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | │                     │                │          │        │                   │                │ Authorization header                                         │
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | │                     │                │          │        │                   │                │ https://avd.aquasec.com/nvd/cve-2018-18074                   │
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | ├─────────────────────┼────────────────┤          │        ├───────────────────┼────────────────┼──────────────────────────────────────────────────────────────┤
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | │ urllib3 (METADATA)  │ CVE-2019-11324 │          │        │ 1.23              │ 1.24.2         │ python-urllib3: Certification mishandle when error should be │
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | │                     │                │          │        │                   │                │ thrown                                                       │
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | │                     │                │          │        │                   │                │ https://avd.aquasec.com/nvd/cve-2019-11324                   │
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | │                     ├────────────────┤          │        │                   ├────────────────┼──────────────────────────────────────────────────────────────┤
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | │                     │ CVE-2023-43804 │          │        │                   │ 2.0.6, 1.26.17 │ python-urllib3: Cookie request header isn't stripped during  │
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | │                     │                │          │        │                   │                │ cross-origin redirects                                       │
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | │                     │                │          │        │                   │                │ https://avd.aquasec.com/nvd/cve-2023-43804                   │
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | │                     ├────────────────┤          │        │                   ├────────────────┼──────────────────────────────────────────────────────────────┤
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | │                     │ CVE-2025-66471 │          │        │                   │ 2.6.0          │ urllib3: urllib3 Streaming API improperly handles highly     │
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | │                     │                │          │        │                   │                │ compressed data                                              │
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | │                     │                │          │        │                   │                │ https://avd.aquasec.com/nvd/cve-2025-66471                   │
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | │                     ├────────────────┤          │        │                   ├────────────────┼──────────────────────────────────────────────────────────────┤
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | │                     │ CVE-2026-21441 │          │        │                   │ 2.6.3          │ urllib3: urllib3 vulnerable to decompression-bomb safeguard  │
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | │                     │                │          │        │                   │                │ bypass when following HTTP redirects (streaming...           │
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | │                     │                │          │        │                   │                │ https://avd.aquasec.com/nvd/cve-2026-21441                   │
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | │                     ├────────────────┤          │        │                   ├────────────────┼──────────────────────────────────────────────────────────────┤
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | │                     │ CVE-2026-44431 │          │        │                   │ 2.7.0          │ urllib3: urllib3: Information disclosure via cross-origin    │
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | │                     │                │          │        │                   │                │ redirects forwarding sensitive headers                       │
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | │                     │                │          │        │                   │                │ https://avd.aquasec.com/nvd/cve-2026-44431                   │
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | │                     ├────────────────┤          │        │                   ├────────────────┼──────────────────────────────────────────────────────────────┤
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | │                     │ CVE-2026-97689 │          │        │                   │ 2.8.0          │ urllib3: urllib3: Denial of Service via unbounded memory     │
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | │                     │                │          │        │                   │                │ allocation in chunk parser...                                │
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | │                     │                │          │        │                   │                │ https://avd.aquasec.com/nvd/cve-2026-97689                   │
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | └─────────────────────┴────────────────┴──────────┴────────┴───────────────────┴────────────────┴──────────────────────────────────────────────────────────────┘
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   ✅  Success - Main trivy image [31.375100583s]
+[DevSecOps Pipeline/7. Container Image Scan (trivy)] ⭐ Run Main actions/upload-artifact@v4
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   🐳  docker cp src=/Users/poorav/.cache/act/actions-upload-artifact@v4/ dst=/var/run/act/actions/actions-upload-artifact@v4/
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   🐳  docker exec cmd=[/opt/acttoolcache/node/24.19.0/arm64/bin/node /var/run/act/actions/actions-upload-artifact@v4/dist/upload/index.js] user= workdir=
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | (node:155) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | (Use `node --trace-deprecation ...` to show where the warning was created)
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | With the provided path, there will be 1 file uploaded
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | Artifact name is valid!
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | Root directory input is valid!
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | Beginning upload of artifact content to blob storage
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | (node:155) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | Uploaded bytes 46339
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | Finished uploading artifact content to blob storage!
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | SHA256 digest of uploaded artifact zip is 8bb2d7f551efb393426b42d81e533f1eed2243daf5cbe25a7777c583330cff69
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | Finalizing artifact upload
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | Artifact reports-image.zip successfully finalized. Artifact ID 2871320164
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | Artifact reports-image has been successfully uploaded! Final size is 46339 bytes. Artifact ID is 2871320164
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   | Artifact download URL: https://github.com/nektos/act/actions/runs/1/artifacts/2871320164
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   ✅  Success - Main actions/upload-artifact@v4 [793.255667ms]
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   ⚙  ::set-output:: artifact-id=2871320164
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   ⚙  ::set-output:: artifact-digest=8bb2d7f551efb393426b42d81e533f1eed2243daf5cbe25a7777c583330cff69
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   ⚙  ::set-output:: artifact-url=https://github.com/nektos/act/actions/runs/1/artifacts/2871320164
+[DevSecOps Pipeline/7. Container Image Scan (trivy)] ⭐ Run Complete job
+[DevSecOps Pipeline/7. Container Image Scan (trivy)] Cleaning up container for job 7. Container Image Scan (trivy)
+[DevSecOps Pipeline/7. Container Image Scan (trivy)]   ✅  Success - Complete job
+[DevSecOps Pipeline/7. Container Image Scan (trivy)] 🏁  Job succeeded
+[DevSecOps Pipeline/8. Security Gate               ] ⭐ Run Set up job
+[DevSecOps Pipeline/8. Security Gate               ] 🚀  Start image=catthehacker/ubuntu:act-latest
+[DevSecOps Pipeline/8. Security Gate               ]   🐳  docker pull image=catthehacker/ubuntu:act-latest platform=linux/arm64 username= forcePull=false
+[DevSecOps Pipeline/8. Security Gate               ]   🐳  docker create image=catthehacker/ubuntu:act-latest platform=linux/arm64 entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[DevSecOps Pipeline/8. Security Gate               ]   🐳  docker run image=catthehacker/ubuntu:act-latest platform=linux/arm64 entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[DevSecOps Pipeline/8. Security Gate               ]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[DevSecOps Pipeline/8. Security Gate               ]   ✅  Success - Set up job
+[DevSecOps Pipeline/8. Security Gate               ]   ☁  git clone 'https://github.com/actions/download-artifact' # ref=v4
+[DevSecOps Pipeline/8. Security Gate               ] ⭐ Run Main actions/checkout@v4
+[DevSecOps Pipeline/8. Security Gate               ]   🐳  docker cp src=/tmp/s17-repo/. dst=/tmp/s17-repo
+[DevSecOps Pipeline/8. Security Gate               ]   ✅  Success - Main actions/checkout@v4 [41.735791ms]
+[DevSecOps Pipeline/8. Security Gate               ] ⭐ Run Main actions/download-artifact@v4
+[DevSecOps Pipeline/8. Security Gate               ]   🐳  docker cp src=/Users/poorav/.cache/act/actions-download-artifact@v4/ dst=/var/run/act/actions/actions-download-artifact@v4/
+[DevSecOps Pipeline/8. Security Gate               ]   🐳  docker exec cmd=[/opt/acttoolcache/node/24.19.0/arm64/bin/node /var/run/act/actions/actions-download-artifact@v4/dist/index.js] user= workdir=
+[DevSecOps Pipeline/8. Security Gate               ]   | (node:31) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[DevSecOps Pipeline/8. Security Gate               ]   | (Use `node --trace-deprecation ...` to show where the warning was created)
+[DevSecOps Pipeline/8. Security Gate               ]   | Found 6 artifact(s)
+[DevSecOps Pipeline/8. Security Gate               ]   | Filtering artifacts by pattern 'reports-*'
+[DevSecOps Pipeline/8. Security Gate               ]   | Preparing to download the following artifacts:
+[DevSecOps Pipeline/8. Security Gate               ]   | - reports-sca (ID: 3352424300, Size: 96, Expected Digest: undefined)
+[DevSecOps Pipeline/8. Security Gate               ]   | - reports-sast (ID: 3158610192, Size: 96, Expected Digest: undefined)
+[DevSecOps Pipeline/8. Security Gate               ]   | - reports-image (ID: 2871320164, Size: 96, Expected Digest: undefined)
+[DevSecOps Pipeline/8. Security Gate               ]   | - reports-secrets (ID: 344493484, Size: 96, Expected Digest: undefined)
+[DevSecOps Pipeline/8. Security Gate               ]   | Redirecting to blob download url: http://100.128.166.41:34567/twirp/github.actions.results.api.v1.ArtifactService/DownloadArtifact
+[DevSecOps Pipeline/8. Security Gate               ]   | Starting download of artifact to: /tmp/s17-repo/reports
+[DevSecOps Pipeline/8. Security Gate               ]   | Redirecting to blob download url: http://100.128.166.41:34567/twirp/github.actions.results.api.v1.ArtifactService/DownloadArtifact
+[DevSecOps Pipeline/8. Security Gate               ]   | Starting download of artifact to: /tmp/s17-repo/reports
+[DevSecOps Pipeline/8. Security Gate               ]   | Redirecting to blob download url: http://100.128.166.41:34567/twirp/github.actions.results.api.v1.ArtifactService/DownloadArtifact
+[DevSecOps Pipeline/8. Security Gate               ]   | Starting download of artifact to: /tmp/s17-repo/reports
+[DevSecOps Pipeline/8. Security Gate               ]   | (node:31) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+[DevSecOps Pipeline/8. Security Gate               ]   | Redirecting to blob download url: http://100.128.166.41:34567/twirp/github.actions.results.api.v1.ArtifactService/DownloadArtifact
+[DevSecOps Pipeline/8. Security Gate               ]   | Starting download of artifact to: /tmp/s17-repo/reports
+[DevSecOps Pipeline/8. Security Gate               ]   | SHA256 digest of downloaded artifact is d50caa3eb22c401db7ba1847905f5786047210db4aba386b154fab8cca0ed005
+[DevSecOps Pipeline/8. Security Gate               ]   | Artifact download completed successfully.
+[DevSecOps Pipeline/8. Security Gate               ]   | SHA256 digest of downloaded artifact is ce8697bbc7db4d85ed42e951da544ae95b611f48b9a0e18fc866c54874aa4468
+[DevSecOps Pipeline/8. Security Gate               ]   | Artifact download completed successfully.
+[DevSecOps Pipeline/8. Security Gate               ]   | SHA256 digest of downloaded artifact is 479c2653082c040756786dd158f0c968b911b29288684ef0af9f332c73a5724a
+[DevSecOps Pipeline/8. Security Gate               ]   | Artifact download completed successfully.
+[DevSecOps Pipeline/8. Security Gate               ]   | SHA256 digest of downloaded artifact is 8bb2d7f551efb393426b42d81e533f1eed2243daf5cbe25a7777c583330cff69
+[DevSecOps Pipeline/8. Security Gate               ]   | Artifact download completed successfully.
+[DevSecOps Pipeline/8. Security Gate               ]   | Total of 4 artifact(s) downloaded
+[DevSecOps Pipeline/8. Security Gate               ]   | Download artifact has finished successfully
+[DevSecOps Pipeline/8. Security Gate               ]   ✅  Success - Main actions/download-artifact@v4 [632.732125ms]
+[DevSecOps Pipeline/8. Security Gate               ]   ⚙  ::set-output:: download-path=/tmp/s17-repo/reports
+[DevSecOps Pipeline/8. Security Gate               ] ⭐ Run Main Evaluate all reports against security/gate-policy.json
+[DevSecOps Pipeline/8. Security Gate               ]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=
+[DevSecOps Pipeline/8. Security Gate               ]   | ========================================================================
+[DevSecOps Pipeline/8. Security Gate               ]   | STAGE    CHECK                           FOUND   MAX   RESULT
+[DevSecOps Pipeline/8. Security Gate               ]   | ------------------------------------------------------------------------
+[DevSecOps Pipeline/8. Security Gate               ]   | SAST     bandit HIGH severity                2     0   FAIL
+[DevSecOps Pipeline/8. Security Gate               ]   | SAST     semgrep ERROR findings              4     0   FAIL
+[DevSecOps Pipeline/8. Security Gate               ]   | SCA      pip-audit vulnerable deps          19     0   FAIL
+[DevSecOps Pipeline/8. Security Gate               ]   | SCA      trivy fs HIGH/CRITICAL              1     0   FAIL
+[DevSecOps Pipeline/8. Security Gate               ]   | SECRETS  gitleaks leaked secrets             3     0   FAIL
+[DevSecOps Pipeline/8. Security Gate               ]   | IMAGE    trivy image CRITICAL                0     0   PASS
+[DevSecOps Pipeline/8. Security Gate               ]   | IMAGE    trivy image HIGH                    7     0   FAIL
+[DevSecOps Pipeline/8. Security Gate               ]   | ------------------------------------------------------------------------
+[DevSecOps Pipeline/8. Security Gate               ]   | SECURITY GATE: FAILED (6 check(s) over threshold) - image will NOT be pushed or deployed
+[DevSecOps Pipeline/8. Security Gate               ]   ❌  Failure - Main Evaluate all reports against security/gate-policy.json [85.944791ms]
+[DevSecOps Pipeline/8. Security Gate               ] exitcode '1': failure
+[DevSecOps Pipeline/8. Security Gate               ] ⭐ Run Complete job
+[DevSecOps Pipeline/8. Security Gate               ]   ✅  Success - Complete job
+[DevSecOps Pipeline/8. Security Gate               ] 🏁  Job failed
+Error: Job '8. Security Gate' failed

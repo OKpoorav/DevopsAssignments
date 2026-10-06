@@ -1,0 +1,9 @@
+# Trivy configuration shared by the SCA (fs) and image scans
+severity:
+  - HIGH
+  - CRITICAL
+scan:
+  scanners:
+    - vuln
+vulnerability:
+  ignore-unfixed: true   # only fail on vulnerabilities that have a fix available

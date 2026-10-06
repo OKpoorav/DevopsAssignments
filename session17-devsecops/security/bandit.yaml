@@ -1,0 +1,3 @@
+# Bandit SAST configuration
+exclude_dirs: ["tests", ".venv", "demo"]
+skips: []

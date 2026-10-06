@@ -1,0 +1,19 @@
+===================================================================
+ STAGE 4: SCA        (source: session17-devsecops, image: s17-devsecops:ac578a1)
+===================================================================
+--- pip-audit (PyPI advisory DB / OSV) ---
+No known vulnerabilities found
+--- trivy fs (dependency manifests, HIGH/CRITICAL, fixable) ---
+
+Report Summary
+
+┌──────────────────┬──────┬─────────────────┐
+│      Target      │ Type │ Vulnerabilities │
+├──────────────────┼──────┼─────────────────┤
+│ requirements.txt │ pip  │        0        │
+└──────────────────┴──────┴─────────────────┘
+Legend:
+- '-': Not scanned
+- '0': Clean (no security findings detected)
+
+[STAGE 4: SCA] SUCCESS

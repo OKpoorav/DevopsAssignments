@@ -1,0 +1,15 @@
+# Gitleaks secret-scanning configuration: default ruleset + project allowlist
+title = "session17 gitleaks config"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "generated / third-party paths"
+paths = [
+  '''reports/''',
+  '''logs/''',          # archived pipeline outputs (scanner reports contain image digests etc.)
+  '''screenshots/''',
+  '''\.venv/''',
+  '''__pycache__/''',   # compiled bytecode is never committed (.gitignore); the .py source is scanned
+]

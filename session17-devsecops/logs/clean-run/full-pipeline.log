@@ -1,0 +1,191 @@
+===================================================================
+ STAGE 1: Build        (source: session17-devsecops, image: s17-devsecops:ac578a1)
+===================================================================
+compileall: all modules byte-compiled OK
+import check OK: app.app - routes: 8
+[STAGE 1: Build] SUCCESS
+===================================================================
+ STAGE 2: Unit Test        (source: session17-devsecops, image: s17-devsecops:ac578a1)
+===================================================================
+============================= test session starts ==============================
+platform darwin -- Python 3.11.7, pytest-8.4.2, pluggy-1.6.0 -- /tmp/s17-pipeline-venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /Users/poorav/Devops/DevopsSubmssion /session17-devsecops
+configfile: pytest.ini
+testpaths: tests
+plugins: cov-7.0.0
+collecting ... collected 8 items
+
+tests/test_app.py::test_home PASSED                                      [ 12%]
+tests/test_app.py::test_health PASSED                                    [ 25%]
+tests/test_app.py::test_greet PASSED                                     [ 37%]
+tests/test_app.py::test_add_numbers PASSED                               [ 50%]
+tests/test_app.py::test_add_numbers_missing_fields PASSED                [ 62%]
+tests/test_app.py::test_calculator_multiply PASSED                       [ 75%]
+tests/test_app.py::test_calculator_divide_by_zero PASSED                 [ 87%]
+tests/test_app.py::test_status PASSED                                    [100%]
+
+- generated xml file: /Users/poorav/Devops/DevopsSubmssion /session17-devsecops/reports/junit.xml -
+================================ tests coverage ================================
+_______________ coverage: platform darwin, python 3.11.7-final-0 _______________
+
+Name              Stmts   Miss  Cover
+-------------------------------------
+app/__init__.py       0      0   100%
+app/app.py          102     32    69%
+-------------------------------------
+TOTAL               102     32    69%
+============================== 8 passed in 0.18s ===============================
+[STAGE 2: Unit Test] SUCCESS
+===================================================================
+ STAGE 3: SAST        (source: session17-devsecops, image: s17-devsecops:ac578a1)
+===================================================================
+--- bandit (Python SAST) ---
+LOW    B311 app/app.py:79  Standard pseudo-random generators are not suitable for security/cryptographic purposes.
+LOW    B311 app/app.py:190  Standard pseudo-random generators are not suitable for security/cryptographic purposes.
+LOW    B311 app/app.py:192  Standard pseudo-random generators are not suitable for security/cryptographic purposes.
+LOW    B311 app/app.py:196  Standard pseudo-random generators are not suitable for security/cryptographic purposes.
+LOW    B311 app/app.py:207  Standard pseudo-random generators are not suitable for security/cryptographic purposes.
+bandit totals: HIGH=0 MEDIUM=0 LOW=5
+--- semgrep (p/python community rules + security/semgrep.yml custom rules) ---
+semgrep findings: 0 (ERROR=0)
+--- hadolint (Dockerfile lint, informational) ---
+hadolint: done
+[STAGE 3: SAST] SUCCESS
+===================================================================
+ STAGE 4: SCA        (source: session17-devsecops, image: s17-devsecops:ac578a1)
+===================================================================
+--- pip-audit (PyPI advisory DB / OSV) ---
+No known vulnerabilities found
+--- trivy fs (dependency manifests, HIGH/CRITICAL, fixable) ---
+
+Report Summary
+
+┌──────────────────┬──────┬─────────────────┐
+│      Target      │ Type │ Vulnerabilities │
+├──────────────────┼──────┼─────────────────┤
+│ requirements.txt │ pip  │        0        │
+└──────────────────┴──────┴─────────────────┘
+Legend:
+- '-': Not scanned
+- '0': Clean (no security findings detected)
+
+[STAGE 4: SCA] SUCCESS
+===================================================================
+ STAGE 5: Secret Scan        (source: session17-devsecops, image: s17-devsecops:ac578a1)
+===================================================================
+--- gitleaks (default rules + security/gitleaks.toml) ---
+[90m12:33AM[0m [32mINF[0m [1mscanned ~74976 bytes (74.98 KB) in 14.6ms[0m
+[90m12:33AM[0m [32mINF[0m [1mno leaks found[0m
+gitleaks findings: 0
+[STAGE 5: Secret Scan] SUCCESS
+===================================================================
+ STAGE 6: Docker Build        (source: session17-devsecops, image: s17-devsecops:ac578a1)
+===================================================================
+#1 [internal] load build definition from Dockerfile
+#1 DONE 0.0s
+#2 [internal] load metadata for docker.io/library/python:3.12-slim
+#2 DONE 1.3s
+#3 [internal] load .dockerignore
+#3 DONE 0.0s
+#4 [builder 1/4] FROM docker.io/library/python:3.12-slim@sha256:05cda9777409a9c3ffddd94a4c476b79f0769a0b4857f0c7ed9226b6800b0d6f
+#4 DONE 0.0s
+#5 [internal] load build context
+#5 DONE 0.0s
+#6 [builder 2/4] WORKDIR /build
+#7 [builder 4/4] RUN pip install --prefix=/install -r requirements.txt
+#8 [stage-1 3/5] COPY --from=builder /install /usr/local
+#9 [builder 3/4] COPY requirements.txt .
+#10 [stage-1 2/5] RUN apt-get update && apt-get upgrade -y --no-install-recommends && rm -rf /var/lib/apt/lists/*     && rm -rf /usr/local/lib/python3.12/site-packages/pip* /usr/local/lib/python3.12/ensurepip /usr/local/bin/pip*     && useradd --uid 10001 --no-create-home --shell /usr/sbin/nologin appuser
+#11 [stage-1 4/5] WORKDIR /app
+#12 [stage-1 5/5] COPY app ./app
+#12 DONE 0.1s
+#13 naming to docker.io/library/s17-devsecops:ac578a1 done
+#13 DONE 0.0s
+IMAGE                   ID             DISK USAGE   CONTENT SIZE   EXTRA
+s17-devsecops:19d68a8   cb19acd0e370        154MB             0B        
+s17-devsecops:2de0642   cf8e3becec4a        162MB             0B        
+s17-devsecops:4f62b7e   681163912603        154MB             0B        
+s17-devsecops:ac578a1   c1a84fb0a810        151MB             0B        
+[STAGE 6: Docker Build] SUCCESS
+===================================================================
+ STAGE 7: Container Image Scan        (source: session17-devsecops, image: s17-devsecops:ac578a1)
+===================================================================
+--- trivy image (OS packages + Python packages in the image) ---
+
+Report Summary
+
+┌──────────────────────────────────────────────────────────────────────────────┬────────────┬─────────────────┐
+│                                    Target                                    │    Type    │ Vulnerabilities │
+├──────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
+│ s17-devsecops:ac578a1 (debian 13.7)                                          │   debian   │        0        │
+├──────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
+│ usr/local/lib/python3.12/site-packages/blinker-1.9.0.dist-info/METADATA      │ python-pkg │        0        │
+├──────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
+│ usr/local/lib/python3.12/site-packages/click-8.5.0.dist-info/METADATA        │ python-pkg │        0        │
+├──────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
+│ usr/local/lib/python3.12/site-packages/flask-3.1.3.dist-info/METADATA        │ python-pkg │        0        │
+├──────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
+│ usr/local/lib/python3.12/site-packages/gunicorn-23.0.0.dist-info/METADATA    │ python-pkg │        0        │
+├──────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
+│ usr/local/lib/python3.12/site-packages/itsdangerous-2.2.0.dist-info/METADATA │ python-pkg │        0        │
+├──────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
+│ usr/local/lib/python3.12/site-packages/jinja2-3.1.6.dist-info/METADATA       │ python-pkg │        0        │
+├──────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
+│ usr/local/lib/python3.12/site-packages/markupsafe-3.0.4.dist-info/METADATA   │ python-pkg │        0        │
+├──────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
+│ usr/local/lib/python3.12/site-packages/packaging-26.3.dist-info/METADATA     │ python-pkg │        0        │
+├──────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
+│ usr/local/lib/python3.12/site-packages/werkzeug-3.1.9.dist-info/METADATA     │ python-pkg │        0        │
+└──────────────────────────────────────────────────────────────────────────────┴────────────┴─────────────────┘
+Legend:
+- '-': Not scanned
+- '0': Clean (no security findings detected)
+
+[STAGE 7: Container Image Scan] SUCCESS
+===================================================================
+ STAGE 8: Security Gate        (source: session17-devsecops, image: s17-devsecops:ac578a1)
+===================================================================
+========================================================================
+STAGE    CHECK                           FOUND   MAX   RESULT
+------------------------------------------------------------------------
+SAST     bandit HIGH severity                0     0   PASS
+SAST     semgrep ERROR findings              0     0   PASS
+SCA      pip-audit vulnerable deps           0     0   PASS
+SCA      trivy fs HIGH/CRITICAL              0     0   PASS
+SECRETS  gitleaks leaked secrets             0     0   PASS
+IMAGE    trivy image CRITICAL                0     0   PASS
+IMAGE    trivy image HIGH                    0     0   PASS
+------------------------------------------------------------------------
+SECURITY GATE: PASSED - image approved for push and deployment
+[STAGE 8: Security Gate] SUCCESS
+===================================================================
+ STAGE 9: Push Image        (source: session17-devsecops, image: s17-devsecops:ac578a1)
+===================================================================
+localhost:18420/s17-devsecops:ac578a1
+localhost:18420/s17-devsecops:latest
+registry catalog: {"repositories":["s17-devsecops"]}
+tags: {"name":"s17-devsecops","tags":["ac578a1","latest"]}
+[STAGE 9: Push Image] SUCCESS
+===================================================================
+ STAGE 10: Deploy to Kubernetes        (source: session17-devsecops, image: s17-devsecops:ac578a1)
+===================================================================
+image loaded into cluster: localhost:18420/s17-devsecops:ac578a1
+namespace/s17-devsecops unchanged
+deployment.apps/devsecops-app unchanged
+service/devsecops-app unchanged
+deployment "devsecops-app" successfully rolled out
+NAME                            READY   UP-TO-DATE   AVAILABLE   AGE     CONTAINERS   IMAGES                                  SELECTOR
+deployment.apps/devsecops-app   2/2     2            2           3m48s   app          localhost:18420/s17-devsecops:ac578a1   app=devsecops-app
+
+NAME                                 READY   STATUS    RESTARTS   AGE     IP            NODE       NOMINATED NODE   READINESS GATES
+pod/devsecops-app-69847bc85b-dsktd   1/1     Running   0          3m48s   10.244.0.24   minikube   <none>           <none>
+pod/devsecops-app-69847bc85b-s4cbx   1/1     Running   0          3m48s   10.244.0.23   minikube   <none>           <none>
+
+NAME                    TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)   AGE     SELECTOR
+service/devsecops-app   ClusterIP   10.108.36.48   <none>        80/TCP    3m48s   app=devsecops-app
+--- smoke test (from inside the cluster) ---
+{"status":"healthy","timestamp":"2026-10-07T19:03:59.905790Z","uptime_seconds":225.8}
+
+[STAGE 10: Deploy to Kubernetes] SUCCESS
+PIPELINE SUCCEEDED - localhost:18420/s17-devsecops:ac578a1 deployed to namespace s17-devsecops

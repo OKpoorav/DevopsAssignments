@@ -1,0 +1,52 @@
+===================================================================
+ STAGE 4: SCA        (source: s17-vulnerable-change, image: s17-devsecops:4f62b7e)
+===================================================================
+--- pip-audit (PyPI advisory DB / OSV) ---
+Found 19 known vulnerabilities in 3 packages
+Name     Version ID              Fix Versions
+-------- ------- --------------- -------------
+requests 2.19.1  PYSEC-2018-28   2.20.0
+requests 2.19.1  PYSEC-2023-74   2.31.0
+requests 2.19.1  PYSEC-2026-1873 2.32.0
+requests 2.19.1  PYSEC-2026-1872 2.32.4
+requests 2.19.1  PYSEC-2026-2275 2.33.0
+idna     2.7     PYSEC-2024-60   3.7
+idna     2.7     PYSEC-2026-215  3.15
+urllib3  1.23    PYSEC-2019-133  1.24.2
+urllib3  1.23    PYSEC-2019-132  1.24.3
+urllib3  1.23    PYSEC-2020-148  1.25.9
+urllib3  1.23    PYSEC-2023-192  1.26.17,2.0.6
+urllib3  1.23    PYSEC-2023-207  1.24.2
+urllib3  1.23    PYSEC-2023-212  1.26.18,2.0.7
+urllib3  1.23    PYSEC-2026-141  2.7.0
+urllib3  1.23    PYSEC-2026-1999 2.5.0
+urllib3  1.23    PYSEC-2026-1995 1.26.19,2.2.2
+urllib3  1.23    PYSEC-2026-1994 2.6.0
+urllib3  1.23    PYSEC-2026-1996 2.6.3
+urllib3  1.23    PYSEC-2026-4177 2.8.0
+--- trivy fs (dependency manifests, HIGH/CRITICAL, fixable) ---
+
+Report Summary
+
+┌──────────────────┬──────┬─────────────────┐
+│      Target      │ Type │ Vulnerabilities │
+├──────────────────┼──────┼─────────────────┤
+│ requirements.txt │ pip  │        1        │
+└──────────────────┴──────┴─────────────────┘
+Legend:
+- '-': Not scanned
+- '0': Clean (no security findings detected)
+
+
+requirements.txt (pip)
+======================
+Total: 1 (HIGH: 1, CRITICAL: 0)
+
+┌──────────┬────────────────┬──────────┬────────┬───────────────────┬───────────────┬──────────────────────────────────────────────────────────────┐
+│ Library  │ Vulnerability  │ Severity │ Status │ Installed Version │ Fixed Version │                            Title                             │
+├──────────┼────────────────┼──────────┼────────┼───────────────────┼───────────────┼──────────────────────────────────────────────────────────────┤
+│ requests │ CVE-2018-18074 │ HIGH     │ fixed  │ 2.19.1            │ 2.20.0        │ python-requests: Redirect from HTTPS to HTTP does not remove │
+│          │                │          │        │                   │               │ Authorization header                                         │
+│          │                │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2018-18074                   │
+└──────────┴────────────────┴──────────┴────────┴───────────────────┴───────────────┴──────────────────────────────────────────────────────────────┘
+[STAGE 4: SCA] SUCCESS

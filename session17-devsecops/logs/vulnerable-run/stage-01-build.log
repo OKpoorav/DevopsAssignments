@@ -1,0 +1,6 @@
+===================================================================
+ STAGE 1: Build        (source: s17-vulnerable-change, image: s17-devsecops:4f62b7e)
+===================================================================
+compileall: all modules byte-compiled OK
+import check OK: app.app - routes: 8
+[STAGE 1: Build] SUCCESS

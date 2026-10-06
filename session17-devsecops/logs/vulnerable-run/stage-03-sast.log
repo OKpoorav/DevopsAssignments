@@ -1,0 +1,30 @@
+===================================================================
+ STAGE 3: SAST        (source: s17-vulnerable-change, image: s17-devsecops:4f62b7e)
+===================================================================
+--- bandit (Python SAST) ---
+LOW    B311 app/app.py:79  Standard pseudo-random generators are not suitable for security/cryptographic purposes.
+LOW    B311 app/app.py:190  Standard pseudo-random generators are not suitable for security/cryptographic purposes.
+LOW    B311 app/app.py:192  Standard pseudo-random generators are not suitable for security/cryptographic purposes.
+LOW    B311 app/app.py:196  Standard pseudo-random generators are not suitable for security/cryptographic purposes.
+LOW    B311 app/app.py:207  Standard pseudo-random generators are not suitable for security/cryptographic purposes.
+LOW    B404 app/insecure_utils.py:3  Consider possible security implications associated with the subprocess module.
+LOW    B105 app/insecure_utils.py:6  Possible hardcoded password: 'ze9o****REDACTED'
+LOW    B105 app/insecure_utils.py:7  Possible hardcoded password: 'ghp_****REDACTED'
+HIGH   B602 app/insecure_utils.py:12  subprocess call with shell=True identified, security issue.
+MEDIUM B307 app/insecure_utils.py:17  Use of possibly insecure function - consider using safer ast.literal_eval.
+HIGH   B324 app/insecure_utils.py:22  Use of weak MD5 hash for security. Consider usedforsecurity=False
+MEDIUM B104 app/insecure_utils.py:27  Possible binding to all interfaces.
+bandit totals: HIGH=2 MEDIUM=2 LOW=8
+--- semgrep (p/python community rules + security/semgrep.yml custom rules) ---
+ERROR    app/insecure_utils.py:12  subprocess-shell-true
+ERROR    app/insecure_utils.py:12  subprocess-shell-true
+ERROR    app/insecure_utils.py:17  dangerous-eval
+WARNING  app/insecure_utils.py:22  insecure-hash-algorithm-md5
+WARNING  app/insecure_utils.py:22  weak-hash-md5
+WARNING  app/insecure_utils.py:22  md5-used-as-password
+WARNING  app/insecure_utils.py:27  avoid_app_run_with_bad_host
+ERROR    app/insecure_utils.py:27  flask-debug-enabled
+semgrep findings: 8 (ERROR=4)
+--- hadolint (Dockerfile lint, informational) ---
+hadolint: done
+[STAGE 3: SAST] SUCCESS

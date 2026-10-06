@@ -1,0 +1,16 @@
+===================================================================
+ STAGE 8: Security Gate        (source: session17-devsecops, image: s17-devsecops:ac578a1)
+===================================================================
+========================================================================
+STAGE    CHECK                           FOUND   MAX   RESULT
+------------------------------------------------------------------------
+SAST     bandit HIGH severity                0     0   PASS
+SAST     semgrep ERROR findings              0     0   PASS
+SCA      pip-audit vulnerable deps           0     0   PASS
+SCA      trivy fs HIGH/CRITICAL              0     0   PASS
+SECRETS  gitleaks leaked secrets             0     0   PASS
+IMAGE    trivy image CRITICAL                0     0   PASS
+IMAGE    trivy image HIGH                    0     0   PASS
+------------------------------------------------------------------------
+SECURITY GATE: PASSED - image approved for push and deployment
+[STAGE 8: Security Gate] SUCCESS

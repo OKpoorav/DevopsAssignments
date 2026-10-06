@@ -1,0 +1,10 @@
+{
+  "_comment": "Security gate thresholds: maximum allowed findings per category (0 = any finding fails the build)",
+  "sast_bandit_high": 0,
+  "sast_semgrep_error": 0,
+  "sca_pip_audit_vulns": 0,
+  "sca_trivy_fs_high_critical": 0,
+  "secrets_gitleaks": 0,
+  "image_trivy_critical": 0,
+  "image_trivy_high": 0
+}

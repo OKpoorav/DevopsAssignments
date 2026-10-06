@@ -1,0 +1,254 @@
+# Complete CI/CD + DevSecOps pipeline
+# Code -> Build -> Unit Test -> SAST -> SCA -> Secret Scan -> Docker Build -> Container Image Scan
+#      -> Security Gate -> Push Image -> Deploy to Kubernetes
+name: DevSecOps Pipeline
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  IMAGE_NAME: s17-devsecops
+  REGISTRY: ${{ vars.REGISTRY || 'ghcr.io/poorav' }}
+  K8S_NAMESPACE: s17-devsecops
+  PYTHON_VERSION: "3.12"
+  TRIVY_VERSION: "0.75.0"
+  GITLEAKS_VERSION: "8.30.1"
+
+jobs:
+  # ---------------------------------------------------------------- 1. BUILD
+  build:
+    name: 1. Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: Install runtime dependencies
+        run: pip install -r requirements.txt
+      - name: Byte-compile and import check
+        run: |
+          python -m compileall -q app
+          python -c "from app.app import app; print('import OK, routes:', len(list(app.url_map.iter_rules())))"
+
+  # ---------------------------------------------------------------- 2. UNIT TEST
+  unit-test:
+    name: 2. Unit Test
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - run: pip install -r requirements-dev.txt
+      - name: Run pytest with coverage
+        run: pytest -v --cov=app --cov-report=term --junitxml=junit.xml
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-results
+          path: junit.xml
+
+  # ---------------------------------------------------------------- 3. SAST
+  sast:
+    name: 3. SAST (bandit + semgrep)
+    needs: unit-test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: Install SAST tools
+        run: pip install -r security/requirements-tools.txt semgrep
+      - name: bandit
+        run: |
+          mkdir -p reports
+          bandit -r app -c security/bandit.yaml -f json -o reports/bandit.json || true
+          # one line per finding, no source context, secret values redacted (never print secrets in CI logs)
+          bandit -q -r app -c security/bandit.yaml -f custom --msg-template "{severity:<6} {test_id} {relpath}:{line}  {msg}" \
+            | sed -E "s/(password: ')(.{4})[^']*'/\1\2****REDACTED'/" || true
+      - name: semgrep (p/python + custom rules)
+        run: |
+          semgrep scan --metrics=off --config p/python --config security/semgrep.yml --json -o reports/semgrep.json app || true
+          semgrep scan --metrics=off --config p/python --config security/semgrep.yml app || true
+      - uses: actions/upload-artifact@v4
+        with:
+          name: reports-sast
+          path: reports/
+
+  # ---------------------------------------------------------------- 4. SCA
+  sca:
+    name: 4. SCA (pip-audit + trivy fs)
+    needs: sast
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: Install tools
+        run: |
+          pip install -r security/requirements-tools.txt
+          curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin v${TRIVY_VERSION}
+      - name: pip-audit
+        run: |
+          mkdir -p reports
+          pip-audit -r requirements.txt -f json -o reports/pip-audit.json || true
+          pip-audit -r requirements.txt || true
+      - name: trivy fs
+        run: |
+          trivy fs --config security/trivy.yaml --ignorefile security/.trivyignore -f json -o reports/trivy-fs.json .
+          trivy fs --config security/trivy.yaml --ignorefile security/.trivyignore -f table .
+      - uses: actions/upload-artifact@v4
+        with:
+          name: reports-sca
+          path: reports/
+
+  # ---------------------------------------------------------------- 5. SECRET SCAN
+  secret-scan:
+    name: 5. Secret Scan (gitleaks)
+    needs: sca
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0              # full history: secrets removed later are still leaked
+      - name: Install gitleaks
+        run: |
+          ARCH=$(uname -m); [ "$ARCH" = "aarch64" ] && ARCH=arm64 || ARCH=x64
+          curl -sSL "https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}/gitleaks_${GITLEAKS_VERSION}_linux_${ARCH}.tar.gz" | tar -xz -C /usr/local/bin gitleaks
+      - name: gitleaks (working tree + git history)
+        run: |
+          mkdir -p reports
+          gitleaks dir . -c security/gitleaks.toml -f json -r reports/gitleaks.json --redact || true
+          if [ -d .git ]; then
+            gitleaks git . -c security/gitleaks.toml -f json -r reports/gitleaks-history.json --redact || true
+          fi
+          python3 -c "import json;d=json.load(open('reports/gitleaks.json'));[print(x['RuleID'],x['File'],x['StartLine']) for x in d];print('findings:',len(d))"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: reports-secrets
+          path: reports/
+
+  # ---------------------------------------------------------------- 6. DOCKER BUILD
+  docker-build:
+    name: 6. Docker Build
+    needs: secret-scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build image
+        run: docker build -t $IMAGE_NAME:${GITHUB_SHA::7} .
+      - name: Save image for the next jobs
+        run: docker save $IMAGE_NAME:${GITHUB_SHA::7} | gzip > image.tar.gz
+      - uses: actions/upload-artifact@v4
+        with:
+          name: docker-image
+          path: image.tar.gz
+          retention-days: 1
+
+  # ---------------------------------------------------------------- 7. CONTAINER IMAGE SCAN
+  image-scan:
+    name: 7. Container Image Scan (trivy)
+    needs: docker-build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: docker-image
+      - name: Load image + install trivy
+        run: |
+          docker load < image.tar.gz
+          curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin v${TRIVY_VERSION}
+      - name: trivy image
+        run: |
+          mkdir -p reports
+          trivy image --config security/trivy.yaml --ignorefile security/.trivyignore -f json -o reports/trivy-image.json $IMAGE_NAME:${GITHUB_SHA::7}
+          trivy image --config security/trivy.yaml --ignorefile security/.trivyignore -f table $IMAGE_NAME:${GITHUB_SHA::7}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: reports-image
+          path: reports/
+
+  # ---------------------------------------------------------------- 8. SECURITY GATE
+  security-gate:
+    name: 8. Security Gate
+    needs: [sast, sca, secret-scan, image-scan]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: reports-*
+          path: reports
+          merge-multiple: true
+      - name: Evaluate all reports against security/gate-policy.json
+        run: python3 security/security_gate.py reports security/gate-policy.json
+
+  # ---------------------------------------------------------------- 9. PUSH IMAGE
+  push-image:
+    name: 9. Push Image
+    needs: security-gate
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    outputs:
+      image: ${{ steps.push.outputs.image }}
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: docker-image
+      - name: Log in to registry
+        env:
+          REGISTRY_USERNAME: ${{ secrets.REGISTRY_USERNAME }}
+          REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
+        run: |
+          if [ -n "$REGISTRY_PASSWORD" ]; then
+            echo "$REGISTRY_PASSWORD" | docker login "${REGISTRY%%/*}" -u "$REGISTRY_USERNAME" --password-stdin
+          else
+            echo "No registry credentials configured (local unauthenticated registry) - skipping login"
+          fi
+      - name: Tag and push
+        id: push
+        run: |
+          docker load < image.tar.gz
+          IMAGE=$REGISTRY/$IMAGE_NAME:${GITHUB_SHA::7}
+          docker tag $IMAGE_NAME:${GITHUB_SHA::7} $IMAGE
+          docker tag $IMAGE_NAME:${GITHUB_SHA::7} $REGISTRY/$IMAGE_NAME:latest
+          docker push $IMAGE && docker push $REGISTRY/$IMAGE_NAME:latest
+          echo "image=$IMAGE" >> "$GITHUB_OUTPUT"
+
+  # ---------------------------------------------------------------- 10. DEPLOY
+  deploy:
+    name: 10. Deploy to Kubernetes
+    needs: push-image
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: self-hosted            # runner with network access to the cluster (kubectl configured)
+    environment: production
+    env:
+      IMAGE: ${{ needs.push-image.outputs.image }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Make image available to the cluster
+        run: minikube image load "$IMAGE"      # with a real registry the kubelet would simply pull it
+      - name: Apply manifests
+        run: |
+          kubectl --context minikube apply -f k8s/namespace.yaml
+          sed "s|__IMAGE__|$IMAGE|" k8s/deployment.yaml | kubectl --context minikube apply -f -
+          kubectl --context minikube apply -f k8s/service.yaml
+      - name: Rollout status
+        run: kubectl --context minikube -n $K8S_NAMESPACE rollout status deploy/devsecops-app --timeout=180s
+      - name: Smoke test
+        run: |
+          kubectl --context minikube -n $K8S_NAMESPACE get deploy,pods,svc -o wide
+          kubectl --context minikube -n $K8S_NAMESPACE exec deploy/devsecops-app -- \
+            python -c "import urllib.request as u;print(u.urlopen('http://devsecops-app/health').read().decode())"

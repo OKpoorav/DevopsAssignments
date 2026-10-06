@@ -1,0 +1,16 @@
+===================================================================
+ STAGE 8: Security Gate        (source: s17-vulnerable-change, image: s17-devsecops:4f62b7e)
+===================================================================
+========================================================================
+STAGE    CHECK                           FOUND   MAX   RESULT
+------------------------------------------------------------------------
+SAST     bandit HIGH severity                2     0   FAIL
+SAST     semgrep ERROR findings              4     0   FAIL
+SCA      pip-audit vulnerable deps          19     0   FAIL
+SCA      trivy fs HIGH/CRITICAL              1     0   FAIL
+SECRETS  gitleaks leaked secrets             3     0   FAIL
+IMAGE    trivy image CRITICAL                0     0   PASS
+IMAGE    trivy image HIGH                    7     0   FAIL
+------------------------------------------------------------------------
+SECURITY GATE: FAILED (6 check(s) over threshold) - image will NOT be pushed or deployed
+[STAGE 8: Security Gate] FAILED (exit 1)

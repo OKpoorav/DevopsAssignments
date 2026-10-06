@@ -1,0 +1,6 @@
+===================================================================
+ STAGE 1: Build        (source: session17-devsecops, image: s17-devsecops:ac578a1)
+===================================================================
+compileall: all modules byte-compiled OK
+import check OK: app.app - routes: 8
+[STAGE 1: Build] SUCCESS

@@ -1,0 +1,8 @@
+===================================================================
+ STAGE 9: Push Image        (source: session17-devsecops, image: s17-devsecops:ac578a1)
+===================================================================
+localhost:18420/s17-devsecops:ac578a1
+localhost:18420/s17-devsecops:latest
+registry catalog: {"repositories":["s17-devsecops"]}
+tags: {"name":"s17-devsecops","tags":["ac578a1","latest"]}
+[STAGE 9: Push Image] SUCCESS
