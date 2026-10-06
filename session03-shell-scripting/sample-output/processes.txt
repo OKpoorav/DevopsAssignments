@@ -1,0 +1,23 @@
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  0.0  0.1 166772 10152 ?        Ss   18:21   0:00 /sbin/init
+root          23  0.0  0.1  31728 10912 ?        S<s  18:21   0:00 /lib/systemd/systemd-journald
+systemd+      38  0.0  0.1  25536 12560 ?        Ss   18:21   0:00 /lib/systemd/systemd-resolved
+message+      41  0.0  0.0   8744  4152 ?        Ss   18:21   0:00 @dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+root          43  0.0  0.2  30068 18140 ?        Ss   18:21   0:00 /usr/bin/python3 /usr/bin/networkd-dispatcher --run-startup-triggers
+root         697  0.0  0.0   3956  2344 ?        Ss   18:23   0:00 /usr/sbin/cron -f -P
+root         713  0.0  0.0  55192  2284 ?        Ss   18:23   0:00 nginx: master process /usr/sbin/nginx -g daemon on; master_process on;
+www-data     714  0.0  0.0  55888  6592 ?        S    18:23   0:00 nginx: worker process
+www-data     715  0.0  0.0  55888  6592 ?        S    18:23   0:00 nginx: worker process
+www-data     716  0.0  0.0  55888  6592 ?        S    18:23   0:00 nginx: worker process
+www-data     717  0.0  0.0  55888  6592 ?        S    18:23   0:00 nginx: worker process
+www-data     718  0.0  0.0  55888  6592 ?        S    18:23   0:00 nginx: worker process
+www-data     719  0.0  0.0  55888  6592 ?        S    18:23   0:00 nginx: worker process
+www-data     720  0.0  0.0  55888  6592 ?        S    18:23   0:00 nginx: worker process
+www-data     721  0.0  0.0  55888  6592 ?        S    18:23   0:00 nginx: worker process
+root        1471  0.0  0.0   3880  2792 ?        Ss   18:27   0:00 bash -c cd /root/session03 && (sleep 1; printf "Poorav Kumar Gupta\n"; sleep 0.5; printf "24bcs10080\n"; sleep 0.5; printf "sysreport\n"; sleep 0.5; printf "processes.txt\n"; sleep 2) | script -q -c "./system_info.sh" /dev/null
+root        1477  0.0  0.0   3880  1800 ?        S    18:27   0:00 bash -c cd /root/session03 && (sleep 1; printf "Poorav Kumar Gupta\n"; sleep 0.5; printf "24bcs10080\n"; sleep 0.5; printf "sysreport\n"; sleep 0.5; printf "processes.txt\n"; sleep 2) | script -q -c "./system_info.sh" /dev/null
+root        1478  0.0  0.0   2248  1396 ?        S    18:27   0:00 script -q -c ./system_info.sh /dev/null
+root        1480  0.0  0.0   2332  1380 pts/0    Ss+  18:27   0:00 sh -c ./system_info.sh
+root        1481  0.0  0.0   3880  2804 pts/0    S+   18:27   0:00 /bin/bash ./system_info.sh
+root        1491  0.0  0.0   2228  1112 ?        S    18:27   0:00 sleep 2
+root        1494  0.0  0.0   6464  2480 pts/0    R+   18:27   0:00 ps aux
