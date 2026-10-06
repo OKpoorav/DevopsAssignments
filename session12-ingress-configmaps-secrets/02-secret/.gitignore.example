@@ -1,0 +1,8 @@
+# Keep real secret material out of Git
+*.env
+.env*
+secrets/
+*-secret.yaml
+!*-secret.example.yaml
+*.pem
+*.key

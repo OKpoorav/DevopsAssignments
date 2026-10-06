@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata: {name: web-config, namespace: s12-troubleshoot}
+data:
+  APP_MODE: "production"
+  THEME_COLOR: "blue"        # FIX: add the missing key
+---
+apiVersion: v1
+kind: Pod
+metadata: {name: web-config-pod, namespace: s12-troubleshoot}
+spec:
+  containers:
+    - name: web
+      image: busybox:1.36
+      command: ["sh", "-c", "echo mode=$APP_MODE color=$THEME_COLOR; sleep 3600"]
+      env:
+        - name: APP_MODE
+          valueFrom: {configMapKeyRef: {name: web-config, key: APP_MODE}}
+        - name: THEME_COLOR
+          valueFrom: {configMapKeyRef: {name: web-config, key: THEME_COLOR}}

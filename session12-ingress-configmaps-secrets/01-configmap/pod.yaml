@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: config-demo
+  namespace: s12-config
+spec:
+  containers:
+    - name: app
+      image: busybox:1.36
+      command: ["sh", "-c", "echo App $APP_NAME starting in $APP_ENV with log level $LOG_LEVEL; sleep 3600"]
+      # 1) Inject single keys as env vars
+      env:
+        - name: APP_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: app-config
+              key: APP_NAME
+      # 2) Inject ALL keys as env vars
+      envFrom:
+        - configMapRef:
+            name: app-config
+      # 3) Mount the ConfigMap as files
+      volumeMounts:
+        - name: config-vol
+          mountPath: /etc/config
+          readOnly: true
+  volumes:
+    - name: config-vol
+      configMap:
+        name: app-config

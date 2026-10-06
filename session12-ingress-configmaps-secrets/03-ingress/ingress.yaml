@@ -1,0 +1,30 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: yatri-ingress
+  namespace: s12-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  ingressClassName: nginx
+  rules:
+    # Path-based routing on one host
+    - host: yatri.local
+      http:
+        paths:
+          - path: /api(/|$)(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service: {name: backend-svc, port: {number: 80}}
+          - path: /()(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service: {name: frontend-svc, port: {number: 80}}
+    # Host-based routing
+    - host: admin.yatri.local
+      http:
+        paths:
+          - path: /()(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service: {name: admin-svc, port: {number: 80}}
