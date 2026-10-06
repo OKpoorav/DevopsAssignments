@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata: {name: tls-app, namespace: s14-issues}
+spec:
+  containers:
+    - name: web
+      image: nginx:1.27-alpine
+      volumeMounts: [{name: tls, mountPath: /etc/tls, readOnly: true}]
+  volumes:
+    - name: tls
+      secret: {secretName: tls-cert}   # BUG: Secret "tls-cert" was never created

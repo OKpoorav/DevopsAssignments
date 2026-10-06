@@ -1,0 +1,14 @@
+# Backend "inventory" lives in namespace s14-dns-backend; client in s14-issues
+apiVersion: v1
+kind: Pod
+metadata: {name: dns-client, namespace: s14-issues}
+spec:
+  restartPolicy: Never
+  containers:
+    - name: client
+      image: curlimages/curl:8.6.0
+      command: ["sh", "-c"]
+      args:
+        - |
+          echo "calling inventory service..."
+          curl -s --max-time 5 http://inventory-svc.s14-dns-backend.svc.cluster.local/ || echo "ERROR"   # FIX: use FQDN <svc>.<namespace>.svc.cluster.local

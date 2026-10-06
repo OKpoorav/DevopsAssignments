@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Pod
+metadata: {name: errimagepull-app, namespace: s14-issues}
+spec:
+  containers:
+    - name: api
+      image: docker.io/hashicorp/http-echo:1.0       # FIX: existing public image
+      args: ["-listen=:8080", "-text=yatri-api v1 OK"]

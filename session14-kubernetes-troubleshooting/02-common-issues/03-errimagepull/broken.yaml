@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Pod
+metadata: {name: errimagepull-app, namespace: s14-issues}
+spec:
+  containers:
+    - name: api
+      image: docker.io/yatri-company/yatri-api:v1    # BUG: repository does not exist / is private

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata: {name: crashloop-app, namespace: s14-issues}
+spec:
+  containers:
+    - name: python-app
+      image: python:3.11-alpine
+      command: ["python3", "-c"]
+      args:
+        - |
+          import os, sys, time
+          db = os.environ.get("DATABASE_URL")
+          if not db:
+              print("[FATAL] DATABASE_URL environment variable is MISSING!", file=sys.stderr); sys.exit(1)
+          print(f"Connected to {db}. App running.", flush=True); time.sleep(3600)

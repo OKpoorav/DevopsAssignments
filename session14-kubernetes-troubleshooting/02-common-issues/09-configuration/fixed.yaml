@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata: {name: report-generator, namespace: s14-issues}
+spec:
+  restartPolicy: OnFailure
+  containers:
+    - name: report
+      image: python:3.11-alpine
+      command: ["python3", "-c"]
+      args:
+        - |
+          import time
+          print("Loading 100MB dataset into memory...", flush=True)
+          data = [b"x" * (10 * 1024 * 1024) for _ in range(10)]
+          print("Report generated OK", flush=True); time.sleep(3600)
+      resources:
+        limits:
+          memory: "256Mi"         # FIX: limit sized to the real workload (100MB + runtime)

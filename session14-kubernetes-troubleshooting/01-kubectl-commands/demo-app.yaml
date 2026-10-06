@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: demo-web, namespace: s14-commands, labels: {app: demo-web}}
+spec:
+  replicas: 2
+  selector: {matchLabels: {app: demo-web}}
+  template:
+    metadata: {labels: {app: demo-web, tier: frontend}}
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.27-alpine
+          ports: [{containerPort: 80}]
+          resources:
+            requests: {cpu: 20m, memory: 32Mi}
+            limits: {cpu: 100m, memory: 64Mi}
+        - name: logger      # sidecar that prints a log line every 5s
+          image: busybox:1.36
+          command: ["sh", "-c", "i=0; while true; do i=$((i+1)); echo \"$(date +%T) heartbeat #$i from $HOSTNAME\"; sleep 5; done"]
+          resources:
+            requests: {cpu: 5m, memory: 8Mi}
+---
+apiVersion: v1
+kind: Service
+metadata: {name: demo-web, namespace: s14-commands}
+spec:
+  selector: {app: demo-web}
+  ports: [{port: 80, targetPort: 80}]

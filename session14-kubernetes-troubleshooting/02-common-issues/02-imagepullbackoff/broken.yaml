@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Pod
+metadata: {name: imagepull-app, namespace: s14-issues}
+spec:
+  containers:
+    - name: web
+      image: nginx:1.27-alpine-typo     # BUG: tag does not exist

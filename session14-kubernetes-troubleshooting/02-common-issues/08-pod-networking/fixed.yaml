@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata: {name: payments, namespace: s14-issues, labels: {app: payments}}
+spec:
+  containers:
+    - name: payments
+      image: python:3.11-alpine
+      # FIX: bind to 0.0.0.0 so traffic arriving on the Pod IP is accepted
+      command: ["python3", "-m", "http.server", "8000", "--bind", "0.0.0.0"]
+      ports: [{containerPort: 8000}]
+---
+apiVersion: v1
+kind: Service
+metadata: {name: payments-svc, namespace: s14-issues}
+spec:
+  selector: {app: payments}
+  ports: [{port: 80, targetPort: 8000}]

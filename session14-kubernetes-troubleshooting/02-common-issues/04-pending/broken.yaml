@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata: {name: pending-app, namespace: s14-issues}
+spec:
+  nodeSelector:
+    disktype: ssd                 # BUG 1: no node has this label
+  containers:
+    - name: hungry
+      image: nginx:1.27-alpine
+      resources:
+        requests:
+          cpu: "50"               # BUG 2: 50 CPU cores requested, node has 8
+          memory: 64Mi

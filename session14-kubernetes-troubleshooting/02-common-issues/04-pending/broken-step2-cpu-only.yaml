@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata: {name: pending-app-cpu, namespace: s14-issues}
+spec:
+  containers:
+    - name: hungry
+      image: nginx:1.27-alpine
+      resources:
+        requests:
+          cpu: "50"               # BUG 2: 50 CPU cores requested, node has 8
+          memory: 64Mi

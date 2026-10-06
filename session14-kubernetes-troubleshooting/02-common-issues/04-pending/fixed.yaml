@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata: {name: pending-app, namespace: s14-issues}
+spec:
+  # FIX 1: nodeSelector removed (or label the node: kubectl label node minikube disktype=ssd)
+  containers:
+    - name: hungry
+      image: nginx:1.27-alpine
+      resources:
+        requests:
+          cpu: 50m                # FIX 2: realistic request
+          memory: 64Mi
