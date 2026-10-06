@@ -1,0 +1,6 @@
+replicaCount: 3
+image:
+  tag: "1.26"
+page:
+  message: "Hello from Helm - v3"
+  color: "#c53030"

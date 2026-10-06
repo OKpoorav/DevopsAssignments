@@ -1,0 +1,6 @@
+replicaCount: 2
+image:
+  tag: "1.25"
+page:
+  message: "Hello from Helm - v2"
+  color: "#2f855a"
