@@ -1,0 +1,18 @@
+# Terraform
+**/.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+*.tfplan
+# Secrets / local env
+.env
+.secrets
+*.pem
+# OS / editors / python
+.DS_Store
+__pycache__/
+*.pyc
+.pytest_cache/
+.coverage
+node_modules/
+target/
