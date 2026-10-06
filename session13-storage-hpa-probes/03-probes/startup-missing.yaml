@@ -1,0 +1,15 @@
+# Same slow app WITHOUT a startup probe: liveness starts checking immediately,
+# fails during the 20s boot, and the container is killed in a restart loop.
+apiVersion: v1
+kind: Pod
+metadata: {name: no-startup-demo, namespace: s13-probes}
+spec:
+  containers:
+    - name: slow-app
+      image: busybox:1.36
+      command: ["sh", "-c", "echo booting...; sleep 20; touch /tmp/started; echo started; sleep 600"]
+      livenessProbe:
+        exec: {command: ["cat", "/tmp/started"]}
+        initialDelaySeconds: 3
+        periodSeconds: 3
+        failureThreshold: 2

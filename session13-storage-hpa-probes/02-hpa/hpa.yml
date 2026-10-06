@@ -1,0 +1,21 @@
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata: {name: cpu-app-hpa, namespace: s13-hpa}
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: cpu-app
+  minReplicas: 1
+  maxReplicas: 8
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 50      # keep average CPU at 50% of requests (50m)
+  behavior:
+    scaleDown:
+      stabilizationWindowSeconds: 60  # default is 300s; shortened for the demo
+      policies: [{type: Percent, value: 100, periodSeconds: 15}]

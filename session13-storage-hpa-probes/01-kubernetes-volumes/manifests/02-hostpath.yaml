@@ -1,0 +1,15 @@
+# hostPath: mounts a directory from the NODE's filesystem (node-specific, security risk)
+apiVersion: v1
+kind: Pod
+metadata: {name: hostpath-demo, namespace: s13-volumes}
+spec:
+  containers:
+    - name: app
+      image: busybox:1.36
+      command: ["sh", "-c", "echo \"written by $(hostname) at $(date)\" >> /host-data/hello.txt; sleep 3600"]
+      volumeMounts: [{name: host-vol, mountPath: /host-data}]
+  volumes:
+    - name: host-vol
+      hostPath:
+        path: /tmp/s13-hostpath-demo
+        type: DirectoryOrCreate

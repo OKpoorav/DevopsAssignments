@@ -1,0 +1,21 @@
+# Dynamic provisioning: no PV written by hand - the provisioner creates it
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata: {name: dynamic-claim, namespace: s13-volumes}
+spec:
+  storageClassName: s13-fast
+  accessModes: [ReadWriteOnce]
+  resources: {requests: {storage: 256Mi}}
+---
+apiVersion: v1
+kind: Pod
+metadata: {name: dynamic-pod, namespace: s13-volumes}
+spec:
+  containers:
+    - name: app
+      image: busybox:1.36
+      command: ["sh", "-c", "df -h /data; echo dynamic > /data/f.txt; sleep 3600"]
+      volumeMounts: [{name: data, mountPath: /data}]
+  volumes:
+    - name: data
+      persistentVolumeClaim: {claimName: dynamic-claim}

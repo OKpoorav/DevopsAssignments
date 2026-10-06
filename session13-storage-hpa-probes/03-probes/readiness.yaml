@@ -1,0 +1,25 @@
+# Readiness: pod is only added to Service endpoints while /usr/share/nginx/html/ready exists
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: readiness-demo, namespace: s13-probes}
+spec:
+  replicas: 2
+  selector: {matchLabels: {app: readiness-demo}}
+  template:
+    metadata: {labels: {app: readiness-demo}}
+    spec:
+      containers:
+        - name: web
+          image: nginx:1.27-alpine
+          command: ["sh", "-c", "touch /usr/share/nginx/html/ready; nginx -g 'daemon off;'"]
+          readinessProbe:
+            httpGet: {path: /ready, port: 80}
+            periodSeconds: 3
+            failureThreshold: 1
+---
+apiVersion: v1
+kind: Service
+metadata: {name: readiness-svc, namespace: s13-probes}
+spec:
+  selector: {app: readiness-demo}
+  ports: [{port: 80, targetPort: 80}]

@@ -1,0 +1,49 @@
+# CPU-heavy demo app: every request runs a CPU loop (like the classic php-apache hpa-example)
+apiVersion: v1
+kind: ConfigMap
+metadata: {name: cpu-app-code, namespace: s13-hpa}
+data:
+  app.py: |
+    from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+    import math, socket
+    class H(BaseHTTPRequestHandler):
+        def do_GET(self):
+            x = 0.0
+            for i in range(300000):
+                x += math.sqrt(i)
+            body = f"OK! computed on {socket.gethostname()}\n".encode()
+            self.send_response(200); self.end_headers(); self.wfile.write(body)
+        def log_message(self, *a): pass
+    ThreadingHTTPServer(("", 8080), H).serve_forever()
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: cpu-app, namespace: s13-hpa}
+spec:
+  replicas: 1
+  selector: {matchLabels: {app: cpu-app}}
+  template:
+    metadata: {labels: {app: cpu-app}}
+    spec:
+      containers:
+        - name: app
+          image: python:3.12-alpine
+          command: ["python", "/app/app.py"]
+          ports: [{containerPort: 8080}]
+          resources:
+            requests: {cpu: 100m, memory: 32Mi}   # HPA % is calculated against requests
+            limits:   {cpu: 300m, memory: 128Mi}
+          readinessProbe:
+            tcpSocket: {port: 8080}
+            periodSeconds: 3
+          volumeMounts: [{name: code, mountPath: /app}]
+      volumes:
+        - name: code
+          configMap: {name: cpu-app-code}
+---
+apiVersion: v1
+kind: Service
+metadata: {name: cpu-app, namespace: s13-hpa}
+spec:
+  selector: {app: cpu-app}
+  ports: [{port: 80, targetPort: 8080}]

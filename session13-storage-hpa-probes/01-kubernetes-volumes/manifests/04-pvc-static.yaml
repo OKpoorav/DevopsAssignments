@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata: {name: static-claim, namespace: s13-volumes}
+spec:
+  storageClassName: manual          # binds only to PVs of class "manual"
+  accessModes: [ReadWriteOnce]
+  resources: {requests: {storage: 500Mi}}
+  selector: {matchLabels: {demo: s13-static}}
+---
+apiVersion: v1
+kind: Pod
+metadata: {name: pv-writer, namespace: s13-volumes}
+spec:
+  containers:
+    - name: app
+      image: busybox:1.36
+      command: ["sh", "-c", "echo 'persistent data from first pod' > /data/important.txt; sleep 3600"]
+      volumeMounts: [{name: data, mountPath: /data}]
+  volumes:
+    - name: data
+      persistentVolumeClaim: {claimName: static-claim}

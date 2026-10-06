@@ -1,0 +1,12 @@
+# Static provisioning: admin creates the PV up front
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: s13-static-pv
+  labels: {demo: s13-static}
+spec:
+  capacity: {storage: 1Gi}
+  accessModes: [ReadWriteOnce]
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: manual
+  hostPath: {path: /tmp/s13-static-pv}
